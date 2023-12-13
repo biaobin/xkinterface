@@ -4,7 +4,7 @@ Created on Thu Aug 27 21:22:18 2020
 
 @author: lixiangk
 """
-from .Numeric import *
+from .Misc import *
 from .BeamDiagnostics import *
 
 from scipy import fft
@@ -187,7 +187,8 @@ def astra2hdf5(inputName = None, inputDist = None, outputName = None):
     f.close()
     return
 
-def astra2gen(inputName = None, inputDist = None, outputName = None):
+def astra2gen(inputName = None, inputDist = None, outputName = None,
+              save = True):
     '''
     Astra input particle format to hdf5 format used in Genesis1.3 Version 4
 
@@ -215,8 +216,83 @@ def astra2gen(inputName = None, inputDist = None, outputName = None):
     ```
     '''
     
-    header = r'? VERSION = 1.0\n'+\
-    '? COLUMNS X PX Y PY T GAMMA\n'
+    if inputName != None:   
+        dist = pd_loadtxt(inputName)
+        dist[1:,2] += dist[0,2]
+        dist[1:,5] += dist[0,5]
+    elif inputDist != None:
+        dist = inputDist[:,0:6]
+    else:
+        print('No input file or data!')
+        return
+        
+    if outputName == None:
+        outputName = 'temp.dat'
+    print('The distribution is saved to '+outputName)
+    
+    x, y, z = dist[:,0:3].T[:]
+    z -= z.min()
+    Qb = np.sum(dist[:,-3])*1e9
+    Qb = np.abs(Qb)
+    
+    zmin, zmax = z.min()*1e3, z.max()*1e3
+    print('Bunch length in mm: ', zmax-zmin)
+    
+    Px, Py, Pz = dist[:,3:6].T[:]
+    
+    px = Px/g_mec2/1e6
+    py = Py/g_mec2/1e6
+    gg = np.sqrt(1+(Px**2+Py**2+Pz**2)/g_mec2/1e6/g_mec2/1e6) # gamma
+    
+    newdist = np.zeros(dist[:,0:6].shape)
+    newdist[:,0] = x
+    newdist[:,1] = px[:]
+    newdist[:,2] = y
+    newdist[:,3] = py
+    newdist[:,4] = z
+    newdist[:,5] = gg
+    
+    header = '''? VERSION = 1.0
+? CHARGE = '''+str.format('%14e' % Qb)+'''
+? COLUMNS X PX Y PY Z GAMMA'''
+
+    if save:
+        np.savetxt(outputName, newdist[:,0:6], header = header, fmt = '%-15.6e', 
+                   comments = '')
+    
+    return newdist
+
+def astra2gen0(inputName = None, inputDist = None, outputName = None):
+    '''
+    Astra input particle format to hdf5 format used in Genesis1.3 Version 4
+
+    Parameters
+    ----------
+    inputName : string, optional
+        Name of the input particle file. If defined, prefered than inputDist. 
+        None by default. 
+    inputDist : 6D array, optional
+        Particle distribution from Astra, with absolute z and Pz. None by default. 
+    outputName: string, optional
+        Name of the output particle file.
+    Returns
+    -------
+    None.
+    
+    Examples
+    --------
+    ```
+    fname = 'beam_modulated.ini'
+    fout = 'beam_modulated.h5'
+    kwargs = dict(inputName = fname,
+                 outputName = fout)
+    astra2hdf5(**kwargs)
+    ```
+    '''
+    
+    header = '''? VERSION = 1.0
+? CHARGE = 2e-9
+? COLUMNS X XPRIME Y YPRIME T GAMMA'''
 
     if inputName != None:   
         data = pd_loadtxt(inputName)
@@ -233,7 +309,8 @@ def astra2gen(inputName = None, inputDist = None, outputName = None):
     print('The distribution is saved to '+outputName)
     
     x, y, z = data[:,0:3].T[:]
-    t = z/g_c
+    t = -z/g_c
+    t -= t.min()
     
     tminps, tmaxps = t.min()*1e12, t.max()*1e12
     print('Bunch length in ps: ', tmaxps-tminps)
@@ -243,27 +320,17 @@ def astra2gen(inputName = None, inputDist = None, outputName = None):
     yp = Py/Pz
     P = np.sqrt(1+(Px**2+Py**2+Pz**2)/g_mec2/1e6/g_mec2/1e6) # gamma
     
-    data[:,0] = x
-    data[:,1] = Px/g_mec2/1e6
-    data[:,2] = y
-    data[:,3] = Py/g_mec2/1e6
-    data[:,4] = t
-    data[:,5] = P/g_mec2/1e6
+    newdata = np.zeros(data[:,0:6].shape)
+    newdata[:,0] = x
+    newdata[:,1] = xp
+    newdata[:,2] = y
+    newdata[:,3] = yp
+    newdata[:,4] = t
+    newdata[:,5] = P #P/g_mec2/1e6
     
-    np.savetxt(outputName, data[:,0:6], header = header, fmt = '%-15.6e')
+    np.savetxt(outputName, newdata[:,0:6], header = header, fmt = '%-15.6e', 
+               comments = '')
     
-    # # saving to hdf5
-    # f = h5py.File(outputName, 'w')
-    
-    # dx = f.create_dataset("x", data = x)
-    # dy = f.create_dataset("y", data = y)
-    # dt = f.create_dataset("t", data = t)
-    
-    # dxp = f.create_dataset("xp", data = xp)
-    # dyp = f.create_dataset("yp", data = yp)
-    # dp = f.create_dataset("p", data = p)
-    
-    # f.close()
     return
 #%% Convert Astra distribution to slice-wise parameters for Genesis1.3-Version2
 def astra2slice(inputName, outputName = None, nslice = 100, nc = 9):
@@ -406,7 +473,8 @@ def slice2hdf5(inputName = None, outputName = None, ext = '.h5'):
 #%% Resample 6D particle distribution in such a way that every slice has the 
 #   same number of macro particles, as input for Genesis1.3 V4.
 #   This is a remake of the Genesis1.3 V4 C++ codes
-def resampleParticles(inputBeamDist, mpart = 8192, force = False, closest = None):
+def resampleParticles(inputBeamDist, mpart = 8192, force = False, closest = None,
+                      quiet = True):
     '''
     Resampling to add samples to a known set, rewriting the C++ code in Genesis 1.3
     V4 into Python.
@@ -526,7 +594,8 @@ def resampleParticles(inputBeamDist, mpart = 8192, force = False, closest = None
             #         n2 = j
             #         rmin = distance
             
-            if(i%10000 == 0): print(i, n1, n2)      
+            
+            if i%10000 == 0 and not quiet: print('Resampling to ', i, n1, n2)      
             beamDist[i] = 0.5*(inputBeamDist[n1]+inputBeamDist[n2])+\
                           (2*np.random.rand()-1)*(inputBeamDist[n1]-inputBeamDist[n2])
             

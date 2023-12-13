@@ -8,8 +8,8 @@ Created on Fri Jun 26 14:57:04 2020
 import h5py
 from numpy.fft import fftshift,fft
 
-from .Numeric import *
-
+from .Misc import *
+#%%
 def calcSpectrum(amp, phase, lambda0 = 100e-6, sample = 1, freq0 = None):
     '''
     Calculate the spectrum from samples
@@ -221,6 +221,7 @@ class PostGenesis13:
             if match:
                 # print line
                 nstep = np.int(kv['zstop']/kv['delz']/kv['xlamd'])+1
+                #nstep = 17
                 field = np.zeros((nstep, 3))
                 for i in np.arange(nstep):
                     line = file.readline()
@@ -229,6 +230,8 @@ class PostGenesis13:
             line = file.readline()
         
         nslice = np.int(kv['nslice'])
+        if nslice == 0:
+            nslice = 3110
         nc = np.int(np.sum(kv['lout'])); #print nc # number of output items
 
         # Initialize the arrays for storing the data blocks

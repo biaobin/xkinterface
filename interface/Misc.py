@@ -6,7 +6,7 @@ Created on Thu Aug 27 20:54:52 2020
 """
 
 import sys
-    
+
 # from IPython.display import Image
 import numpy as np
 import scipy as sp
@@ -15,8 +15,6 @@ from scipy.optimize import curve_fit
 
 from scipy.special import jn, jn_zeros, j0, j1
 from scipy.integrate import quad, ode
-
-from scipy.constants import codata
 
 import matplotlib as mpl
 import matplotlib.pyplot as plt
@@ -101,30 +99,9 @@ class Dict(dict):
         '''
         if key in self.x.keys():
             return self.x.get(key)
-        
+  
+###############################################################################
 # commonly used scientific constants
-class Const(Dict):
-    
-    h   =codata.value('Planck constant')
-    hbar=codata.value('Planck constant over 2 pi')
-    
-    g   =codata.value('standard acceleration of gravity')
-    c   =codata.value('speed of light in vacuum')
-    
-    qe  =codata.value('elementary charge')
-    me  =codata.value('electron mass')
-    re  =codata.value('classical electron radius')
-    mec2=codata.value('electron mass energy equivalent in MeV')
-    eV  =codata.value('electron volt')
-    
-    kB  =codata.value('Boltzmann constant')
-    sigma =codata.value('Stefan-Boltzmann constant')
-    
-    eps0=codata.value('electric constant')
-    mu0 =codata.value('mag. constant')
-    
-    def __init__(self):
-        pass
 
 class Unit:
     
@@ -173,24 +150,26 @@ class Unit:
     
     def __init__(self):
         pass
-        
-g_h   =codata.value('Planck constant')
-g_hbar=codata.value('Planck constant over 2 pi')
 
-g_g   =codata.value('standard acceleration of gravity')
-g_c   =codata.value('speed of light in vacuum')
+import scipy.constants as const
 
-g_qe  =codata.value('elementary charge')
-g_me  =codata.value('electron mass')
-g_re  =codata.value('classical electron radius')
-g_mec2=codata.value('electron mass energy equivalent in MeV')
-g_eV  =codata.value('electron volt')
+g_h   = const.h
+g_hbar= const.hbar
 
-g_kB  =codata.value('Boltzmann constant')
-g_sigma =codata.value('Stefan-Boltzmann constant')
+g_g   = const.g
+g_c   = const.c
 
-g_eps0=codata.value('electric constant')
-g_mu0 =codata.value('mag. constant')
+g_qe  = const.e
+g_me  = const.m_e
+g_re  = const.physical_constants.get('classical electron radius')[0]
+g_mec2= const.physical_constants.get('electron mass energy equivalent in MeV')[0]
+g_eV  = const.physical_constants.get('electron volt')[0]
+
+g_kB  = const.Boltzmann
+g_sigma = const.Stefan_Boltzmann
+
+g_eps0 = const.epsilon_0
+g_mu0  = const.mu_0
 
 u_x     = r'$x$ (mm)'
 u_y     = r'$y$ (mm)'
@@ -227,11 +206,13 @@ u_cs_alpha = r'$\alpha$'
 u_cs_beta  = r'$\beta$ (m)'
 u_cs_gamma = r'$\gamma$ (m$^{-1}$)'
 
+###############################################################################
+### Get a time stamp, usually used in data processing
+from datetime import datetime, timedelta
 try:
-    import datetime
     def timestamp(option = True):   
     
-        today = datetime.datetime.now()
+        today = datetime.now()
     
         if option:
             stamp = '__%02d.%02d.%02d %02d:%02d:%02d__' % (today.day, today.month, today.year,
@@ -242,7 +223,6 @@ try:
         return stamp
 except Exception as err:
     print(err)
-
 
 try:
     import pandas as pd
@@ -261,6 +241,137 @@ try:
 except Exception as err:
     print(err)
 
+
+###############################################################################
+### File and folder operation
+
+### Create a folder for the current shift
+def GetShift(dateTime = None):
+    if dateTime == None:
+        dateTime = datetime.now();
+    
+    year = dateTime.year
+    month = dateTime.month
+    day = dateTime.day
+    
+    hour = dateTime.hour
+    minute = dateTime.minute
+    second = dateTime.second
+    
+    if hour>=7 and hour<15:
+        shift = 'M'
+    elif hour>=15 and hour<23:
+        shift = 'A'
+    else:
+        shift = 'N'
+        if hour>=0 and hour<7:
+            dateTime -= deltatime(days = 1)
+            year = dateTime.year
+            month = dateTime.month
+            day = dateTime.day
+    shift = str.format('%02d%02d%02d%s' % (year, month, day, shift))
+    return shift
+
+def GetLastShift(dateTime = None):
+    if dateTime == None:
+        dateTime = datetime.now()-timedelta(hours = 8);
+    shift = GetShift(dateTime)
+    return shift
+
+def CreateShiftFolder(*args, kind  = 'transport', create = True):
+    '''
+    # Developed by Xiangkun Li in Matlab, 17.10.2022
+    Rewritten in Python, 11.08.2023
+    Parameters
+    ----------
+    dateTime : an array
+        Current date and time, eg. [2023 8 11 8 53 57.5130000000000], giving year, month,
+        day, hour, minute and second
+        ```dataTime = datetime.now()```
+    Returns
+    -------
+    None.
+    
+    Examples
+    -------
+    # For transverse emittance: 
+        CreateShiftFolder('TransvPhSp', 'yyyy', 'ProjEmittance', 'ym')
+    # For beam transport: 
+        CreateShiftFolder('BeamTransport', 'yyyy')
+    # For VC2 image: 
+        CreateShiftFolder('Laser', 'TransverseProfile', 'VC2', 'yyyy')
+        
+    '''
+    
+    #if dateTime == None:
+    dateTime = datetime.now();
+    
+    year = dateTime.year
+    month = dateTime.month
+    day = dateTime.day
+    
+    hour = dateTime.hour
+    minute = dateTime.minute
+    second = dateTime.second
+    
+    if hour>=7 and hour<15:
+        shift = 'M'
+    elif hour>=15 and hour<23:
+        shift = 'A'
+    else:
+        shift = 'N'
+        if hour>=0 and hour<7:
+            dateTime -= timedelta(days = 1)
+            year = dateTime.year
+            month = dateTime.month
+            day = dateTime.day
+    shiftName = str.format('%02d%02d%02d%s' % (year, month, day, shift))
+
+    
+    filesep = os.sep
+    baseName = os.path.join(filesep, 'afs', 'ifh.de', 'group', 'pitz',
+                            'doocs', 'measure')
+    #baseName = r'\\afs\ifh.de\group\pitz\doocs\measure'+filesep
+    print('Root folder: ', baseName)
+    
+    if len(args) == 0:
+        if kind.upper() == 'TRANSPORT':
+            args = ['BeamTransport', 'yyyy']
+        if kind.upper() in {'EMITTANCE', 'TRANSVPHSP'}:
+            args = ['TransvPhSp', 'yyyy', 'ProjEmittance', 'ym']
+        if kind.upper() == 'MEASURE':
+            return baseName
+            
+    nargs = len(args)
+    
+    currentShiftFolder = baseName;
+    for i in np.arange(nargs):
+        arg = args[i]
+        if arg.upper() in ['YYYY', 'YY', 'Y']:
+            subfolder = str.format('%02d' % year)
+            #currentShiftFolder = currentShiftFolder+filesep+str.format('%02d' % year)+filesep
+        elif arg.upper() in ['YYYYMM', 'YYMM', 'YM']:
+            subfolder = str.format('%02d%02d' % (year, month))
+            #currentShiftFolder = currentShiftFolder+filesep+str.format('%02d%02d' % (year, month))+filesep
+        else:
+            subfolder = arg
+            
+        currentShiftFolder = os.path.join(currentShiftFolder, subfolder)
+    
+    
+    #currentShiftFolder = currentShiftFolder+shiftName
+    currentShiftFolder = os.path.join(currentShiftFolder, shiftName)
+    
+    print('Current shift folder is: ', currentShiftFolder)
+    
+    if create:
+        if not os.path.exists(currentShiftFolder):
+            os.mkdir(currentShiftFolder)
+            print('Create folder: ', currentShiftFolder)
+        else:
+            print('Folder exits: ', currentShiftFolder)
+        
+    return currentShiftFolder
 
 try:
     import tkinter as tk
@@ -283,6 +394,7 @@ try:
             path = '.'
     
         return path
+    GetPath = get_path
     
     def get_file(filetype = '.txt', initialdir = "/"):
         '''
@@ -303,6 +415,7 @@ try:
                                                  filetypes = filetypes)
     
         return filename
+    GetFile = get_file
     
     def get_file_to_save(filetype = None, initialdir = "/"):
         '''
@@ -322,6 +435,8 @@ try:
                                                  filetypes = filetypes)
     
         return filename
+    GetFile2Save = get_file_to_save
+    GetFileToSave = get_file_to_save
     
 except Exception as err:
     print(err)
@@ -360,7 +475,7 @@ try:
             dpi: (300, 300) in default
         '''
         
-        from PIL import Image
+        import PIL
         
         if in_fig is None:
             in_fig = get_file()
@@ -374,7 +489,7 @@ try:
         else:
             out_fig = path+os.sep+name+out_format
         try:
-            img = Image.open(in_fig)
+            img = PIL.Image.open(in_fig)
             img.save(out_fig, **kwargs)
             print('Converted '+in_fig+' to '+out_fig)
         except:
@@ -382,11 +497,35 @@ try:
 except Exception as err:
     print(err)
 #convert("backup\2019\42\20191014\peak_current@PITZ__14.10.2019__12_03_36__.eps")
-        
-# # Relativistic equations
 
-# In[5]:
 
+##############################################################################
+### Convert between gradient and strength of quadrupoles
+def G2K(G, P0, qn = 1.):
+    '''
+    Parameters
+      G: gradient, T/m
+      P0: momentum, MeV/c
+      qn = q/qe: number of charge
+    Returns
+      K: focal strength, m^-2
+    '''
+    return G*qn/(P0*1e6/g_c)
+
+def K2G(K, P0, qn = 1.):
+    '''
+    Parameters
+      K: focal strength, m^-2
+      P0: momentum, MeV/c
+      qn = q/qe: number of charge
+    Returns
+      G: gradient, T/m
+    '''
+    return K/(qn/(P0*1e6/g_c))
+
+###############################################################################
+### Relativistic equations, conversion among relativistic factor, velocity, 
+#   energy and momentum 
 
 def beta2gamma(beta):
     return 1.0/np.sqrt(1.0-beta**2)
@@ -409,7 +548,7 @@ def kinetic2gamma(Ek, E0 = g_mec2):
       gamma: relativistic factor
     '''   
     return 1.0+Ek/E0
-K2G = kinetic2gamma
+Kin2G = kinetic2gamma
 
 def kinetic2beta(Ek, E0 = g_mec2):
     '''
@@ -419,7 +558,7 @@ def kinetic2beta(Ek, E0 = g_mec2):
       beta: ratio of velocity of particle to light
     ''' 
     return gamma2beta(kinetic2gamma(Ek, E0))
-K2B = kinetic2beta
+Kin2B = kinetic2beta
 
 def momentum2gamma(pc, E0 = g_mec2):
     '''
@@ -439,7 +578,7 @@ def momentum2kinetic(pc, E0 = g_mec2):
       Ek: kinetic energy, MeV
     '''
     return E0*(np.sqrt(pc**2/E0**2+1)-1)
-M2K = momentum2kinetic
+M2Kin = momentum2kinetic
 
 def kinetic2momentum(Ek, E0 = g_mec2):
     '''
@@ -449,7 +588,7 @@ def kinetic2momentum(Ek, E0 = g_mec2):
       pc: momentum, MeV/c
     '''
     return np.sqrt((Ek+g_mec2)**2-g_mec2**2)
-K2M = kinetic2momentum
+Kin2M = kinetic2momentum
 
 # # Return the min or max of an array and the index
 # ---
@@ -460,6 +599,108 @@ K2M = kinetic2momentum
 # And the standard variation will be
 # 
 # $$\sigma = \sqrt{\frac{\sum_{i=0}^{n-1} (i-x_c)^2 w[i]}{\sum_{i=0}^{n-1} w[i]}}$$
+
+
+
+
+### Conversion between eV and nm, mm and fs
+def eV2nm(eV):
+    '''
+    Parameters
+      eV: energy of a photon in unit of electron volt
+    Returns
+      nm: wavelength of a photon in unit of nanometer
+    '''
+    return g_h*g_c/(eV*g_qe)*1e9
+def nm2eV(nm):
+    '''
+    Parameters
+      nm: wavelength of a photon in unit of nanometer
+    Returns
+      eV: energy of a photon in unit of electron volt
+    '''
+    return g_h*g_c/(nm*1e-9*g_qe)
+def mm2fs(mm,beta=1):
+    '''
+    Parameters
+      mm: bunch length in unit of minimeter
+      beta: bunch velocity over light velocity in vacuum, default 1
+    Returns
+      fs: bunch length in unit of femtosecond
+    '''
+    return mm*1e-3/(beta*g_c)*1e15
+def fs2mm(fs,beta=1):
+    '''
+    Parameters
+      fs: bunch length in unit of femtosecond
+      beta: bunch velocity over light velocity in vacuum, default 1
+    Returns
+      mm: bunch length in unit of minimeter
+    '''
+    return fs*1e-15*(beta*g_c)*1e3
+
+def test():
+    print (g_mec2,pc2E(50))
+    print (eV2nm(1),nm2eV(800))
+    print (mm2fs(1e-3),fs2mm(5000/2.355))
+    gamma=kinetic2gamma(150.)
+    print (gamma2bg(gamma))
+# test()
+
+
+### Conversion between dB and W
+
+def dBm2mW(x):
+    ''' dBm->mW '''
+    return 10**(x/10.)
+def dBm2W(x):
+    ''' dBm->W '''
+    return 10**(x/10.)/1000.
+def dB2P(x):
+    ''' dB->linear for power'''
+    return 10**(x/10.)
+def dB2U(x):
+    ''' dB->linear for voltage'''
+    return 10**(x/20.)
+
+
+##############################################################################
+### Fit functions
+linear = lambda x, a, b: a+b*x
+binomial= lambda x, a, b, c: a+b*x+c*x*x
+gaussian = lambda x, sigma, mean, amp: amp*np.exp(-(x-mean)**2/2./sigma**2)
+
+def lsq(x,y):
+    ''' 
+    Least square fitting
+    Parameters
+      x, y: 1-D array of coordinates to be fitted
+    Returns
+      [a, b, r]: a is slope, b the interseption and the closer r is to 1.0, the better the fitting is
+    '''
+    xc,yc=np.mean(x),np.mean(y)
+    xyc=np.mean(x*y)
+    x2c=np.mean(x*x)
+    y2c=np.mean(y*y)
+    
+    a=(xyc-xc*yc)/(x2c-xc**2)
+    b=yc-a*xc
+    r=np.abs((xyc-xc*yc)/np.sqrt((x2c-xc**2)*(y2c-yc**2)))
+    return np.array([a,b,r])
+
+### Linear Interpolation
+def linear_interp(x, p1, p2):
+    '''
+    Linear interpolation. Given two points p1 = [x1, y1, ..], p2 = [x2, y2, ...], get the y-value at x
+    Parameters
+      x: the position of the point in the known dimension
+      p1 = [x1, y1, ..]: the position of the first known point
+      p2 = [x2, y2, ..]: the position of the second known point
+    Returns
+      [y, ...]: the position of the point in the dimension to be interpolated 
+    '''
+    return p2[1:]+(x-p2[0])/(p2[0]-p1[0])*(p2[1:]-p1[1:])
+
 
 def index_min(x):
     ''' 
@@ -486,9 +727,7 @@ def index_max(x):
             i,v=index,value
     return [i,v]
 
-
-# # Statistics with weighting factor
-
+### Statistics with weighting factor
 def weighted_sum(x, weights = None, axis = 0, returned = False):
     '''
     Parameters
@@ -563,122 +802,14 @@ def weighted_cov(x, y = None, weights = None, axis = 0, returned = False):
         return cov, sum_w
     else:
         return cov
-
-
-# # Conversion between eV and nm, mm and fs
-
-def eV2nm(eV):
-    '''
-    Parameters
-      eV: energy of a photon in unit of electron volt
-    Returns
-      nm: wavelength of a photon in unit of nanometer
-    '''
-    return g_h*g_c/(eV*g_qe)*1e9
-def nm2eV(nm):
-    '''
-    Parameters
-      nm: wavelength of a photon in unit of nanometer
-    Returns
-      eV: energy of a photon in unit of electron volt
-    '''
-    return g_h*g_c/(nm*1e-9*g_qe)
-def mm2fs(mm,beta=1):
-    '''
-    Parameters
-      mm: bunch length in unit of minimeter
-      beta: bunch velocity over light velocity in vacuum, default 1
-    Returns
-      fs: bunch length in unit of femtosecond
-    '''
-    return mm*1e-3/(beta*g_c)*1e15
-def fs2mm(fs,beta=1):
-    '''
-    Parameters
-      fs: bunch length in unit of femtosecond
-      beta: bunch velocity over light velocity in vacuum, default 1
-    Returns
-      mm: bunch length in unit of minimeter
-    '''
-    return fs*1e-15*(beta*g_c)*1e3
-
-def test():
-    print (g_mec2,pc2E(50))
-    print (eV2nm(1),nm2eV(800))
-    print (mm2fs(1e-3),fs2mm(5000/2.355))
-    gamma=kinetic2gamma(150.)
-    print (gamma2bg(gamma))
-# test()
-
-
-# # Conversion between dB and W
-
-def dBm2mW(x):
-    ''' dBm->mW '''
-    return 10**(x/10.)
-def dBm2W(x):
-    ''' dBm->W '''
-    return 10**(x/10.)/1000.
-def dB2P(x):
-    ''' dB->linear for power'''
-    return 10**(x/10.)
-def dB2U(x):
-    ''' dB->linear for voltage'''
-    return 10**(x/20.)
-
-
-# # Fit functions
-
-f1 = lambda x,a,b:a*x+b
-f2 = lambda x,a,b,c:a*x**2+b*x+c
-f3 = lambda x,a,b,c,d:a*x**3+b*x**2+c*x+d
-
-linear = lambda x, a, b: a+b*x
-binomial= lambda x, a, b, c: a+b*x+c*x*x
-gaussian = lambda x, sigma, mean, amp: amp*np.exp(-(x-mean)**2/2./sigma**2)
-
-def lsq(x,y):
-    ''' 
-    Least square fitting
-    Parameters
-      x, y: 1-D array of coordinates to be fitted
-    Returns
-      [a, b, r]: a is slope, b the interseption and the closer r is to 1.0, the better the fitting is
-    '''
-    xc,yc=np.mean(x),np.mean(y)
-    xyc=np.mean(x*y)
-    x2c=np.mean(x*x)
-    y2c=np.mean(y*y)
     
-    a=(xyc-xc*yc)/(x2c-xc**2)
-    b=yc-a*xc
-    r=np.abs((xyc-xc*yc)/np.sqrt((x2c-xc**2)*(y2c-yc**2)))
-    return np.array([a,b,r])
-
-
-# # Linear Interpolation
-
-def linear_interp(x, p1, p2):
-    '''
-    Linear interpolation. Given two points p1 = [x1, y1, ..], p2 = [x2, y2, ...], get the y-value at x
-    Parameters
-      x: the position of the point in the known dimension
-      p1 = [x1, y1, ..]: the position of the first known point
-      p2 = [x2, y2, ..]: the position of the second known point
-    Returns
-      [y, ...]: the position of the point in the dimension to be interpolated 
-    '''
-    return p2[1:]+(x-p2[0])/(p2[0]-p1[0])*(p2[1:]-p1[1:])
-
-
-# # Calculate the FWHM of a distribution
-
+### Calculate the FWHM of a distribution
 from scipy.interpolate import splrep, sproot, splev
 
 class MultiplePeaks(Exception): pass
 class NoPeaksFound(Exception): pass
 
-def cal_FWHM(x, y, k = 3):
+def CalcFWHM(x, y, k = 3):
     """
     Determine full-with-half-maximum of a peaked set of points, x and y.
 
@@ -708,7 +839,7 @@ def cal_FWHM(x, y, k = 3):
         r = np.max(roots)-np.min(roots)
     return r
 
-def get_FWHM(x, k = 3, bins = 50, weights = None):
+def GetFWHM(x, k = 3, bins = 50, weights = None):
     '''
     Parameters
       x: 1D array of the samples
@@ -720,13 +851,12 @@ def get_FWHM(x, k = 3, bins = 50, weights = None):
         counts, edges = np.histogram(x, bins = bins, weights = weights)
         centers = edges[1:]-0.5*(edges[1]-edges[0])
         counts = smooth_easy(counts, 5)
-        r = cal_FWHM(centers, counts, k)
+        r = CalcFWHM(centers, counts, k)
     except:
         r = -2
     return r
 
-# # 包络与平滑
-
+### Get the envelop of a waveform
 def envelope(s):
     '''
     Parameters
@@ -771,6 +901,7 @@ def envelope(s):
 
     return u_env, l_env
 
+# Smooth the data using a moving window
 def smooth_easy(y, box_pts):
     '''
     Smooth the data points using a moving box
@@ -781,10 +912,10 @@ def smooth_easy(y, box_pts):
       y_smooth: smoothed 1-D array
     '''
     box = np.ones(box_pts)/box_pts
-    y_smooth = np.convolve(y, box, mode='same')
+    y_smooth = np.convolve(y, box, mode = 'same')
     return y_smooth
 
-def smooth(x,window_len=11,window='hanning'):
+def smooth(x, window_len = 11, window = 'hanning'):
     """
     smooth the data using a window with requested size.
     
