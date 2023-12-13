@@ -66,8 +66,13 @@ class Genesis2(Namelist):
         super(Genesis2, self).write(inputName, case)
     
     # Old Farm job submission system, not used any more
+<<<<<<< HEAD
     def qsub(self, jobName = None, inputName = 'gene.in', 
              direc = '.', submit = False, command = 'genesis', **kwargs):
+=======
+    def qsub(self, jobName = None, inputName = 'gene.in', direc = '.',
+             submit = False, command = 'genesis', **kwargs):
+>>>>>>> 6cc790c4634bd12133d00bfc647afed89196fddd
         job = QsubJob(command = command, echo = True)
         job.create(jobName, inputName, direc, submit, **kwargs)
         

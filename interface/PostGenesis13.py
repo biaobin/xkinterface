@@ -9,7 +9,11 @@ import h5py
 from numpy.fft import fftshift,fft
 
 from .Misc import *
+<<<<<<< HEAD
 #%%
+=======
+
+>>>>>>> 6cc790c4634bd12133d00bfc647afed89196fddd
 def calcSpectrum(amp, phase, lambda0 = 100e-6, sample = 1, freq0 = None):
     '''
     Calculate the spectrum from samples
