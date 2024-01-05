@@ -186,6 +186,14 @@ class PostGenesis13:
     
     load = load4
     
+    def float_no_error(self, ss):
+        try:
+            r = float(ss)
+        except Exception as err:
+            print(err)
+            r = 0
+        return r
+    
     def load2(self, fname):
         
         '''
@@ -259,7 +267,7 @@ class PostGenesis13:
                 for j in np.arange(nstep):
                     line = file.readline(); #print line
                     line = line.replace('NaN', '  0')
-                    data[islice, j] = np.array([float(v.replace("D", "E")) for v in line.split()])
+                    data[islice, j] = np.array([self.float_no_error(v.replace("D", "E")) for v in line.split()])
                 #break
                 islice += 1
             line = file.readline()

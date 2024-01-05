@@ -217,7 +217,12 @@ class BeamDiagnostics:
         alpha_x = -xxp/emit_x; beta_x = x2/emit_x; gamma_x = xp2/emit_x
         alpha_y = -yyp/emit_y; beta_y = y2/emit_y; gamma_y = yp2/emit_y
         
-        fwhm = get_FWHM(z)
+        try:
+            fwhm = get_FWHM(z)
+        except Exception as err:
+            print(err)
+            fwhm = GetFWHM(z)
+            
         [I1, I0] = zdist(z, weights = w, plot = plot, fig_ext = fig_ext)
         
         select = (z-zmean>-1.*std_z)*(z-zmean<1.*std_z); Ek1 = Ek[select]; z1 = z[select]; w1 = w[select]
