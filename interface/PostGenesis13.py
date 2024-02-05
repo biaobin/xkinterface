@@ -5,12 +5,12 @@ Created on Fri Jun 26 14:57:04 2020
 @author: lixiangk
 """
 
-import h5py
-from numpy.fft import fftshift,fft
-
 from .Misc import *
 
 #%%
+import h5py
+from numpy.fft import fftshift,fft
+
 def calcSpectrum(amp, phase, lambda0 = 100e-6, sample = 1, freq0 = None):
     '''
     Calculate the spectrum from samples
@@ -54,7 +54,7 @@ def calcSpectrum(amp, phase, lambda0 = 100e-6, sample = 1, freq0 = None):
     
 class PostGenesis13:
     version = 4 # default
-    def __init__(self, fname = None, **kwargs):
+    def __init__(self, fname = None, version = 3, **kwargs):
         '''
         
         Parameters
@@ -79,15 +79,19 @@ class PostGenesis13:
                 harmonic = kwargs['harmonic']
                 self.fieldname = 'Field%d' % harmonic
                 
-                
         if fname is None:
             fname = get_file('.h5'); print(fname)
         
         _, _, ext = fileparts(fname); print(ext)
         
         if ext.upper() in ['.H5']:
-            self.version = 4
-            self.load4(fname)
+            if version == 3:
+                self.version = 3
+                self.load3(fname)
+            else:
+                self.version = 4
+                self.load4(fname)
+                
         elif ext.upper() in ['.OUT']:
             self.version = 2
             self.load2(fname)    
@@ -306,6 +310,77 @@ class PostGenesis13:
         self.wavelength, self.spectrum = self.get_spectrum(at = -999) # spectrum at the end of the undulator
         return
     
+    def load3(self, fname):
+        
+        '''
+        Read the standard output (in ascii format and stored in `fname`) 
+        into memories for further analysis
+        '''
+        
+        file = h5py.File(fname, 'r')
+    
+        # First, read the input namelist from the header of the file 
+        kv = {}
+        
+        for key in file.get('input').keys():
+            value = file.get('input').get(key)[0]
+            kv.update({key:value})
+        
+        self.kv = kv # dict with key-value pairs
+        
+        aw = file.get('lattice').get('aw')[:]
+        zz = file.get('lattice').get('z')[:]
+        qfld = file.get('lattice').get('qfld')[:]
+        field = np.zeros((len(aw), 3))
+        field[:,0] = zz
+        field[:,1] = aw
+        field[:,2] = qfld
+        
+        self.field = field
+        nslice = self.kv.get('nslice')
+        self.nslice = nslice
+        
+        shape = file.get('power')[:].shape
+        data = np.zeros((shape[0], shape[1], 10))
+        
+        keys = ['power', 'increment', 'signalamp', 'signalphase', 'radsize',
+                'energy', 'bunching', 'xbeamsize', 'ybeamsize', 'error']
+        for i, key in enumerate(keys):
+            data[:,:,i] = file.get(key)[:]
+        
+        #self.outputs = outputs # Output properties for radiation fields
+        
+        self.outputs = ['power', 'increment', 'p_mid', 'phi_mid', 'r_size', 
+                        'energy', 'bunching', 'xrms', 'yrms', 'error']
+        
+        self.data = data
+        # to make the first two dimensions consistent with version 4
+        # now nstep, nslice, nc
+        #self.data = np.transpose(data, [1, 0, 2]) 
+        self.nstep = self.data.shape[0]
+        
+        self.gamma0 = self.kv['gamma0']
+        self.time = self.kv['itdp']
+        self.lambdaref = self.kv['xlamds']
+        self.sample = 1.0/self.kv['zsep']
+        
+        self.lslice = self.lambdaref/self.sample # length of a slice
+        
+        self.zbunch = np.arange(nslice)*self.lslice+self.lslice/2
+        current = file.get('current')[:]
+        self.current = current
+        
+        self.zplot = field[:,0]; self.zstep = self.zplot[1]-self.zplot[0] # z coordinates along the undulator
+        
+        self.zpower = self.data[:,:,0].sum(axis = 1) # power along the undulator
+        self.zenergy = self.zpower*self.lslice/g_c   # energy along the undulator
+        
+        self.power = np.sum(self.zpower)    # Total power
+        self.energy = np.sum(self.zenergy)  # Total energy
+        
+        self.wavelength, self.spectrum = self.get_spectrum(at = -999) # spectrum at the end of the undulator
+        return
+
     def get_fielddata(self, name, at = None):
         '''
         Get the field data/property defined by `name` along the slices at position z = at
@@ -337,6 +412,7 @@ class PostGenesis13:
             return None
             
         if self.version<4:
+            
             third = self.outputs.index(name)
             return self.data[col,:,third]
         else:
