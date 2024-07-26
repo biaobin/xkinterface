@@ -16,7 +16,8 @@ astra_format = fmt
 #%% Scale the input distribution according to the given match parameters
 #   This is a remake of the method in Genesis-1.3-Version4
 def Matching(inputName = None, inputDist = None, outputName = None,
-             betax = 0, betay = 0, alphax = 0, alphay = 0, flipZ = False):
+             betax = 0, betay = 0, alphax = 0, alphay = 0, flipZ = False, 
+             P0 = None):
     '''
     Astra input particle format to hdf5 format used in Genesis1.3 Version 4
 
@@ -113,7 +114,9 @@ def Matching(inputName = None, inputDist = None, outputName = None,
 
     if flipZ:
         dist[1:,2] *= -1
-
+    if P0 != None:
+        dist[0,5] = P0*1e6
+        
     np.savetxt(outputName, dist, fmt = astra_format)
     return dist
 

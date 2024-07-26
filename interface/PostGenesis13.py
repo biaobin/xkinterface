@@ -404,7 +404,7 @@ class PostGenesis13:
                 col = np.where(np.abs(self.zplot-at)<self.zstep/2)[0][0]
         else:
             col = slice(0, self.nstep)
-        #print(col)
+        print('col = ', col)
         
         props = [temp.upper() for temp in self.outputs]
         if name.upper() not in props: # check if `name` is included in the outputs
@@ -482,6 +482,7 @@ class PostGenesis13:
             
         amp = self.get_fielddata(n1, at)
         phase = self.get_fielddata(n2, at)
+        print(n1, n2, at)
         
         return calcSpectrum(amp, phase, self.lslice, self.sample)
     
@@ -532,7 +533,8 @@ class PostGenesis13:
             
         ax.set_ylabel(r'Current (A)')
         ax.grid()
-        fig.savefig('current'+fig_ext)
+        if fig_ext != None:
+            fig.savefig('current'+fig_ext)
         
     def plot_spectrum(self, fig_ext = '.png'):
         
@@ -541,7 +543,8 @@ class PostGenesis13:
         ax.set_xlabel(r'Wavelength ($\mu$m)')
         ax.set_ylabel(r'Intensity (arb. unit)')
         ax.grid()
-        fig.savefig('spectrum'+fig_ext)
+        if fig_ext != None:
+            fig.savefig('spectrum'+fig_ext)
         
     def plot_power(self, fig_ext = '.png'):
         
@@ -551,7 +554,8 @@ class PostGenesis13:
         ax.set_ylabel(r'Power (MW)')
         ax.set_yscale('log')
         ax.grid()
-        fig.savefig('power-z'+fig_ext)
+        if fig_ext != None:
+            fig.savefig('power-z'+fig_ext)
         
     def plot_energy(self, fig_ext = '.png'):
         
@@ -561,6 +565,7 @@ class PostGenesis13:
         ax.set_ylabel(r'Energy ($\mu$J)')
         ax.set_yscale('log')
         ax.grid()
-        fig.savefig('energy-z'+fig_ext)
+        if fig_ext != None:
+            fig.savefig('energy-z'+fig_ext)
 
 PostGenesis = PostGenesis13

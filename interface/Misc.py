@@ -229,11 +229,11 @@ try:
     def pd_loadtxt(filename, **kwargs):
         if len(kwargs)>0:
             if 'delimiter' not in kwargs.keys() and 'sep' not in kwargs.keys():
-                kwargs.update(delimiter = '\s+')
+                kwargs.update(delimiter = r'\s+')
             if 'header' not in kwargs.keys():
                 kwargs.update(header = None)
         else:
-            kwargs.update(delimiter = '\s+')
+            kwargs.update(delimiter = r'\s+')
             kwargs.update(header = None)
         
         data = pd.read_csv(filename, **kwargs).values

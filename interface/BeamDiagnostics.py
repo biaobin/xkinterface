@@ -73,7 +73,7 @@ class BeamDiagnostics:
         if fname is not None:
             try:
                 import pandas as pd
-                dist = pd.read_csv(fname, delimiter = '\s+', header = None).values
+                dist = pd.read_csv(fname, delimiter = r"\s+", header = None).values
             except Exception as err:
                 print(err)
                 dist = np.loadtxt(fname)
@@ -218,7 +218,7 @@ class BeamDiagnostics:
         alpha_y = -yyp/emit_y; beta_y = y2/emit_y; gamma_y = yp2/emit_y
         
         try:
-            fwhm = get_FWHM(z)
+            fwhm = GetFWHM(z)
         except Exception as err:
             print(err)
             fwhm = GetFWHM(z)
