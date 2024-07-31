@@ -404,7 +404,7 @@ class PostGenesis13:
                 col = np.where(np.abs(self.zplot-at)<self.zstep/2)[0][0]
         else:
             col = slice(0, self.nstep)
-        print('col = ', col)
+        #print('col = ', col)
         
         props = [temp.upper() for temp in self.outputs]
         if name.upper() not in props: # check if `name` is included in the outputs
