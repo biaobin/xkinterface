@@ -18,7 +18,11 @@ Go to the folder where `setup.py` is and run
 
 ```bash
 python setup.py install
+# or
+pip install .
 ```
+
+Using `pip` is preferred because the source file will be copied to the python library folder. 
 
 To load the modules, use
 
