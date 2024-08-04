@@ -133,15 +133,16 @@ class Genesis4(Namelists):
         job.create(jobName, inputName, direc, submit, cmd1 = cmd1, **kwargs)
     
     def submit(self, jobName = None, inputName = 'gene.in',
-              direc = '.', submit = False, command = 'gencore', 
-              cmd1 = 'module add gnu openmpi phdf5/1.10.6', **kwargs):
+              direc = '.', submit = False, command = 'genesis4', 
+              cmd1 = 'module add mpi/openmpi-x86_64 phdf5/1.14.4-2', **kwargs):
         '''
         Write the batch file to the `filename`, which could be submitted to 
         a server by "qsub filename". Only tested in Zeuthen site
+        cmd1: module add openmpi phdf5/1.10.6
         '''
         
         #job = QsubJob(command = command, echo = False)
-        job = CondorJob(command = command, echo = True)
+        job = CondorJob(command = command, echo = False)
         job.create(jobName, inputName, direc, submit, cmd1 = cmd1, **kwargs)
         
     

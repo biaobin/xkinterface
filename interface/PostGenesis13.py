@@ -11,7 +11,7 @@ from .Misc import *
 import h5py
 from numpy.fft import fftshift,fft
 
-def calcSpectrum(amp, phase, lambda0 = 100e-6, sample = 1, freq0 = None):
+def calcSpectrum(amp, phase = None, lambda0 = 100e-6, sample = 1, freq0 = None):
     '''
     Calculate the spectrum from samples
 
@@ -19,9 +19,10 @@ def calcSpectrum(amp, phase, lambda0 = 100e-6, sample = 1, freq0 = None):
     ----------
     amp : 1D or 2D array
         Amplitudes of samples of the signal. In the case of 2D, the first dimension 
-        is along the slices and the second dimension is along the undulator.
+        is along the slices and the second dimension is along the undulator. 
+        Can also be the complex fields, then `phase` is not needed.
     phase : 1D or 2D array
-        Phases of samples of the signal. 
+        Phases of samples of the signal. The default is None, if the amp is given as complex fields.
     lambda0 : double, optional
         Seperation of sampling (usually the wavelength) in meter. The default is 100e-6.
     freq0 : double, optional
@@ -36,9 +37,15 @@ def calcSpectrum(amp, phase, lambda0 = 100e-6, sample = 1, freq0 = None):
 
     '''
     
-    nsample = len(amp) # number of samples
+    if phase is not None:
+        signal = np.sqrt(amp)*(np.cos(phase)+np.sin(phase)*1j)
+    else:
+        if np.iscomplexobj(amp):
+            signal = amp
+        else:
+            print('The amp should be the complex fields if no phase is given!')
     
-    signal = np.sqrt(amp)*(np.cos(phase)+np.sin(phase)*1j)
+    nsample = len(signal) # number of samples
     
     axis = 0
     spectrum = np.abs(fftshift(fft(signal, nsample, axis), axis))
@@ -458,7 +465,7 @@ class PostGenesis13:
         else:
             return self.get_data('Beam', name)[:][col]
     
-    def get_spectrum(self, at = None):
+    def get_spectrum(self, at = None, nearfield = False):
         '''
         Get the radiation spectrum at position z = at
         Parameters
@@ -478,8 +485,11 @@ class PostGenesis13:
         if self.version<4:
             n1, n2 = 'p_mid', 'phi_mid'
         else:
-            n1, n2 = 'intensity-nearfield', 'phase-nearfield'
-            
+            if nearfield:
+                n1, n2 = 'intensity-nearfield', 'phase-nearfield'
+            else:
+                n1, n2 = 'intensity-farfield', 'phase-farfield'
+                
         amp = self.get_fielddata(n1, at)
         phase = self.get_fielddata(n2, at)
         print(n1, n2, at)
@@ -503,7 +513,7 @@ class PostGenesis13:
             The dimension of the array depends on the variable type.
 
         '''
-        if self.version == 2:
+        if self.version == 2 or self.version == 3:
             print('Only work for version 4!')
             return
         
