@@ -183,6 +183,8 @@ class PostGenesis13:
         #self.bunching = file.get('Beam/bunching')
         
         self.zplot = file.get('Lattice/zplot')[:] # z coordinates along the undulator
+        self.zaw = file.get('Lattice/aw')[:]
+        
         self.zstep = self.zplot[1]-self.zplot[0]  
         
         self.zpower = np.sum(file.get(self.fieldname).get('power')[:], axis = 1) # power along the undulator
@@ -288,6 +290,7 @@ class PostGenesis13:
         self.kv = kv # dict with key-value pairs
         self.nslice = nslice; self.nstep = nstep; self.nc = nc
         self.field = field
+        self.lattice = field
         
         self.outputs = outputs # Output properties for radiation fields
         
@@ -307,6 +310,7 @@ class PostGenesis13:
         self.current = current
         
         self.zplot = field[:,0]; self.zstep = self.zplot[1]-self.zplot[0] # z coordinates along the undulator
+        self.zaw = field[:,1]
         
         self.zpower = self.data[:,:,0].sum(axis = 1) # power along the undulator
         self.zenergy = self.zpower*self.lslice/g_c   # energy along the undulator

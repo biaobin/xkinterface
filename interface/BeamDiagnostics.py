@@ -1,5 +1,8 @@
 from .Plot import *
 
+def SingleParticleEmittance(xx, xp, alpha, beta, gamma):
+    return (gamma*xx**2+2*alpha*xx*xp+beta*xp**2)/2
+
 def nemixrms(x, xp, w = None):
     '''
     Parameters
@@ -17,6 +20,56 @@ def nemixrms(x, xp, w = None):
     return emit_x
 nemiyrms = nemixrms
 
+def nemixrms_(x, xp, w = None):
+    
+    if w is None:
+        w = np.ones(len(x))
+    
+    xc = weighted_mean(x, w)
+    xpc = weighted_mean(xp, w)
+    
+    x -= xc
+    xp -= xpc
+    
+    x2 = weighted_mean(x*x, w)
+    xp2 = weighted_mean(xp*xp, w)
+    xxp = weighted_mean(x*xp, w)
+    
+    emit_x = np.sqrt(x2*xp2-xxp*xxp); 
+    alpha_x = -xxp/emit_x; beta_x = x2/emit_x; gamma_x = xp2/emit_x
+    return emit_x, alpha_x, beta_x, gamma_x
+
+def nemixrms__(x, xp, w = None, ratio = 1):
+    
+    if w is None:
+        w = np.ones(len(x))
+        
+    s1 = (x == x)
+    if ratio<1:
+        it = 0
+        while it < 2:
+            
+            emit_x, alpha_x, beta_x, gamma_x = nemixrms_(x[s1], xp[s1], w[s1])
+            
+            eps_all = SingleParticleEmittance(x, xp, alpha_x, beta_x, gamma_x)
+            ss = np.argsort(eps_all)
+            eps_all = np.argsort(eps_all)
+            
+            w_cdf = np.copy(w[ss])
+            for i in np.arange(1, len(w_cdf)):
+                w_cdf[i] += w_cdf[i-1]
+            w_cdf = w_cdf/w_cdf[-1]
+            
+            arg = np.argmin(np.abs(w_cdf-ratio))
+            
+            # Get the particles which take up the `ratio` of the core
+            s1 = ss[:arg]
+            it += 1
+            #print(s1, x, xp, w)   
+    emit_x, alpha_x, beta_x, gamma_x = nemixrms_(x[s1], xp[s1], w[s1]) #
+    
+    return emit_x, alpha_x, beta_x, gamma_x
+    
 class BeamDiagnostics:
     '''
     Postprocessing class for Astra and/or Warp simulations
