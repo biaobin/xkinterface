@@ -98,7 +98,7 @@ class BeamDiagnostics:
                 'FWHM', 'NoP', 
                 'I1', 'I0', 
                 'cov_xxp', 'cov_yyp', 'std_xp', 'std_yp', 
-                'std_Ek2']
+                'std_Ek2', 'nemit_x_core']
         
         indices = np.arange(len(keys))
         units = ['m', 'um', 'um', 'mm', 'mm', 'mm',
@@ -111,7 +111,7 @@ class BeamDiagnostics:
                  'mm', ' ', 
                  'A', 'A', 
                  'mmmrad', 'mmmrad', 'mrad', 'mrad', 
-                 'keV']
+                 'keV', 'um']
         
         keyIndex = {}
         keyUnit = {}
@@ -285,6 +285,15 @@ class BeamDiagnostics:
         
         Ek2 = Ek-Ek1mean-cor_Ekin*(z-z1mean) # higher order energy spread
         std_Ek2 = weighted_std(Ek2, w)*1e3
+        
+        
+        # Longitudinal core emittance
+        x_c = x[select];
+        bgx_c = bgx[select]
+        w_c = w[select]
+        nemit_x_core = nemixrms(x_c, bgx_c, w_c)
+        
+        
         #import pdb; pdb.set_trace()
         
         if plot:
@@ -314,7 +323,7 @@ class BeamDiagnostics:
                       Qtot, xc, yc,
                       alpha_x, beta_x, gamma_x, emit_x, alpha_y, beta_y, gamma_y, emit_y,
                       cor_Ekin, n_lost_cathode, n_lost_aperture, fwhm*1e3, NoP, I1, I0,
-                      xxp*1e6, yyp*1e6, np.sqrt(xp2)*1e3, np.sqrt(yp2)*1e3, std_Ek2])
+                      xxp*1e6, yyp*1e6, np.sqrt(xp2)*1e3, np.sqrt(yp2)*1e3, std_Ek2, nemit_x_core*1e6])
         
         self.x = x
     
