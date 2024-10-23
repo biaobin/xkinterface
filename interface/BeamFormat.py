@@ -122,7 +122,7 @@ def Matching(inputName = None, inputDist = None, outputName = None,
 
 #%% Convert 6D particle distributions in ascii format (used in Astra) to hdf5
 #   format for Genesis1.3 V4
-def astra2hdf5(inputName = None, inputDist = None, outputName = None):
+def astra2hdf5(inputName = None, inputDist = None, outputName = None, start = 0, end = 1):
     '''
     Astra input particle format to hdf5 format used in Genesis1.3 Version 4
 
@@ -154,6 +154,9 @@ def astra2hdf5(inputName = None, inputDist = None, outputName = None):
         data = pd_loadtxt(inputName)
         data[1:,2] += data[0,2]
         data[1:,5] += data[0,5]
+        select = data[:,-1]>0
+        data = data[select]
+        
     elif inputDist != None:
         data = inputDist[:,0:6]
     else:
@@ -164,17 +167,29 @@ def astra2hdf5(inputName = None, inputDist = None, outputName = None):
         outputName = 'temp.h5'
     print('The distribution is saved to '+outputName)
     
+    if start > 0 or end < 1:
+        print('Remove scattered particles from head and tail ...')
+        nn = len(data)
+        istart = int(nn*start)
+        iend = int(nn*end)
+        
+        print('# of particles before: ', len(data))
+        arg = np.argsort(data[:,2])
+        data = data[arg[istart:iend]]
+        print('# of particles after: ', len(data))
+    
     x, y, z = data[:,0:3].T[:]
-    t = z/g_c
+    t = -z/g_c
     
     tminps, tmaxps = t.min()*1e12, t.max()*1e12
     print('Bunch length in ps: ', tmaxps-tminps)
+    
+    t -= tminps*1e-12
     
     Px, Py, Pz = data[:,3:6].T[:]
     xp = Px/Pz
     yp = Py/Pz
     p = np.sqrt(1+(Px**2+Py**2+Pz**2)/1e12/g_mec2/g_mec2) # gamma
-    
     
     # saving to hdf5
     f = h5py.File(outputName, 'w')

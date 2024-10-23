@@ -8,7 +8,13 @@ Created on Fri Jun 26 14:57:04 2020
 from .Misc import *
 
 #%%
-import h5py
+try:
+    import h5py
+except Exception as err:
+    print(err)
+    print('Please install h5py!')
+    
+    
 from numpy.fft import fftshift,fft
 
 def calcSpectrum(amp, phase = None, lambda0 = 100e-6, sample = 1, freq0 = None):
