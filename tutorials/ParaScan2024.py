@@ -432,7 +432,7 @@ grads = np.array(grads)/astra_to_sco
 Distribution = 'ast.0528.001'
 #Distribution = 'ast.0528.002' # 1 nC
 Zstart = 5.28
-Zstop = 28.09
+Zstop = 12.28
 
 Run = 1
 
@@ -451,12 +451,15 @@ z0 = Zstart
 for i in np.arange(nquads):
     
     z1 = pitz[quadNames[i]]
+    if z1>Zstop:
+        break
     q1 = Quadrupole(l = Lquad, k1 = k[i])
     cell += [Drift(l = z1-z0-Lquad/2), q1]
     
     z0 = z1+Lquad/2
+    
 cell += [Drift(l = Zstop-z0), Marker()]
-
+#%%
 # initialization of tracking method
 method = MethodTM()
 # for second order tracking we have to choose SecondTM 
