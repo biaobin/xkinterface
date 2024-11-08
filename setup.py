@@ -5,7 +5,7 @@ Created on Thu Aug 27 17:05:47 2020
 @author: lixiangk
 """
 
-from setuptools import setup
+from setuptools import setup, find_packages
 
 with open("README.md", 'r') as f:
     long_description = f.read()
@@ -19,8 +19,8 @@ setup(
    author = 'Xiangkun Li',
    author_email = 'xiangkun.li@desy.de',
    url = "https://bitbucket.org/XiangkunLi/interface/",
-   packages = ['interface'],  # same as name
-   install_requires = [],     # external packages as dependencies
+   packages = find_packages(), # ['interface'],  # same as name
+   install_requires = [],    # external packages as dependencies
    examples = [
             'examples/dipole_demo',
             'examples/injector_demo',
