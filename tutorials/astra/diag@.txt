@@ -1,33 +1,29 @@
-            avg_z:   -2.937909E-10 m
-          nemit_x:    2.118247E-01 um
-          nemit_y:    2.118353E-01 um
-            std_x:    2.500313E-01 mm
-            std_y:    2.500312E-01 mm
-            std_z:    1.880327E+00 mm
-             Ekin:    5.500072E-07 MeV
-         std_Ekin:    4.891514E-07 keV
-          nemit_z:    1.034194E-03 keV mm
-              Q_b:   -9.994000E-11 C
-            avg_x:   -7.499871E-08 m
-            avg_y:   -7.501321E-08 m
-          alpha_x:   -1.085736E-02  
-           beta_x:    1.984791E-06 m
-          gamma_x:    5.038907E+05 m^-1
-           emit_x:    3.149733E-02 m
-          alpha_y:    1.408352E-02  
-           beta_y:    1.711459E-06 m
-          gamma_y:    5.844126E+05 m^-1
-           emit_y:    3.652766E-02 m
-         cor_Ekin:    1.037789E-09 keV
+            avg_z:   -7.291834E-11 m
+          nemit_x:    2.117895E-01 um
+          nemit_y:    2.117895E-01 um
+            std_x:    2.500063E-01 mm
+            std_y:    2.500062E-01 mm
+            std_z:    1.880402E+00 mm
+             Ekin:    5.500297E-07 MeV
+         std_Ekin:    1.960970E-07 keV
+          nemit_z:    1.034277E-03 keV mm
+              Q_b:   -3.999520E-09 C
+            avg_x:   -1.498676E-08 m
+            avg_y:   -1.499066E-08 m
+          alpha_x:   -4.553884E-03  
+           beta_x:    6.783113E-07 m
+          gamma_x:    1.474280E+06 m^-1
+           emit_x:    9.214521E-02 m
+          alpha_y:   -2.516995E-03  
+           beta_y:    1.581827E-06 m
+          gamma_y:    6.321846E+05 m^-1
+           emit_y:    3.951326E-02 m
+         cor_Ekin:   -1.397973E-10 keV
      loss_cathode:    0.000000E+00  
     loss_aperture:    0.000000E+00  
-             FWHM:    6.443192E+00 mm
-              NoP:    1.000000E+04  
-               I1:    4.717491E+00 A
-               I0:    4.717491E+00 A
-          cov_xxp:    3.419778E+02 mmmrad
-          cov_yyp:   -5.144380E+02 mmmrad
-           std_xp:    1.259810E+05 mrad
-           std_yp:    1.461069E+05 mrad
-          std_Ek2:    4.891458E-07 keV
-     nemit_x_core:    2.118127E-01 um
+             FWHM:    6.445196E+00 mm
+              NoP:    5.000000E+04  
+               I1:    1.865588E+02 A
+               I0:    1.865588E+02 A
+          cov_xxp:    4.196186E+02 mmmrad
+          cov_yyp:    9.945468E+01 mmmrad

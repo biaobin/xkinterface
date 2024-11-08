@@ -1,6 +1,6 @@
  Echo Input deck
  &NEWRUN
- VERSION =           4,
+ VERSION =           1,
  HEAD    = PITZ beam line simulation                                                                                                 
                              ,
  RUN     =           1,
@@ -104,7 +104,6 @@
  SIGMAS  = F,
  PHASES  = T,
  T_PHASES        = F,
- LDISCARD        = F,
  TRACKS  = T,
  TCHECKS = F,
  CATHODES        = F,
@@ -3587,7 +3586,6 @@
  ntconstantconstantconstantconstantconstantconstantconstant,
  T_NULL  = 500*0.000000000000000E+000  ,
  C_TAU   = 500*0.000000000000000E+000  ,
- C_VG    = 500*0.000000000000000E+000  ,
  E_STORED        = 500*0.000000000000000E+000  ,
  C_XOFF  = 500*0.000000000000000E+000  ,
  C_YOFF  = 500*0.000000000000000E+000  ,
@@ -4185,9 +4183,7 @@
                                                                                                                                      
                                                                                                                                      
                                                                                                                                      
-                                   ,
- P_TAPER_U       = 2000*0.000000000000000E+000  ,
- P_TAPER_D       = 2000*0.000000000000000E+000  
+                                   
  /
  &LASER
  LOOP    = F,
@@ -4216,9 +4212,6 @@
                                                                                                                                      
                                                                                                                                      
                                                                    ,
- LAG_M   = 10*0,
- LAG_P   = 10*0,
- L_N     = 10*6,
  L_Z1    = 10*0.000000000000000E+000  ,
  L_Z2    = 10*0.000000000000000E+000  ,
  L_W1    = 10*0.000000000000000E+000  ,
@@ -4918,7 +4911,6 @@
  Q_MULT_B        = 3000*0.000000000000000E+000  ,
  Q_LENGTH        = 500*0.000000000000000E+000  ,
  Q_BORE  = 500*3.500000000000000E-002  ,
- Q_RAD   = 500*1.00000000000000        ,
  Q_DIST  = 500*0.000000000000000E+000  ,
  Q_POS   = 500*0.000000000000000E+000  ,
  Q_XOFF  = 500*0.000000000000000E+000  ,
@@ -4996,3 +4988,7 @@
  STAT    = 188*F, T, F, T, F, T, F, T, F, T, F, T, F, T, F, T, F, 198*T
  /
  End of Input deck
+
+     execution started:   28. 8.2020     14:38
+     execution finished:  28. 8.2020     14:38
+     execution time:  2.39 sec                         
