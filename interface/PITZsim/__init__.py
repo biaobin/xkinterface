@@ -1,4 +1,4 @@
-from .Coordinates import *
+from .PITZcoordinates import *
 
 from .PITZsim import *
 
