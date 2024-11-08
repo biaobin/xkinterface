@@ -32,9 +32,9 @@ from interface import *
 
 
 ### Tutorials with Jupyter notebook ###
-- For `Astra` related interface, see `tutorials/astra_demo.ipynb`  (or `tutorials/astra_demo.html` in `html` format)
-- For batch generating Genesis 1.3 input files, see `tutorials/genesis13_demo.ipynb` or [here](https://nbviewer.org/urls/bitbucket.org/XiangkunLi/interface/raw/f62dd626944f1dd909cd58bb9dcf092706e614f7/tutorials/astra_demo.ipynb)
-- For postprocessing of Genesis 1.3 simulations, see `tutorials/postG4_demo.ipynb`
+- For `Astra` related interface, see `tutorials/astra_demo.ipynb`  or [hear](https://nbviewer.org/urls/bitbucket.org/XiangkunLi/interface/raw/f0b1d4965102a9fd5f94f92d19b274eb7ed571a6/tutorials/astra/astra_demo.ipynb)
+- For batch generating Genesis 1.3 input files, see `tutorials/genesis13_demo.ipynb` or [here](https://nbviewer.org/urls/bitbucket.org/XiangkunLi/interface/raw/f0b1d4965102a9fd5f94f92d19b274eb7ed571a6/tutorials/genesis13/genesis13_demo.ipynb)
+- For postprocessing of Genesis 1.3 simulations, see `tutorials/postG4_demo.ipynb` or [here](https://nbviewer.org/urls/bitbucket.org/XiangkunLi/interface/raw/f0b1d4965102a9fd5f94f92d19b274eb7ed571a6/tutorials/genesis13/postG4_demo.ipynb)
 
 
 ### Examples ###
