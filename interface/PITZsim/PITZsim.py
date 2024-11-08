@@ -109,4 +109,46 @@ astra_to_sco = 1.590444459638447
 TDS_1MV_ratio = 0.07345637 # TO use this ratio, the input Efield will be the TDS voltage in the unit of MV
 ast_fmt = '%14.6E%14.6E%14.6E%14.6E%14.6E%14.6E%14.6E%14.6E%4d%4d'
 
+def CreateFolderName(x, flag = 'injector', **kwargs):
+    Ipart = 250000
+    if len(kwargs)>0:
+        if 'Ipart' in kwargs.keys():
+            Ipart = kwargs['Ipart']
+            
+    if flag.upper() in ['INJECTOR', 'PI']:
+        
+        sigma_x = sigma_y = x[1]/4.
+        phi_gun, phi_booster = x[3], x[5]
+        Imain = x[6]
 
+        MaxE_gun = x[2]
+        phi_gun, phi_booster = x[3], x[5]
+        MaxE_gun = get_MaxE_gun(phi_gun, 6.3)
+    
+        MaxE_booster = get_MaxE_booster(MaxE_gun, phi_gun, phi_booster, 17)
+        
+        Q_total = x[0]/1e3
+        #Ipart = int(Q_total*50e3)
+
+        direc = str.format('Q-%.2fpC-D-%.2fmm-E1-%.2fMV_m-phi1-%.2fdeg-E2-%.2fMV_m-phi2-%.2fdeg-I-%.2fA' %\
+                           (Q_total*1e3, x[1], MaxE_gun, phi_gun, MaxE_booster, phi_booster, Imain))
+    
+    elif flag.upper() in ['QUADS', 'TRANSPORT']:
+        direc = ''
+        for i in np.arange(len(x[:])):
+            direc += str.format('Q%d-%.2fT_m-' %  (i+1, x[i]))
+        direc = direc[:-1]
+    
+    elif flag.upper() in ['TWISS', 'MATCHING']:        
+        direc = str.format('n%.0fk-sig_x-%.2fmm-sig_y-%.2fmm-alp_x-%.2f-alp_y-%.2f-nemit_x-%.2fum-nemit_y-%.2fum' % (Ipart/1000., *x))
+    
+    return direc
+
+def CreateFolder(direc):
+    if not os.path.exists(direc):
+        os.mkdir(direc)
+        print('Create folder: ', direc)
+    else:
+        print('Folder exits: ', direc)
+        
+    return
