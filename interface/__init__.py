@@ -7,6 +7,9 @@ from .PostGenesis13 import *
 
 from .BeamDiagnostics import *
 from .BeamFormat import *
+
+from .PITZsim import *
+
 #from .G4Tools import *
 
 #try:
