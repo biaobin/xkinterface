@@ -32,10 +32,10 @@ from interface import *
 
 
 ### Tutorials with Jupyter notebook ###
-- For `Astra` related interface, see `tutorials/astra_demo.ipynb`  or [hear](https://nbviewer.org/urls/bitbucket.org/XiangkunLi/interface/raw/1e67edea979aa0bb1f82672a9ec521dc2b059960/tutorials/astra/astra_demo.ipynb)
-- For batch generating Genesis 1.3 input files, see `tutorials/genesis13_demo.ipynb` or [here](https://nbviewer.org/urls/bitbucket.org/XiangkunLi/interface/raw/f0b1d4965102a9fd5f94f92d19b274eb7ed571a6/tutorials/genesis13/genesis13_demo.ipynb)
-- For postprocessing of Genesis 1.3 simulations, see `tutorials/postG4_demo.ipynb` or [here](https://nbviewer.org/urls/bitbucket.org/XiangkunLi/interface/raw/f0b1d4965102a9fd5f94f92d19b274eb7ed571a6/tutorials/genesis13/postG4_demo.ipynb)
-
+- For `Astra` related interface, see `tutorials/astra/astra_demo.ipynb`  or [here](https://nbviewer.org/urls/gitlab.desy.de/xiangkun.li/interface/-/raw/master/tutorials/astra/astra_demo.ipynb)
+- For batch generating Genesis 1.3 input files, see `tutorials/genesis13/genesis13_demo.ipynb` or [here](https://nbviewer.org/urls/gitlab.desy.de/xiangkun.li/interface/-/raw/master/tutorials/genesis13/genesis13_demo.ipynb)
+- For postprocessing of Genesis 1.3 simulations, see `tutorials/postG4_demo.ipynb` or [here](https://nbviewer.org/urls/gitlab.desy.de/xiangkun.li/interface/-/raw/master/tutorials/genesis/postG4_demo.ipynb)
+- For optics optimization using ocelot, see `tutorials/ocelot` or [not ready yet]()
 
 ### Examples ###
 
