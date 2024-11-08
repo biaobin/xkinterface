@@ -5,6 +5,8 @@ Interfaces for Generator, Astra and Genesis version 2 and 4, and so on
 @author: lixiangk
 """
 
+import subprocess
+
 from .Namelists import *
 
 def _exist_(st, fname):
