@@ -310,7 +310,7 @@ def ObjOcelot(grads, positions = None, quadNames = None, Distribution = None,
     # add physics processes from the first element to the last of the lattice
     navi.add_physics_proc(sc1, lat.sequence[0], lat.sequence[-1])
     # definiing of unit step in [m]
-    navi.unit_step = 0.02*5
+    navi.unit_step = 0.02
     
     # deep copy of the initial beam distribution 
     p_array = deepcopy(p_array_i)

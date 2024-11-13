@@ -41,13 +41,13 @@ if __name__ == "__main__":
     if True:
         print(sys.argv)
         
-        grad0 = 1
+        grad0 = 2.4
         if len(sys.argv)>1:
             grad0 = np.float(sys.argv[1])
             
-        grad1 = -grad0*1 # gradient of the first quad
-        grad2 = grad0*0.5
-        grad3 = -grad0*0.2
+        grad1 = -grad0*1.6 # gradient of the first quad
+        grad2 = grad0*1.75
+        grad3 = -grad0*1.35
         
         if len(sys.argv)>2:
             grad1 = np.float(sys.argv[2])
@@ -60,17 +60,17 @@ if __name__ == "__main__":
         
         
         ### Parameter Setup here
-        z0 = 5.28 # position of initial beam
+        z0 = 4.5 # position of initial beam
         
         Run0 = 1
-        fname0 = 'ast.0528.001'
+        fname0 = 'ast.0450.002'
         print(fname0)
-
-        quadNames = ['High1.Q4', 'High1.Q6', 'High1.Q7', 'High1.Q8']
         
-        Zstop = 10
+        quadNames = ['High1.Q1', 'High1.Q2', 'High1.Q3', 'High1.Q4']
         
-        Zfinal = scrns['PST.Scr1']
+        Zstop = scrns['High1.Scr2']
+        
+        Zfinal = scrns['High1.Scr3']
         #Zfinal = scrns['high2.scr2']
         ###
         
@@ -89,7 +89,7 @@ if __name__ == "__main__":
         args = (quadNames,)
         Distribution = '..'+os.sep+fname0
         kwargs = {'Run':Run0+1, 'Distribution':Distribution, 'Zstart':z0,
-                  'Zstop':zquad[-1]+1e-6, 'step':2, 'Screen':[zquad[2]]}
+                  'Zstop':zquad[-1]+1e-6, 'step':5, 'Screen':[zquad[2]]}
         
         def func_wrapper(x):
             r = 0

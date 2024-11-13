@@ -116,7 +116,7 @@ if __name__ == "__main__":
         args = (quadNames,)
         Distribution = '..'+os.sep+fname0
         kwargs = {'Run':Run0+1, 'Distribution':Distribution, 'Zstart':z0,
-                  'Zstop':zquad[-1]+1e-6, 'step':2, 'Screen':[zquad[-1]]}
+                  'Zstop':zquad[-1]+1e-6, 'step':5, 'Screen':[zquad[-1]]}
         
         def func_wrapper(x):
             r = 0

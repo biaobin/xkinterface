@@ -49,15 +49,15 @@ if __name__ == "__main__":
         print(grad1, grad2, grad3)
         
         ### Parameter Setup here
-        z0 = 5.28 # position of initial beam
+        z0 = 4.5 # position of initial beam
         
         Run0 = 1
-        fname0 = 'ast.0528.001'
+        fname0 = 'ast.0450.002'
         print(fname0)
         
-        quadNames = ['High1.Q3', 'High1.Q4', 'High1.Q5']
+        quadNames = ['High1.Q1', 'High1.Q2', 'High1.Q3']
         Zstop = (quads[quadNames[-1]]+quads[quadNames[-2]])/2
-        Zstop = pitz['High1.Scr2']
+        #Zstop = pitz['High1.Scr2']
         
         Zfinal = pitz['High1.Scr3']
         ###
@@ -77,7 +77,7 @@ if __name__ == "__main__":
         args = (quadNames,)
         Distribution = '..'+os.sep+fname0
         kwargs = {'Run':Run0+1, 'Distribution':Distribution, 'Zstart':z0,
-                  'Zstop':Zstop, 'step':2, 'Screen':[zquad[-1]]}
+                  'Zstop':Zstop, 'step':5, 'Screen':[zquad[-1]]}
         
         def func_wrapper(x):
             r = 0
