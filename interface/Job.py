@@ -183,7 +183,7 @@ class SbatchJob:
         self.echo = echo
             
     def create(self, jobName = None, inputName = 'ast.in', direc = '.',
-               submit = False, **kwargs):
+               submit = False, args = [], **kwargs):
         '''
         Parameters
           jobName: name of the job
@@ -245,6 +245,11 @@ class SbatchJob:
             cmd = '''echo '''+baseName+ext+''' |'''+self.command
         else:
             cmd = self.command+''' '''+baseName+ext
+            
+        if len(args)>0:
+            for arg in args:
+                cmd += str.format(''' %g ''' % arg)
+                
         cmd += ''' 2>&1 | tee '''+baseName+'''.log
 '''
         con += cmd

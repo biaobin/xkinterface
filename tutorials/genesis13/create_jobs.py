@@ -50,7 +50,9 @@ for v in combi:
     jobName = 'beam_%.0fA_%.1fnC_%d_quiet2' % (Ipeak, Qtot, seed)
     
     ### simulation
-    job = CondorJob(command = 'python')
+    #job = CondorJob(command = 'python')
+    job = SbatchJob(command = 'python')
+    
     job.create(jobName+'.sh', inputName, args = v, cmd1 = cmd1)
     
 #exit()
