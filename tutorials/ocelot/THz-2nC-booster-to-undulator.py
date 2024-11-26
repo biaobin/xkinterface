@@ -8,109 +8,67 @@ Created on Wed Feb  2 20:34:08 2022
 
 
 from interface import *
-#from PITZ import *
 
-#import Transport as tr
+# Get the directory of the currently running script
+scriptdir = os.path.dirname(os.path.abspath(__file__))
+
+# Add this directory to sys.path if it's not already there
+if scriptdir not in sys.path:
+    sys.path.insert(0, scriptdir)
+
+# Now you can import the module as usual
+from ObjOcelot import *
 
 
-from ocelot_tool import *
+#%%% Re-scale the Twiss parameters
+fname = 'beam_112A_2.0nC.ini'
+fname = '368A.2809.002.1000'
 
-# workdir = r'\\afs\ifh.de\group\pitz\data\lixiangk\sim3\2024\THzTransportDemo'
-# os.chdir(workdir)
+betax, betay =  20.0,  0.75
+alphax, alphay = 10.92*0.667, 3.25 
 
-def impact2warp(fname, fout = None, Run = 1, Q_coef = -1.0, ratio = 100):
-    '''
-    The output file follows the format required for Astra simulation.
-    Parameters
-      fname: filename of Warp output, which includes columns of X Y Z UX UY UZ W, where Ux Uy Uz are dimentionless momentum, W is macro particle charge
-      fout: filename of the output
-      Q_coef: an coefficient to scale the bunch charge, default is -1.0
-      ratio: a factor used to scale the position of electron bunch to be used in Astra file name
-    '''
-    
-    data = pd_loadtxt(fname, skiprows = 1)
-    
-    nop = len(data)
-    
-    d1 = np.zeros((nop+1, 7))
-    
-    d1[:,0] = data[:,0]
-    d1[:,1] = data[:,2]
-    d1[:,2] = data[:,4]
-    d1[:,3] = data[:,1]
-    d1[:,4] = data[:,3]
-    d1[:,5] = data[:,5]
-    d1[:,6] = -2/10e-6
-    
-    z0 = weighted_mean(d1[:,2])
-        
-    if fout is None:
-        print('The current bunch center is at ', z0, ' meters')
-        fid = z0*ratio
-        while round(fid)<1:
-            fid *= 10
-        fid = round(fid)
-        fout = 'warp.%04d.%03d' % (fid, Run)
-    print('The distribution is saved to '+fout)
-    
-    np.savetxt(fout, d1, fmt = '%16.9E%16.9E%16.9E%16.9E%16.9E%16.9E%16.9E')
-    return 
+xrms, yrms = 1.5, 0.25
+xx, yy = 1.0, 0.3
 
-def impact2astra(fname, fout = None, Run = 1, Q_coef = -1.0, ratio = 100):
-    '''
-    The output file follows the format required for Astra simulation.
-    Parameters
-      fname: filename of Warp output, which includes columns of X Y Z UX UY UZ W, where Ux Uy Uz are dimentionless momentum, W is macro particle charge
-      fout: filename of the output
-      Q_coef: an coefficient to scale the bunch charge, default is -1.0
-      ratio: a factor used to scale the position of electron bunch to be used in Astra file name
-    '''
-    
-    data = pd_loadtxt(fname, skiprows = 1)
-    
-    nop = len(data)
-    
-    d1 = np.zeros((nop+1, 10))
-    
-    d1[1:,0] = data[:,0]
-    d1[1:,1] = data[:,2]
-    d1[1:,2] = data[:,4]
-    d1[1:,3] = data[:,1]
-    d1[1:,4] = data[:,3]
-    d1[1:,5] = data[:,5]
-    
-    d1[1:,3:6] *= g_mec2*1e6
-    
-    z0 = weighted_mean(d1[1:,2])
-    pz0 = weighted_mean(d1[1:,5])
-    
-    d1[0, 2] = z0+5.28
-    d1[0, 5] = pz0
-    d1[1:,2] -= d1[0, 2]
-    d1[1:,5] -= d1[0, 5]
-    
-    d1[:,7] = -2/10e6 # convert to nC
-    d1[:, -2] = 1
-    d1[:, -1] = 5
-    
-    if fout is None:
-        print('The current bunch center is at ', z0, ' meters')
-        fid = z0*ratio
-        while round(fid)<1:
-            fid *= 10
-        fid = round(fid)
-        fout = 'ast.%04d.%03d' % (fid, Run)
-    print('The distribution is saved to '+fout)
-    
-    np.savetxt(fout, d1, fmt = '%18.9E%18.9E%18.9E%18.9E%18.9E%18.9E%18.9E%18.9E%4d%4d')
-    return 
+xemit, yemit = 8, 5
+xemit, yemit = 5.5*1.5, 5.5*1.5
 
-#workdir = r'/lustre/fs22/group/pitz/lixiangk/2024/WaveGuide/'
-#os.chdir(workdir)
+##
+betax, betay =  7.934690,  0.4165
+alphax, alphay = 5.257*0.65, 1.894
 
-#impact2astra('impact_20deg.2809', 'impact_20deg.2809.001')
-##%%
-#astra2warp('impact_20deg.2809.001', 'impact_20deg.2809.001.warp')
+
+# alphax = 5
+
+xrms, yrms = 1.25, 0.3
+#xx, yy = 1.0, 0.3
+
+xemit, yemit = 5, 5
+###
+
+
+P0 = 17
+gamma = momentum2gamma(P0)
+
+# betax = xrms**2/(xemit/gamma)
+# betay = yrms**2/(yemit/gamma)
+
+#alphax = -xx/(xemit/gamma)*1.45
+#alphay = -yy/(yemit/gamma)
+
+fout = 'matched@'+fname
+
+kwargs = {}
+kwargs.update(
+    inputName = fname,
+    outputName = fout,
+    betax = betax,
+    betay = betay,
+    alphax = alphax,
+    alphay = alphay,
+    flipZ = False)
+Matching(**kwargs)
+
 
 workdir = r'/afs/ifh.de/group/pitz/data/lixiangk/sim3/2024/THzTransportDemo/_L-6.1ps-D-3.50mm-E1-58.19MV_m-phi1--10.28deg-E2-13.34MV_m-phi2--23.42deg-I-367.35A/'
 os.chdir(workdir)
