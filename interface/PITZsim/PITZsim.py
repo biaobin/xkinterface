@@ -27,6 +27,7 @@ try:
     cwd = os.path.dirname(os.path.abspath(__file__))
 
     field_maps = os.path.join(cwd, 'field-maps')
+
     gun_profile = 'gun51cavity.txt'
     boo_profile = 'CDS14_15mm.txt'
     sol_profile = 'gunsolenoidsPITZ.txt'
@@ -59,7 +60,7 @@ try:
     ### 2D booster gradient and phase scan and interpolation, updated 01.03.2023
     # Somehow, the three columns in booster 2d scan data is phi, grad, and momentum,
     # which is different from that for the gun
-    data_booster = np.loadtxt(field_maps+os.sep+'phi2_scan.dat')
+    data_booster = np.loadtxt(field_maps+os.sep+'booster_scan2d.dat')
     shape = (71, 121)
     phi_booster = np.reshape(data_booster[:,0], shape)
     E_booster   = np.reshape(data_booster[:,1], shape)
@@ -87,7 +88,7 @@ except Exception as err:
     
 try:
     ### 2D gun gradient and phase scan and interpolation for thermal imaging, updated 07.2024
-    data_thermal_imaging = np.loadtxt(field_maps+os.sep+'ThermalImagingScan_gun5.1.dat')
+    data_thermal_imaging = np.loadtxt(field_maps+os.sep+'gun51_ThermalImagingScan2D.dat')
     shape1 = (9, 3)
     E_gun1   = np.reshape(data_thermal_imaging[:,0], shape1)
     phi_gun1 = np.reshape(data_thermal_imaging[:,1], shape1)
