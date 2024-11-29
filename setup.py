@@ -20,6 +20,7 @@ setup(
    author_email = 'xiangkun.li@desy.de',
    url = "https://bitbucket.org/XiangkunLi/interface/",
    packages = find_packages(), # ['interface'],  # same as name
+   include_package_data = True,
    install_requires = [],    # external packages as dependencies
    examples = [
             'examples/dipole_demo',

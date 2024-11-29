@@ -1,0 +1,2 @@
+include interface/PITZsim/field-maps/*.txt
+include interface/PITZsim/field-maps/*.dat
