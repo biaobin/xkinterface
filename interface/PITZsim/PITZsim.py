@@ -88,7 +88,7 @@ except Exception as err:
     
 try:
     ### 2D gun gradient and phase scan and interpolation for thermal imaging, updated 07.2024
-    data_thermal_imaging = np.loadtxt(field_maps+os.sep+'gun51_ThermalImagingScan2D.dat')
+    data_thermal_imaging = np.loadtxt(field_maps+os.sep+'gun51_ThermalImagingScan2d.dat')
     shape1 = (9, 3)
     E_gun1   = np.reshape(data_thermal_imaging[:,0], shape1)
     phi_gun1 = np.reshape(data_thermal_imaging[:,1], shape1)
