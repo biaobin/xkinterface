@@ -33,23 +33,16 @@ from interface import *
 
 ### Tutorials with Jupyter notebook ###
 - For `Astra` related interface, see `tutorials/astra/astra_demo.ipynb`  or [here](https://nbviewer.org/urls/gitlab.desy.de/xiangkun.li/interface/-/raw/master/tutorials/astra/astra_demo.ipynb).
-  For more details on how to use it for parameter scan or global optimization, see [**`interface/tutorials/astra/README.md`**](https://bitbucket.org/XiangkunLi/interface/src/master/tutorials/astra/README.md).
+
+- For more details on how to use it for parameter scan or global optimization, see [**`interface/tutorials/astra/README.md`**](https://bitbucket.org/XiangkunLi/interface/src/master/tutorials/astra/README.md).
+
 - For batch generating Genesis 1.3 input files, see `tutorials/genesis13/genesis13_demo.ipynb` or [here](https://nbviewer.org/urls/gitlab.desy.de/xiangkun.li/interface/-/raw/master/tutorials/genesis13/genesis13_demo.ipynb)
+  
 - For postprocessing of Genesis 1.3 simulations, see `tutorials/genesis13/postG4_demo.ipynb` or [here](https://nbviewer.org/urls/gitlab.desy.de/xiangkun.li/interface/-/raw/master/tutorials/genesis13/postG4_demo.ipynb)
-- For optics optimization using ocelot, see `tutorials/ocelot` or [not ready yet]()
 
+- For optics optimization using ocelot, see `tutorials/ocelot/README.md` or [here](https://bitbucket.org/XiangkunLi/interface/src/master/tutorials/ocelotREADME.md)
 
-~~### Examples ###~~
-
-~~Examples include:~~
-
-~~- `dogleg_demo.py`, set up a dogleg for astra simulation~~
-~~- `injector_demo.py`, set up a photo-injector for astra simulation~~
-~~- `injector_optimization_demo.py` and `sub.sh`, set up an optimization script using MOGA algorithm and submit the job to cluster.~~
-
-~~About the `NSGA` algorithm , the default is the python module `platypus`. The problem with it is that there is no intermediate~~
-~~output and one simply doesn't know what happened in the optimization procedure. Therefore, a wrapper class `interface/NSGAPlus` was~~
-~~written to solve this problem. The class is just modified from the default one, with some options to control the output of the intermediate results.~~
+**NOTE: There are also local instructions.**
 
 
 ### About the `Namelist/Generator1/Astra` class ###
