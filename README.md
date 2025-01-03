@@ -52,6 +52,7 @@ About the `NSGA` algorithm , the default is the python module `platypus`. The pr
 output and one simply doesn't know what happened in the optimization procedure. Therefore, a wrapper class `interface/NSGAPlus` was 
 written to solve this problem. The class is just modified from the default one, with some options to control the output of the intermediate results.
 </del>
+```
 
 ### About the `Namelist/Generator1/Astra` class ###
 
