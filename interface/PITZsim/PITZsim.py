@@ -28,9 +28,9 @@ try:
 
     field_maps = os.path.join(cwd, 'field-maps')
 
-    gun_profile = 'gun51cavity.txt'
-    boo_profile = 'CDS14_15mm.txt'
-    sol_profile = 'gunsolenoidsPITZ.txt'
+    gun_profile = os.path.join(field_maps, 'gun51cavity.txt')
+    boo_profile = os.path.join(field_maps, 'CDS14_15mm.txt')
+    sol_profile = os.path.join(field_maps, 'gunsolenoidsPITZ.txt')
     
     ### 2D gun gradient and phase scan and interpolation, updated 27.02.2023
     data_gun = np.loadtxt(field_maps+os.sep+'gun51_scan2d.dat')
