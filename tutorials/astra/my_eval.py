@@ -30,9 +30,9 @@ def obj_PhotoInjector(x, *args, farm = False, submit = False, get_folder = False
     Q_total = -2 # nC
     
     ### Laser
-    BSA = x[0]
-    FWHM = x[1]*1e-3 # for Gaussian
+    FWHM = x[0]*1e-3 # ns in Astra
     #FWHM = 250e-6 # for Pharos shortest pulse
+    BSA = x[1]
 
     # Uniform
     sigma_x = sigma_y = BSA/4.
@@ -133,7 +133,7 @@ def obj_PhotoInjector(x, *args, farm = False, submit = False, get_folder = False
         return direc
     
     ### For farm jobs, create the batch files for job submission
-    if Farm:
+    if farm:
         CreateFolder(direc)
         #os.system('mkdir -p '+direc)
 

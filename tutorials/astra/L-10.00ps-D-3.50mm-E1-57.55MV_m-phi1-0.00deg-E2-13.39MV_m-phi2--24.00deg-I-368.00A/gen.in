@@ -1,0 +1,24 @@
+&Input 
+ FNAME='BSA-3.5mm-FWHM-10.0ps.ini'
+ IPart=250000
+ Species='electrons'
+ Q_total=-2
+ Ref_Ekin=0
+ LE=0.00055
+ dist_pz='i'
+ Dist_z='g'
+ sig_clock=0.004246285
+ Cathode=true
+ Dist_x='2'
+ sig_x=0.875
+ Dist_px='g'
+ Nemit_x=0
+ Dist_y='2'
+ sig_y=0.875
+ Dist_py='g'
+ Nemit_y=0
+ C_sig_x=0
+ C_sig_y=0
+ Lprompt=false
+&end
+

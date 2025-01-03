@@ -31,10 +31,11 @@ var2 = [0]
 
 # Booster phase, degree
 var3 = np.linspace(-36, -16, 6)
-#var3 = [-28, -24, -20]
+var3 = [-28, -24, -20]
 
 # Solenoid, A
 var4 = np.linspace(360, 374, 8)
+var4 = [368]
 
 # Note: we also give gun and booster gradients here, but they are not used since they will be automatically determined by the given  momenta
 combi = np.array([[v0, v1, 57.55, v2, 14.5, v3, v4] for v0 in var0 for v1 in var1 for v2 in var2 for v3 in var3 for v4 in var4])
