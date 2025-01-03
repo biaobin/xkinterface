@@ -33,10 +33,10 @@ There is a tutorial notebook [here](https://gitlab.desy.de/xiangkun.li/interface
 
 # Examples
 
-- `my_object.py` defines an objective function and an post-processing function. By calling one of them, one can run `Astra` or analyze the outputs from `Astra`.
+- `my_eval.py` defines an objective function and an post-processing function. By calling one of them, one can run `Astra` or analyze the outputs from `Astra`.
 
-- `ParaScan.py` defines the script for parameter scan.
+- `ParaScan.py` defines the script for parameter scan: it will generate `.sh` and `.submit` files and one can sumbit all of them at once.
 
-- `test_pymoo_MPI.py` defines the script for global optimization using `NSGA-II` from `pymoo`.
+- `MOGA_MPI.py` defines the script for global optimization using `NSGA-II` from `pymoo`, currently at DESY Zeuthen, the submission can only be done on the `lustre` partition (visit via `cd /lustre/fs22/group/pitz` ). To submit the parallel job, use the `MOGA_MPI.sh` script.
 
 
