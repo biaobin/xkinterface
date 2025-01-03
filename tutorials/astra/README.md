@@ -29,7 +29,7 @@ This will generate the input files saved in the folder `direc` and job submittin
 
 # How to use it
 
-There is a tutorial notebook [here](https://gitlab.desy.de/xiangkun.li/interface/-/blob/master/tutorials/astra/astra_demo.ipynb?ref_type=heads).
+There is a tutorial notebook [here](https://nbviewer.org/urls/gitlab.desy.de/xiangkun.li/interface/-/raw/master/tutorials/astra/astra_demo.ipynb).
 
 # Examples
 
