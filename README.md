@@ -38,7 +38,9 @@ from interface import *
 - For postprocessing of Genesis 1.3 simulations, see `tutorials/genesis13/postG4_demo.ipynb` or [here](https://nbviewer.org/urls/gitlab.desy.de/xiangkun.li/interface/-/raw/master/tutorials/genesis13/postG4_demo.ipynb)
 - For optics optimization using ocelot, see `tutorials/ocelot` or [not ready yet]()
 
-### Examples ###
+```markdown
+<del>
+### Examples ###-
 
 Examples include:
 
@@ -49,6 +51,7 @@ Examples include:
 About the `NSGA` algorithm , the default is the python module `platypus`. The problem with it is that there is no intermediate 
 output and one simply doesn't know what happened in the optimization procedure. Therefore, a wrapper class `interface/NSGAPlus` was 
 written to solve this problem. The class is just modified from the default one, with some options to control the output of the intermediate results.
+</del>
 
 ### About the `Namelist/Generator1/Astra` class ###
 
