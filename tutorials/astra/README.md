@@ -25,7 +25,7 @@ This will generate the input files saved in the folder `direc` and job submittin
 
 3. The above can be done using a script. By defing the parameters, one can generate input files for parameter scan, which is efficient for 2-4 variables.
 
-4. By combining it with optimization algorithms like `MOGA`, one can do global optimization with more variables.
+4. By combining it with optimization algorithms, one can do global optimization with more variables.
 
 # How to use it
 
