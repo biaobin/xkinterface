@@ -1,0 +1,13 @@
+#HTC condor job
+
+executable = /bin/zsh
+arguments = temp.sh
+
+output = temp.o
+error = temp.e
+
+getenv = True
+request_memory = 2G
+#request_cpus = 32
+
+queue 1
