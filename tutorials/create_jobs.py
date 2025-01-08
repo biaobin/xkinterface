@@ -7,6 +7,8 @@ This is a temporary script file.
 
 from interface import *
 
+### This script allows to generate batch files that submit jobs with `htc-submit`
+
 # Environment to load
 activate = '. /afs/ifh.de/group/pitz/data/lixiangk/work/apps/python3/3.9.18/bin/activate'
 #activate = 'module add python/3.9'
