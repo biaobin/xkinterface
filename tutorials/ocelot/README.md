@@ -23,8 +23,8 @@ The corresponding folder and file names in the script should be mofidied accordi
 
 After running the script, one expects three plots:
 
-![screenshot](./fig/Backward-tracking.png.png)
-![screenshot](./fig/forward-tracking.png.png)
+![screenshot](./fig/Backward-tracking.png)
+![screenshot](./fig/Forward-tracking.png)
 ![screenshot](./fig/RMS-size-with-focusing2.png)
 
 They show the transport of beam in the backward and forward directions and the matching condition, respectively. There should be intersection in the right plot, which is the maching condition.
