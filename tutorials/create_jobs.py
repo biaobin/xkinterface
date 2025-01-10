@@ -19,8 +19,10 @@ script = 'TripletTuning.py'
 job = CondorJob(command = command)
 
 jobname = f'temp.sh'
-args = [1]
-submit = False
+args = [1] # if no input arguments, set it to "[]"
+# if `submit = True`, the job will be submitted automatically, but this works only 
+# by running the script from the `htc-submit` server
+submit = False 
 
 job.create(jobName = jobname, 
            inputName = script, 
