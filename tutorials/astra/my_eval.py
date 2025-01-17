@@ -27,7 +27,7 @@ def obj_PhotoInjector(x, *args, farm = False, submit = False, get_folder = False
 
     Ipart = 250000
     Run = 1
-    Q_total = -2 # nC
+    Q_total = -2000 # pC
     
     ### Laser
     FWHM = x[0]*1e-3 # ns in Astra
@@ -38,15 +38,23 @@ def obj_PhotoInjector(x, *args, farm = False, submit = False, get_folder = False
     sigma_x = sigma_y = BSA/4.
     C_sigma_x = C_sigma_y = 0
     # Or Gaussian truncated
-    # sigma_x = sigma_y = 0.96 
-    # C_sigma_x = C_sigma_y = BSA/2./sigma_x
+    sigma_x = sigma_y = 1 
+    C_sigma_x = C_sigma_y = BSA/2./sigma_x
 
     ### Gun and booster
     phi_gun, phi_booster = x[3], x[5]
 
+    P_gun, P_booster = 6.3, 17
+    if len(kwargs)>0:
+        keys = kwargs.keys()
+        if 'P_gun' in keys:
+            P_gun = kwargs['P_gun']
+        if 'P_booster' in keys:
+            P_booster = kwargs['P_booster']
+            
     # Define Egun and Ebooster by the beam momentum
-    MaxE_gun = get_MaxE_gun(phi_gun, 6.3)
-    MaxE_booster = get_MaxE_booster(MaxE_gun, phi_gun, phi_booster, 17)
+    MaxE_gun = get_MaxE_gun(phi_gun, P_gun)
+    MaxE_booster = get_MaxE_booster(MaxE_gun, phi_gun, phi_booster, P_booster)
     # Or define them by user
     # MaxE_gun, MaxE_booster = x[2], x[4]
 
@@ -76,7 +84,9 @@ def obj_PhotoInjector(x, *args, farm = False, submit = False, get_folder = False
             Zstart = kwargs['Zstart']
         if 'Zstop' in keys:
             Zstop = kwargs['Zstop']
-
+            
+    Q_total *= 1e-3
+    
     generator = Generator1(FNAME = Distribution, IPart = Ipart, Species = 'electrons', Q_total = Q_total,
                            Ref_Ekin = 0.0e-6, LE = 0.55e-3*1, dist_pz = 'i',
                            Dist_z = 'g', sig_clock = FWHM/2.355, Cathode = True,
