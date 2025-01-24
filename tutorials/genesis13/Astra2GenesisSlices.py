@@ -11,7 +11,7 @@ import time
 #     r = -rz*z
 #% Define the Hammersley sequence and the function to convert Astra distrution 
 #   to slices for Genesis1.3 Version 2
-from interface import *
+from xkinterface.interface import *
 
 from scipy.stats import qmc
 erf = sp.special.erf
