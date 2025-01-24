@@ -840,7 +840,9 @@ def Astra2GenesisSlices(inputName = None, inputDist = None,
     # Total number of slices and number of macro particles per slice
     #Ns = 150
     if nslice == None:
-        Ns = Ns_b+100
+        #Ns = Ns_b+100
+        #Biaobin, no need now
+        Ns = Ns_b
     else:
         Ns = nslice
         
