@@ -110,12 +110,12 @@ def InvCDF(samples, wbin = 100e-6, degree = 4):
     
     window_size = 16+1
     #degree = 4  # Degree of the polynomial to fit
-    plt.figure(); plt.plot(edges[:], weights[8:-9])
+    plt.figure(); plt.plot(edges[:], weights[8:-9],label='ini')
     
     weights = savgol_filter(weights, window_size, degree)
     
     weights[weights<10] = 0; #weights = weights[3:-3]
-    plt.plot(edges[:], weights[8:-9], '-')
+    plt.plot(edges[:], weights[8:-9], '-',label='fit')
     plt.savefig('Current_profile_smoothed.png')
     ###
     
@@ -1061,7 +1061,7 @@ def Astra2GenesisSlices(inputName = None, inputDist = None,
     ax4.set_xlabel(r'Number of slices')
     
     fig.tight_layout()
-    fig.savefig('bunching@'+outputName+'.png')
+    fig.savefig('bunching@'+outputName+"_nperlambda-"+str(nperlambda)+'.png')
     
     return curpeak, curlen, Ns, nbins, outputName
 
