@@ -80,7 +80,7 @@ def InvCDF(samples, wbin = 100e-6, degree = 4):
     '''
     smin = samples.min()
     smax = samples.max()
-    bins = int((smax-smin)/wbin)*1; print(bins)
+    bins = int((smax-smin)/wbin)*1;  #print(bins)
     
     weights, edges = np.histogram(samples, bins = bins)
     ### Add zeros to avoid abrupt change of density near tails
@@ -765,6 +765,8 @@ def Astra2GenesisSlices(inputName = None, inputDist = None,
         dist = pd_loadtxt(inputName)
         dist[1:,2] += dist[0,2]
         dist[1:,5] += dist[0,5]
+        
+        beam_P0 = dist[0,5]/1e6
     elif inputDist != None:
         dist = inputDist[:,0:6]
     else:
@@ -774,7 +776,7 @@ def Astra2GenesisSlices(inputName = None, inputDist = None,
     if outputName == None:
         outputName = 'temp'
     outputName += str.format('.%d.out.par.h5' % seed)
-    print('The distribution is saved to '+outputName)
+    # print('The distribution is saved to '+outputName)
     
     # Resonant wavelength
     #lambda0 = 100e-6
@@ -784,7 +786,7 @@ def Astra2GenesisSlices(inputName = None, inputDist = None,
     z -= z.min()
     
     zmin, zmax = z.min()*1e3, z.max()*1e3
-    print('Bunch length in mm: ', zmax-zmin)
+    # print('Bunch length in mm: ', zmax-zmin)
     
     Px, Py, Pz = dist[:,3:6].T[:]
     
@@ -875,7 +877,7 @@ def Astra2GenesisSlices(inputName = None, inputDist = None,
         
         Ne_slice = current1*lambda0/g_c/g_qe
         
-        print('# of slices: ', islice, ', current = ', current0, ' / ', current1, ' A')
+        # print('# of slices: ', islice, ', current = ', current0, ' / ', current1, ' A')
         
         # For dummy particles (current1 = 0)
         ccc0 = 1
@@ -1063,7 +1065,7 @@ def Astra2GenesisSlices(inputName = None, inputDist = None,
     fig.tight_layout()
     fig.savefig('bunching@'+outputName+"_nperlambda-"+str(nperlambda)+'.png')
     
-    return curpeak, curlen, Ns, nbins, outputName
+    return curpeak, curlen, Ns, nbins, outputName, beam_P0
 
 def Astra2Genesis3Slices(inputName = None, inputDist = None, 
                          outputName = 'temp',
