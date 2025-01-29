@@ -840,11 +840,11 @@ def Astra2GenesisSlices(inputName = None, inputDist = None,
     Ntail = -Ns_b//2
     
     # Total number of slices and number of macro particles per slice
-    #Ns = 150
     if nslice == None:
-        #Ns = Ns_b+100
-        #Biaobin, no need now
-        Ns = Ns_b
+        nproc = 16
+        Ns_b = (Ns_b//nproc+1)*nproc 
+        Ns = Ns_b +100
+        
     else:
         Ns = nslice
         
@@ -1241,19 +1241,19 @@ def TaperedUndulator(lam_u = 3e-2, Nu = 113, dK_dz = 0, d2K_dz2 = 0):
 #%% Main function
 if __name__ == "__main__":
     import os
-    workdir = r'\\afs\ifh.de\group\pitz\data\lixiangk\sim3\2023\THzApple2\P0_15MeV_c_lam_115um_betax_0.3m'
-    workdir = r'\\afs\ifh.de\group\pitz\data\lixiangk\sim3\2023\SASEScan2'
-    workdir = r'\\afs\ifh.de\group\pitz\data\lixiangk\sim3\2023\THzDLW'
-    workdir = r'\\afs\ifh.de\group\pitz\data\lixiangk\sim3\2023\THzComm2'
+    # workdir = r'\\afs\ifh.de\group\pitz\data\lixiangk\sim3\2023\THzApple2\P0_15MeV_c_lam_115um_betax_0.3m'
+    # workdir = r'\\afs\ifh.de\group\pitz\data\lixiangk\sim3\2023\SASEScan2'
+    # workdir = r'\\afs\ifh.de\group\pitz\data\lixiangk\sim3\2023\THzDLW'
+    # workdir = r'\\afs\ifh.de\group\pitz\data\lixiangk\sim3\2023\THzComm2'
     # workdir = r'\\afs\ifh.de\group\pitz\data\lixiangk\sim3\2024\WaveGuide'
     #workdir = r'\\afs\ifh.de\group\pitz\data\lixiangk\sim3\2024\S2E-Georgi'
     
     #workdir = r'\\afs\ifh.de\group\pitz\data\lixiangk\sim3\2024\DLW-XYZ'
-    
+    workdir = r'/mnt/d/NextCloud/subjects/2025/202501-2nC/debug_gen4_bugs/bug_version'   
     os.chdir(workdir)
     
-    fname = 'beam.ini'
-    fname = '368A.2809.002.1000'
+    #fname = 'beam.ini'
+    #fname = '368A.2809.002.1000'
     #fname = 'ast.2745.019_14.7_0.3'
     #fname = 'ast_1.0nC.2809.1500' 
     #fname = '.'+os.sep+'ast.2745.013'
@@ -1264,13 +1264,14 @@ if __name__ == "__main__":
     #fname = 'ast.2809.002'
     #fname = 'ast.2809.002.matched2_.compressed'
     #fname = 'g_100A_2.0nC.ini'
-    fname = 'run1.2809.001'
+    #fname = 'run1.2809.001'
     #fname = 'DLW-Chicane-Und.250K.2809.001'
     #fname = 'DLW-Und.250K.2809.001'
     
     #fname = 'oce_2.5nC.2809.001'
     
     #fname = 'beam_112A_2.0nC.ini'
+    fname = 'fort.1032.001'
     
     #Ipeak, Qtot = 200, 1
     # curpeak, curlen, Nslice, Ntail, outputName = Astra2Genesis3Slices(fname, 
@@ -1281,25 +1282,25 @@ if __name__ == "__main__":
     #                                               zscale = 1,
     #                                               bunch = 0)
     
-    curpeak, curlen, Nslice, Nbins, outputName = Astra2GenesisSlices(fname, 
+    curpeak, curlen, Nslice, Nbins, outputName, beam_P0 = Astra2GenesisSlices(fname, 
                                                   outputName = 'scan', 
                                                   seed = 5, 
                                                   npart = 4096,
                                                   Qscale = 1, #Qtot/2, 
                                                   zscale = 1, #1.115, #(Qtot/Ipeak)/(2/100),
                                                   lambda0 = 100e-6,
-                                                  degree = 4,
-                                                  nperlambda = 1,
+                                                  degree = 1,
+                                                  nperlambda = 3,
                                                   bunch = 0.0, 
                                                   useHammersley = 0)
-    outputName = Astra2WarpHaltonZ(fname, 
-                                   outputName = 'temp', 
-                                   seed = 5, 
-                                   Qscale = 1, #Qtot/2, 
-                                   zscale = 1, #(Qtot/Ipeak)/(2/100),
-                                   lambda0 = 100e-6,
-                                   bunch = 0.0, 
-                                   useHammersley = 1)
+    # outputName = Astra2WarpHaltonZ(fname, 
+    #                                outputName = 'temp', 
+    #                                seed = 5, 
+    #                                Qscale = 1, #Qtot/2, 
+    #                                zscale = 1, #(Qtot/Ipeak)/(2/100),
+    #                                lambda0 = 100e-6,
+    #                                bunch = 0.0, 
+    #                                useHammersley = 1)
     
     ###
 
