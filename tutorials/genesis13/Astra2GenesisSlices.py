@@ -64,7 +64,7 @@ def HaltonNNorm2(Hsamples, a = -10, b = 10):
     
     return samples
 
-def InvCDF(samples, wbin = 100e-6, degree = 4):
+def InvCDF(samples,wbin=100e-6,degree=4,nperlambda=3,seed=5):
     '''
     Calculate the inverse CDF of given samples
 
@@ -116,7 +116,7 @@ def InvCDF(samples, wbin = 100e-6, degree = 4):
     
     weights[weights<10] = 0; #weights = weights[3:-3]
     plt.plot(edges[:], weights[8:-9], '-',label='fit')
-    plt.savefig('Current_profile_smoothed.png')
+    plt.savefig(f'Current_profile_smoothed_seed{seed}_nper{nperlambda}_fitdeg{degree}.png')
     ###
     
     edges, weights = edges[:]+ds/2, weights[8:-9]
@@ -775,7 +775,7 @@ def Astra2GenesisSlices(inputName = None, inputDist = None,
         
     if outputName == None:
         outputName = 'temp'
-    outputName += str.format('.%d.out.par.h5' % seed)
+    outputName += str.format('.seed%d.nper%d.fitdeg%d.out.par.h5' % (seed,nperlambda,degree))
     # print('The distribution is saved to '+outputName)
     
     # Resonant wavelength
@@ -856,7 +856,7 @@ def Astra2GenesisSlices(inputName = None, inputDist = None,
     np.random.seed(seed = seed*1234567)
     
     wbin = 100e-6*zscale/nperlambda
-    Fx_inv, Fx, fx = InvCDF(z, wbin = wbin, degree = degree)
+    Fx_inv, Fx, fx = InvCDF(z,wbin=wbin,degree=degree,nperlambda=nperlambda,seed=seed)
     
     # saving to hdf5
     f = h5py.File(outputName, 'w')
@@ -1064,7 +1064,7 @@ def Astra2GenesisSlices(inputName = None, inputDist = None,
     ax4.set_xlabel(r'Number of slices')
     
     fig.tight_layout()
-    fig.savefig('bunching@'+outputName+"_nperlambda-"+str(nperlambda)+'.png')
+    fig.savefig('bunching@'+outputName+'.png')
     
     return curpeak, curlen, Ns, nbins, outputName, beam_P0
 
