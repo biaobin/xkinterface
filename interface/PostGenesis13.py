@@ -6,6 +6,7 @@ Created on Fri Jun 26 14:57:04 2020
 """
 
 from .Misc import *
+from scipy.interpolate import interp1d
 
 #%%
 try:
@@ -112,16 +113,25 @@ class PostGenesis13:
             print('Unknown file extension!')
             return
         
+        self.Lsat = self.get_satpos()
         if debug:  
             if 'fig_ext' in kwargs.keys():
                 fig_ext = kwargs['fig_ext']
             else:
                 fig_ext = '.png'
-            self.plot_current(fig_ext = fig_ext)
-            self.plot_power(fig_ext = fig_ext)
-            self.plot_energy(fig_ext = fig_ext)
-            self.plot_spectrum(fig_ext = fig_ext)
-        
+
+            plt.figure(figsize=(18,10))
+            plt.subplot(2,3,1)
+            self.plot_current(fig_ext = fig_ext, fig=False)
+            plt.subplot(2,3,2)
+            self.plot_power(fig_ext = fig_ext, fig=False)
+            plt.subplot(2,3,3)
+            self.plot_energy(fig_ext = fig_ext, fig=False)
+            plt.subplot(2,3,4)
+            self.plot_tpower(fig_ext = fig_ext, fig=False, at=self.Lsat)
+            plt.subplot(2,3,5)
+            self.plot_spectrum(fig_ext = fig_ext, fig=False, at=self.Lsat)
+       
     def print_all(self, prop = None, order = 2):
         if self.version == 2:
             print(self.outputs)
@@ -201,6 +211,10 @@ class PostGenesis13:
         
         # spectrum at the end of the undulator
         self.wavelength, self.spectrum = self.get_spectrum(self.zplot[-1])
+
+        # get cum_dE_lsc
+        self.get_cum_dE_lsc(delz=0.015)    
+            
         return
     
     load = load4
@@ -538,54 +552,112 @@ class PostGenesis13:
                 data = None
         return data
         
-    def plot_current(self, x = 'time', fig_ext = '.png'):
+    def plot_current(self, x = 'time', fig_ext = '.png', fig=True):
+        if fig==True: 
+            plt.figure(figsize=(8,6))
         
-        fig, ax = plt.subplots()
         if x.upper() == 'TIME':
-            ax.plot(self.zbunch/g_c*1e12, self.current, '-')
-            ax.set_xlabel(r'Time (ps)')
+            plt.plot(self.zbunch/g_c*1e12, self.current, '-')
+            plt.xlabel(r'Time (ps)')
         elif x.upper() == 'LENGTH':
-            ax.plot(self.zbunch, self.current, '-')
-            ax.set_xlabel(r'Position (mm)')
+            plt.plot(self.zbunch, self.current, '-')
+            plt.xlabel(r'Position (mm)')
         elif x.upper() == 'SLICE':
-            ax.plot(self.current, '-')
-            ax.set_xlabel(r'# of slice')
+            plt.plot(self.current, '-')
+            plt.xlabel(r'slice #')
             
-        ax.set_ylabel(r'Current (A)')
-        ax.grid()
+        plt.ylabel(r'Current (A)')
+        plt.grid()
         if fig_ext != None:
-            fig.savefig('current'+fig_ext)
+            plt.savefig('current'+fig_ext)
         
-    def plot_spectrum(self, fig_ext = '.png'):
-        
-        fig, ax = plt.subplots()
-        ax.plot(self.wavelength*1e6, self.spectrum, '-')
-        ax.set_xlabel(r'Wavelength ($\mu$m)')
-        ax.set_ylabel(r'Intensity (arb. unit)')
-        ax.grid()
+    def plot_spectrum(self, fig_ext = '.png', at=-1, fig=True, xrange=[80,120]):
+        self.wavelength, self.spectrum = self.get_spectrum(at=at)
+        if fig==True: 
+            plt.figure(figsize=(8,6))
+ 
+        plt.plot(self.wavelength*1e6, self.spectrum, '-',label=f"@{at:.2f} m")
+        plt.xlabel(r'Wavelength ($\mu$m)')
+        plt.ylabel(r'Intensity (arb. unit)')
+        plt.legend()
+        plt.xlim(xrange)
+        plt.grid()
+        #plt.title(f"@{at:.2f} m")
         if fig_ext != None:
-            fig.savefig('spectrum'+fig_ext)
+            plt.savefig('spectrum'+fig_ext)
+
+    def get_tpower(self, at=-1):
+        self.tpower = self.get_fielddata("power",at)
+        self.t = self.zbunch/2.998e8
         
-    def plot_power(self, fig_ext = '.png'):
-        
-        fig, ax = plt.subplots(ncols = 1, figsize = (4, 4))
-        ax.plot(self.zplot, self.zpower/1e6, '-')
-        ax.set_xlabel(r'$z$ (m)')
-        ax.set_ylabel(r'Power (MW)')
-        ax.set_yscale('log')
-        ax.grid()
+        return self.tpower
+
+    def plot_tpower(self,x="time", fig_ext = '.png', at=-1, fig=True, xrange=None):
+        tpower = self.get_fielddata("power",at)
+        t = self.zbunch/2.998e8
+        if fig==True: 
+            plt.figure(figsize=(8,6))
+ 
+        if x=="SLICE":
+            plt.plot(tpower, '-',label=f"@{at:.2f} m")
+            plt.xlabel(r'slice #')
+        else:
+            plt.plot(t*1e12, tpower/1e6, '-',label=f"@{at:.2f} m")
+            plt.xlabel(r't (ps)')
+        plt.ylabel(r'power (MW)')
+        plt.legend()
+        if xrange != None:
+            plt.xlim(xrange)
+        plt.grid()
+        #plt.title(f"@{at:.2f} m")
         if fig_ext != None:
-            fig.savefig('power-z'+fig_ext)
+            plt.savefig('t_power'+fig_ext)
         
-    def plot_energy(self, fig_ext = '.png'):
-        
-        fig, ax = plt.subplots(ncols = 1, figsize = (4, 4))
-        ax.plot(self.zplot, self.zenergy*1e6, '-')
-        ax.set_xlabel(r'$z$ (m)')
-        ax.set_ylabel(r'Energy ($\mu$J)')
-        ax.set_yscale('log')
-        ax.grid()
+    def plot_power(self, fig_ext = '.png', fig=True):
+        if fig==True: 
+            plt.figure(figsize=(8,6))
+          
+        plt.plot(self.zplot, self.zpower/1e6, '-')
+        plt.xlabel(r'$z$ (m)')
+        plt.ylabel(r'Power (MW)')
+        plt.yscale('log')
+        plt.grid()
         if fig_ext != None:
-            fig.savefig('energy-z'+fig_ext)
+            plt.savefig('power-z'+fig_ext)
+        
+    def plot_energy(self, fig_ext = '.png', fig=True):
+        if fig==True: 
+            plt.figure(figsize=(8,6))
+       
+        plt.plot(self.zplot, self.zenergy*1e6, '-')
+        plt.xlabel(r'$z$ (m)')
+        plt.ylabel(r'Energy ($\mu$J)')
+        plt.yscale('log')
+        plt.grid()
+        if fig_ext != None:
+            plt.savefig('energy-z'+fig_ext)
+
+    def get_satpos(self):
+        interp_func_Lsat= interp1d(self.zenergy, self.zplot, kind='linear', fill_value="extrapolate")
+        Lsat = interp_func_Lsat(0.8*np.max(self.zenergy))
+
+        return Lsat
+
+    def get_cum_dE_lsc(self, delz=0.015):
+        #dz, step in gen4.in, i.e. delz
+        lsc = self.file["Beam"]["LSCfield"]
+        current = self.file["Beam"]["current"][:].flatten()
+        
+        nstep = lsc.shape[0]
+        
+        dE_lsc =[]
+        for j in np.arange(nstep):
+        
+            lsc_s = lsc[j].flatten()
+            #dE_lsc.append( lsc_s*1.6e-19 *current*self.lslice/2.998e8/1.6e-19 *delz *1e6) #[uJ/slice]
+            dE_lsc.append( lsc_s*delz *1.6e-19*1e6) #[uJ/electron]
+        
+        dE_lsc = np.array(dE_lsc)
+        self.cum_dE_lsc = np.cumsum(dE_lsc, axis=0)
 
 PostGenesis = PostGenesis13
