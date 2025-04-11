@@ -408,6 +408,8 @@ class PostGenesis13:
         
         self.power = np.sum(self.zpower)    # Total power
         self.energy = np.sum(self.zenergy)  # Total energy
+
+        #self.get_cum_dE_lsc(delz=0.015)    
         
         self.wavelength, self.spectrum = self.get_spectrum(at = -999) # spectrum at the end of the undulator
         return
@@ -592,17 +594,25 @@ class PostGenesis13:
         
         return self.tpower
 
-    def plot_tpower(self,x="time", fig_ext = '.png', at=-1, fig=True, xrange=None):
+    def plot_tpower(self,x="time", fig_ext='.png', at=-1, fig=True, xrange=None, linelabel=None, linestyle=None):
+        if linelabel == None:
+            linelabel = f"s={at:.2f} m"        
+        #else:
+        #    linelabel += f", s={at:.2f} m"  
+
+        if linestyle==None:
+            linestyle="-"
+
         tpower = self.get_fielddata("power",at)
         t = self.zbunch/2.998e8
         if fig==True: 
             plt.figure(figsize=(8,6))
  
         if x=="SLICE":
-            plt.plot(tpower, '-',label=f"@{at:.2f} m")
+            plt.plot(tpower,linestyle,label=linelabel)
             plt.xlabel(r'slice #')
         else:
-            plt.plot(t*1e12, tpower/1e6, '-',label=f"@{at:.2f} m")
+            plt.plot(t*1e12, tpower/1e6,linestyle,label=linelabel)
             plt.xlabel(r't (ps)')
         plt.ylabel(r'power (MW)')
         plt.legend()
@@ -612,7 +622,7 @@ class PostGenesis13:
         #plt.title(f"@{at:.2f} m")
         if fig_ext != None:
             plt.savefig('t_power'+fig_ext)
-        
+       
     def plot_power(self, fig_ext = '.png', fig=True):
         if fig==True: 
             plt.figure(figsize=(8,6))
