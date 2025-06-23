@@ -763,6 +763,11 @@ def Astra2GenesisSlices(inputName = None, inputDist = None,
     
     if inputName != None:   
         dist = pd_loadtxt(inputName)
+
+        ##increase P0 
+        ##=======================
+        #dist[0,5] = dist[0,5]*10
+
         dist[1:,2] += dist[0,2]
         dist[1:,5] += dist[0,5]
         
@@ -1250,7 +1255,7 @@ if __name__ == "__main__":
     #workdir = r'\\afs\ifh.de\group\pitz\data\lixiangk\sim3\2024\S2E-Georgi'
     
     #workdir = r'\\afs\ifh.de\group\pitz\data\lixiangk\sim3\2024\DLW-XYZ'
-    workdir = r'/mnt/d/NextCloud/subjects/2025/202501-2nC/debug_gen4_bugs/bug_version'   
+    workdir = r'/afs/ifh.de/group/pitz/data/biaobin/sim2/2025/bcOFF_2nC/cores_016_impt_64640064_impz_64640064_Np_5.24e+06_phi2_-28.0deg/02_gen4/'   
     os.chdir(workdir)
     
     #fname = 'beam.ini'
@@ -1291,7 +1296,7 @@ if __name__ == "__main__":
                                                   zscale = 1, #1.115, #(Qtot/Ipeak)/(2/100),
                                                   lambda0 = 100e-6,
                                                   degree = 1,
-                                                  nperlambda = 3,
+                                                  nperlambda = 5,
                                                   bunch = 0.0, 
                                                   useHammersley = 0)
     # outputName = Astra2WarpHaltonZ(fname, 
