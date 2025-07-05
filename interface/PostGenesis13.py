@@ -573,15 +573,28 @@ class PostGenesis13:
         if fig_ext != None:
             plt.savefig('current'+fig_ext)
         
-    def plot_spectrum(self, fig_ext = '.png', at=-1, fig=True, xrange=[80,120]):
+    def plot_spectrum(self, fig_ext = '.png', at=-1, fig=True, xrange=[80,120],linelabel=None,linestyle=None, norm=False,loc=None):
+        if linelabel == None:
+            linelabel = f"s={at:.2f} m"
+        if linestyle==None:
+            linestyle="-"
+        if norm == True:
+            spec = self.spectrum/np.max(self.spectrum)
+        else:
+            spec = self.spectrum
+   
         self.wavelength, self.spectrum = self.get_spectrum(at=at)
         if fig==True: 
             plt.figure(figsize=(8,6))
  
-        plt.plot(self.wavelength*1e6, self.spectrum, '-',label=f"@{at:.2f} m")
+        plt.plot(self.wavelength*1e6, spec, linestyle,label=linelabel)
         plt.xlabel(r'Wavelength ($\mu$m)')
         plt.ylabel(r'Intensity (arb. unit)')
-        plt.legend()
+
+        if loc==None:
+            loc="best"
+        
+        plt.legend(loc=loc)
         plt.xlim(xrange)
         plt.grid()
         #plt.title(f"@{at:.2f} m")
@@ -635,14 +648,15 @@ class PostGenesis13:
         if fig_ext != None:
             plt.savefig('power-z'+fig_ext)
         
-    def plot_energy(self, fig_ext = '.png', fig=True):
+    def plot_energy(self, fig_ext = '.png', fig=True, line="-", label=" "):
         if fig==True: 
             plt.figure(figsize=(8,6))
        
-        plt.plot(self.zplot, self.zenergy*1e6, '-')
+        plt.plot(self.zplot, self.zenergy*1e6, line, label=label)
         plt.xlabel(r'$z$ (m)')
         plt.ylabel(r'Energy ($\mu$J)')
         plt.yscale('log')
+        plt.legend()
         plt.grid()
         if fig_ext != None:
             plt.savefig('energy-z'+fig_ext)
