@@ -23,6 +23,7 @@ quads.update({'HIGH2.Q3':19.250, 'HIGH2.Q4':21.460, 'HIGH2.Q5':23.220,
 
 
 
+
 scrns = {'LOW.SCR1':0.8030, 'LOW.SCR2':1.3790, 'LOW.SCR3':1.7080, 'HIGH1.SCR1':5.2770, 'HIGH1.SCR2':6.2500,
         'HIGH1.SCR3':7.1250, 'HIGH1.SCR4':8.4100, 'HIGH1.SCR5':8.9200, 'PST.SCR1':12.2780, 'PST.SCR2':13.0380,
         'PST.SCR3':13.7980, 'PST.SCR4':14.5580, 'PST.SCR5':15.3180, 'HIGH2.SCR1':16.3030, 'HIGH2.SCR2':18.2620,
@@ -81,15 +82,29 @@ bpms.update({'LOW.BPM1':0.664, 'LOW.BPM2':1.319, 'BOOSTER.BPM1':2.455,'BOOSTER.B
       'PST.BPM3':13.7213,'PST.BPM4':14.4813,'PST.BPM5':15.2413,'HIGH2.BPM1':22.889,
       'HIGH3.BPM1':26.834,'HIGH3.BPM2':28.029,'HIGH3.BPM3':31.745})
 
+zc1 = 18.650
+zc2 = 19.630
+zc3 = 21.186
+zc4 = 22.166
+# z-axis coordinate
+chicane= {"CHICANE.D1":zc1, "CHICANE.D2":zc2, "CHICANE.D3":zc3, "CHICANE.D4":zc4}
+
+#center of the undulator
+undulator= {"undulator":29.887}   
+
+
 try: # Redefine as case insensitive dictionary
     from requests.structures import CaseInsensitiveDict
-    pitz = CaseInsensitiveDict(**scrns, **quads, **steerers, **bpms)
+    pitz = CaseInsensitiveDict(**scrns, **quads, **steerers, **bpms, **chicane, **undulator)
+    
     scrns = CaseInsensitiveDict(**scrns)
     quads = CaseInsensitiveDict(**quads)
     steerers = CaseInsensitiveDict(**steerers)
     bpms = CaseInsensitiveDict(**bpms)
+    chicane = CaseInsensitiveDict(**chicane)
+    undulator = CaseInsensitiveDict(**undulator)
     
 except Exception as err:
     print(err)
     pitz = {}
-    pitz.update(**scrns, **quads, **steerers, **bpms)
+    pitz.update(**scrns, **quads, **steerers, **bpms, **chicane, **undulator)
