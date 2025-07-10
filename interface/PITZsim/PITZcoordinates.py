@@ -90,7 +90,7 @@ zc4 = 22.166
 chicane= {"CHICANE.D1":zc1, "CHICANE.D2":zc2, "CHICANE.D3":zc3, "CHICANE.D4":zc4}
 
 #center of the undulator
-undulator= {"undulator":29.887}   
+undulator= {"UND":29.887}   
 
 
 try: # Redefine as case insensitive dictionary

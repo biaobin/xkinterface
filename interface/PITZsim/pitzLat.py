@@ -1,9 +1,10 @@
-from .PITZcoordinates import *
+from xkinterface.interface.PITZsim.PITZcoordinates import *
 from ocelot import *
 import sys
 import numpy as np
 from collections import defaultdict
 from math import *
+from xkinterface.interface.Misc import G2K
 
 # to add drift elements automatically between quads, undulator, bend
 def add_drift(line: list):
@@ -45,21 +46,21 @@ pitzlat['HIGH3.BPM1'] = Marker()
 pitzlat['HIGH3.UND']  = Marker()
 pitzlat['HIGH3.SCR2'] = Marker()
 
+P0 = 17 #MeV
+pitzlat['HIGH1.Q4'] = Quadrupole(l=Lquad, k1=G2K(-0.65/astra_to_sco,P0))
+pitzlat['HIGH1.Q6'] = Quadrupole(l=Lquad, k1=G2K( 0.91/astra_to_sco,P0))
+pitzlat['HIGH1.Q7'] = Quadrupole(l=Lquad, k1=G2K(-0.43/astra_to_sco,P0))
 
-pitzlat['HIGH1.Q4'] = Quadrupole(l=Lquad, k1=-0.65/astra_to_sco)
-pitzlat['HIGH1.Q6'] = Quadrupole(l=Lquad, k1= 0.91/astra_to_sco)
-pitzlat['HIGH1.Q7'] = Quadrupole(l=Lquad, k1=-0.43/astra_to_sco)
+pitzlat['PST.QT2'] = Quadrupole(l=Lquad,  k1=G2K( 0.63/astra_to_sco,P0))
+pitzlat['PST.QT4'] = Quadrupole(l=Lquad,  k1=G2K(-1.15/astra_to_sco,P0))
+pitzlat['PST.QT6'] = Quadrupole(l=Lquad,  k1=G2K( 0.64/astra_to_sco,P0))
 
-pitzlat['PST.QT2'] = Quadrupole(l=Lquad, k1=0.63/astra_to_sco)
-pitzlat['PST.QT4'] = Quadrupole(l=Lquad, k1=-1.15/astra_to_sco)
-pitzlat['PST.QT6'] = Quadrupole(l=Lquad, k1=0.64/astra_to_sco)
+pitzlat['HIGH2.Q2'] = Quadrupole(l=Lquad, k1=G2K( 0.37/astra_to_sco,P0))
+pitzlat['HIGH2.Q5'] = Quadrupole(l=Lquad, k1=G2K(-0.30/astra_to_sco,P0))
 
-pitzlat['HIGH2.Q2'] = Quadrupole(l=Lquad, k1=0.37/astra_to_sco)
-pitzlat['HIGH2.Q5'] = Quadrupole(l=Lquad, k1=-0.3/astra_to_sco)
-
-pitzlat['HIGH3.Q1'] = Quadrupole(l=Lquad, k1=2.30/astra_to_sco)
-pitzlat['HIGH3.Q2'] = Quadrupole(l=Lquad, k1=-3.19/astra_to_sco)
-pitzlat['HIGH3.Q3'] = Quadrupole(l=Lquad, k1=0.59/astra_to_sco)
+pitzlat['HIGH3.Q1'] = Quadrupole(l=Lquad, k1=G2K( 2.30/astra_to_sco,P0))
+pitzlat['HIGH3.Q2'] = Quadrupole(l=Lquad, k1=G2K(-3.19/astra_to_sco,P0))
+pitzlat['HIGH3.Q3'] = Quadrupole(l=Lquad, k1=G2K( 0.59/astra_to_sco,P0))
 
 # centers of dipoles
 Larc = 0.33161
@@ -86,3 +87,4 @@ def getLat(line):
     #line should NOT contain drift element
     return add_drift(line)
  
+getLat(undu)
