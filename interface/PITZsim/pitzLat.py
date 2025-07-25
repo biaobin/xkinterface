@@ -6,6 +6,10 @@ from collections import defaultdict
 from math import *
 from xkinterface.interface.Misc import G2K
 
+# some paras
+astra_to_sco = 1.590444459638447
+
+
 # to add drift elements automatically between quads, undulator, bend
 def add_drift(line: list):
     cell = [ pitzlat[line[0]] ]
@@ -31,12 +35,18 @@ def add_drift(line: list):
         cell += [Drift(l=ld), pitzlat[line[j+1]]]   
     return cell
 
+# def grads2K1(grads, P0=17):
+#     if isinstance(grads, (int, float)):
+#         return G2K(grads/astra_to_sco,P0)
+    
+#     elif isinstance(grads, list):
+    
+
 #%% lattice
 nest_dict = lambda: defaultdict(nest_dict)
 pitzlat = nest_dict()
 
 Lquad, Rquad = 0.0675, 0.0215
-astra_to_sco = 1.590444459638447
 
 pitzlat['HIGH1.SCR1'] = Marker()
 pitzlat['PST.SCR1']   = Marker()
@@ -47,20 +57,29 @@ pitzlat['HIGH3.UND']  = Marker()
 pitzlat['HIGH3.SCR2'] = Marker()
 
 P0 = 17 #MeV
-pitzlat['HIGH1.Q4'] = Quadrupole(l=Lquad, k1=G2K(-0.65/astra_to_sco,P0))
-pitzlat['HIGH1.Q6'] = Quadrupole(l=Lquad, k1=G2K( 0.91/astra_to_sco,P0))
-pitzlat['HIGH1.Q7'] = Quadrupole(l=Lquad, k1=G2K(-0.43/astra_to_sco,P0))
+pitzlat['HIGH1.Q4'] = Quadrupole(l=Lquad, k1=G2K(0.00/astra_to_sco,P0))
+pitzlat['HIGH1.Q6'] = Quadrupole(l=Lquad, k1=G2K(0.00/astra_to_sco,P0))
+pitzlat['HIGH1.Q7'] = Quadrupole(l=Lquad, k1=G2K(0.00/astra_to_sco,P0))
 
-pitzlat['PST.QT2'] = Quadrupole(l=Lquad,  k1=G2K( 0.63/astra_to_sco,P0))
-pitzlat['PST.QT4'] = Quadrupole(l=Lquad,  k1=G2K(-1.15/astra_to_sco,P0))
-pitzlat['PST.QT6'] = Quadrupole(l=Lquad,  k1=G2K( 0.64/astra_to_sco,P0))
+pitzlat['PST.QM2'] = Quadrupole(l=Lquad,  k1=G2K(0.00/astra_to_sco,P0))
+pitzlat['PST.QM3'] = Quadrupole(l=Lquad,  k1=G2K(0.00/astra_to_sco,P0))
+pitzlat['PST.QT1'] = Quadrupole(l=Lquad,  k1=G2K(0.00/astra_to_sco,P0))
+pitzlat['PST.QT3'] = Quadrupole(l=Lquad,  k1=G2K(0.00/astra_to_sco,P0))
+pitzlat['PST.QT5'] = Quadrupole(l=Lquad,  k1=G2K(0.00/astra_to_sco,P0))
 
-pitzlat['HIGH2.Q2'] = Quadrupole(l=Lquad, k1=G2K( 0.37/astra_to_sco,P0))
-pitzlat['HIGH2.Q5'] = Quadrupole(l=Lquad, k1=G2K(-0.30/astra_to_sco,P0))
+pitzlat['PST.QT2'] = Quadrupole(l=Lquad,  k1=G2K(0.00/astra_to_sco,P0))
+pitzlat['PST.QT4'] = Quadrupole(l=Lquad,  k1=G2K(0.00/astra_to_sco,P0))
+pitzlat['PST.QT6'] = Quadrupole(l=Lquad,  k1=G2K(0.00/astra_to_sco,P0))
 
-pitzlat['HIGH3.Q1'] = Quadrupole(l=Lquad, k1=G2K( 2.30/astra_to_sco,P0))
-pitzlat['HIGH3.Q2'] = Quadrupole(l=Lquad, k1=G2K(-3.19/astra_to_sco,P0))
-pitzlat['HIGH3.Q3'] = Quadrupole(l=Lquad, k1=G2K( 0.59/astra_to_sco,P0))
+pitzlat['HIGH2.Q1'] = Quadrupole(l=Lquad, k1=G2K(0.00/astra_to_sco,P0))
+pitzlat['HIGH2.Q2'] = Quadrupole(l=Lquad, k1=G2K(0.00/astra_to_sco,P0))
+pitzlat['HIGH2.Q3'] = Quadrupole(l=Lquad, k1=G2K(0.00/astra_to_sco,P0))
+pitzlat['HIGH2.Q4'] = Quadrupole(l=Lquad, k1=G2K(0.00/astra_to_sco,P0))
+pitzlat['HIGH2.Q5'] = Quadrupole(l=Lquad, k1=G2K(0.00/astra_to_sco,P0))
+
+pitzlat['HIGH3.Q1'] = Quadrupole(l=Lquad, k1=G2K(0.00/astra_to_sco,P0))
+pitzlat['HIGH3.Q2'] = Quadrupole(l=Lquad, k1=G2K(0.00/astra_to_sco,P0))
+pitzlat['HIGH3.Q3'] = Quadrupole(l=Lquad, k1=G2K(0.00/astra_to_sco,P0))
 
 # centers of dipoles
 Larc = 0.33161
@@ -72,11 +91,16 @@ pitzlat["CHICANE.D4"] = Bend(l = Larc, angle=-angle, e1=-angle, e2=0.0, gap=0.08
 
 pitzlat["UND"] = Undulator(3e-2, 113, 3.49)
 
-high1 = ['HIGH1.SCR1', 'HIGH1.Q4', 'HIGH1.Q6', 'HIGH1.Q7', 'PST.SCR1']
-pst   = ['PST.SCR1', 'PST.QT2', 'PST.QT4', 'PST.QT6', 'HIGH2.Q2', 'HIGH2.SCR2']
-high2 = ['HIGH2.SCR2', 'CHICANE.D1', 'CHICANE.D2', 'CHICANE.D3', 'CHICANE.D4', 'HIGH2.Q5', 'HIGH2.SCR3', 'HIGH3.BPM1']
-high3 = ['HIGH3.BPM1', 'HIGH3.Q1', 'HIGH3.Q2', 'HIGH3.Q3', 'HIGH3.UND']
-undu  = ['HIGH3.UND', 'UND', 'HIGH3.SCR2']
+# case insensitive for pitzlat keys
+from requests.structures import CaseInsensitiveDict
+pitzlat = CaseInsensitiveDict(**pitzlat)
+
+
+# high1 = ['HIGH1.SCR1', 'HIGH1.Q4', 'HIGH1.Q6', 'HIGH1.Q7', 'PST.SCR1']
+# pst   = ['PST.SCR1', 'PST.QT2', 'PST.QT4', 'PST.QT6', 'HIGH2.Q2', 'HIGH2.SCR2']
+# high2 = ['HIGH2.SCR2', 'CHICANE.D1', 'CHICANE.D2', 'CHICANE.D3', 'CHICANE.D4', 'HIGH2.Q5', 'HIGH2.SCR3', 'HIGH3.BPM1']
+# high3 = ['HIGH3.BPM1', 'HIGH3.Q1', 'HIGH3.Q2', 'HIGH3.Q3', 'HIGH3.UND']
+# undu  = ['HIGH3.UND', 'UND', 'HIGH3.SCR2']
 
 #pitzlat["high1"] = add_drift(high1)  
 #pitzlat["pst"]   = add_drift(pst)
@@ -87,4 +111,4 @@ def getLat(line):
     #line should NOT contain drift element
     return add_drift(line)
  
-getLat(undu)
+# getLat(undu)
