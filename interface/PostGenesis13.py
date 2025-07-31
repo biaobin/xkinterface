@@ -68,7 +68,7 @@ def calcSpectrum(amp, phase = None, lambda0 = 100e-6, sample = 1, freq0 = None):
     
 class PostGenesis13:
     version = 4 # default
-    def __init__(self, fname = None, version = 3, **kwargs):
+    def __init__(self, fname = None, version = 4, **kwargs):
         '''
         
         Parameters
@@ -156,12 +156,14 @@ class PostGenesis13:
         
         tmp = {}
         for k, v in file.get('Beam').items():
-            tmp.update({k:v[:]})
+            if k != "Global":
+                tmp.update({k:v[:]})
         self.beam = tmp
         
         tmp = {}
         for k, v in file.get(self.fieldname).items():
-            tmp.update({k:v[:]})
+            if k != "Global":
+                tmp.update({k:v[:]})
         self.field = tmp
         
         nstep, nslice = file.get(self.fieldname).get('power').shape
