@@ -66,11 +66,14 @@ def setplot():
     plt.rcParams['figure.figsize'] = (8,6)
     
     
-def savefig():
+def savefig(filename=None):
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     jj = random.randint(0,10)
-
-    plt.savefig(f"{timestamp}_{jj}.png", dpi=300, bbox_inches='tight')    
+    
+    if filename == None:
+        plt.savefig(f"{timestamp}_{jj}.png", dpi=300, bbox_inches='tight')    
+    else:
+        plt.savefig(f"{filename}_{timestamp}_{jj}.png", dpi=300, bbox_inches='tight')     
     
     
    
