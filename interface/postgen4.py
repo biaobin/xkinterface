@@ -118,9 +118,8 @@ def plot_powerEvolution(hid, norm=True, figext=False):
     z = hid['Lattice']['zplot'][:]
     s = hid['Global']['s'][()]/2.998e8*1e12  #ps
     power =  hid['Field']['power'][()]
-
+    
     fig,ax1 = plt.subplots()
-
     if norm == True:
         plt.title(r"$power_{step_i}/mean(power_{step_i})$")
     
@@ -136,8 +135,8 @@ def plot_powerEvolution(hid, norm=True, figext=False):
         plt.show()
     else:
         plt.title("power evolution (W)")
+        # plt.imshow(np.flipud(np.log10(abs(power))), aspect='auto', interpolation='none',extent=(np.min( s ),np.max(s),np.min( z ),np.max(z)))
         plt.imshow(np.flipud(power), aspect='auto', interpolation='none',extent=(np.min( s ),np.max(s),np.min( z ),np.max(z)))
-
         plt.xlabel(r'z (ps)')
         plt.ylabel(r'$s$ (m)')
         plt.colorbar()
@@ -145,6 +144,120 @@ def plot_powerEvolution(hid, norm=True, figext=False):
     
     if figext==True:
         savefig(filename="powerevo")
+        
+        
+def plot_beamEnergyEvolution(hid, figext=False, sliceRange=[0,90]):
+    
+    z = hid['Lattice']['zplot'][:]
+    
+    #beam energy heat plot
+    s = hid['Global']['s'][sliceRange[0]:sliceRange[1]]/2.998e8*1e12  #ps
+    power = hid["Beam"]["energy"][:,sliceRange[0]:sliceRange[1]]*0.511 #MeV
+
+    fig,ax1 = plt.subplots()
+    plt.title("beam slice energy evolution (MeV)")
+    # plt.imshow(np.flipud(np.log10(abs(power))), aspect='auto', interpolation='none',extent=(np.min( s ),np.max(s),np.min( z ),np.max(z)))
+    plt.imshow(np.flipud(power), aspect='auto', interpolation='none',extent=(np.min( s ),np.max(s),np.min( z ),np.max(z)))
+    plt.xlabel(r'z (ps)')
+    plt.ylabel(r'$s$ (m)')
+    plt.colorbar()
+    plt.show()
+    
+    if figext==True:
+        savefig(filename="beamSliceEnergyEvo")
+        
+
+def plot_beamBunchingEvolution(hid, figext=False, norm=False, sliceRange=[0,90]):
+    
+    z = hid['Lattice']['zplot'][:]
+    
+    #beam energy heat plot
+    s = hid['Global']['s'][sliceRange[0]:sliceRange[1]]/2.998e8*1e12  #ps
+    power = hid["Beam"]["bunching"][:,sliceRange[0]:sliceRange[1]]
+
+    if norm == True:
+        pmean= np.mean(power, axis = 1)
+        for i in range(len(pmean)):
+            if pmean[i] == 0:
+                pmean[i]=1.
+            power[i,:]*=1./pmean[i]
+
+    fig,ax1 = plt.subplots()
+    if norm == True:
+        plt.title("beam slice norm. bunching evolution")
+    else:
+        plt.title("beam slice bunching evolution")
+    # plt.imshow(np.flipud(np.log10(abs(power))), aspect='auto', interpolation='none',extent=(np.min( s ),np.max(s),np.min( z ),np.max(z)))
+    plt.imshow(np.flipud(power), aspect='auto', interpolation='none',extent=(np.min( s ),np.max(s),np.min( z ),np.max(z)))
+    plt.xlabel(r'z (ps)')
+    plt.ylabel(r'$s$ (m)')
+    plt.colorbar()
+    plt.show()
+    
+    if figext==True:
+        savefig(filename="beamSliceEnergyEvo")
+        
+def plot_spectrumEvolution(hid, norm=False, figext=False, freqRange=None):
+    energy = hid['Field']['Global']['energy'][()]*1e6
+    steps = len(energy)
+        
+    specll = []
+    for step in range(steps):
+        
+        # print(step)
+        energy0=energy[step]
+        
+        sig = hid['Field']['intensity-farfield'][()][step,:]
+        phi = hid['Field']['phase-farfield'][()][step,:] 
+        freq = hid['Global']['frequency'][()]
+        
+        signal = np.sqrt(sig)*np.exp(1j*phi)
+        spec = np.abs(np.fft.fftshift(np.fft.fft(signal)))**2
+        norm_v = energy0/np.sum(spec)/(freq[1]-freq[0])
+        spec =norm_v*spec
+        
+        specll.append(spec)
+        # plt.plot(f_THz, spec,'-')
+    
+    specll = np.array(specll)
+    
+    if norm == True:
+        pmean= np.mean(specll, axis = 1)
+        for i in range(len(pmean)):
+            if pmean[i] == 0:
+                pmean[i]=1.
+            specll[i,:]*=1./pmean[i]
+    
+    z = hid['Lattice']['zplot'][:]
+    # frequency, eV => Hz
+    # 1eV = 1.6e-19 J, h=6.626e-34
+    f_THz = freq*1.602e-19/6.626e-34/1e12        
+    
+    if freqRange == None:
+        freqRange = [np.min(f_THz), np.max(f_THz)]
+    else:
+        
+        idd = (f_THz > freqRange[0]) & (f_THz < freqRange[1])
+        
+        f_THz = f_THz[idd]
+        specll = specll[:,idd]
+    
+    fig,ax1 = plt.subplots()
+    
+    # plt.imshow(np.flipud(np.log10(abs(specll))), aspect='auto', interpolation='none',extent=(np.min( s ),np.max(s),np.min( z ),np.max(z)))
+    plt.imshow(np.flipud(specll), aspect='auto', interpolation='none',extent=(np.min(f_THz),np.max(f_THz),np.min(z),np.max(z)))
+    plt.xlabel(r'frequency (THz)')
+    plt.ylabel(r'$s$ (m)')
+    
+    if norm == False:
+        plt.colorbar()
+        plt.title("beam spectrum evolution")
+    else:
+        plt.title("norm. beam spectrum evolution")
+    plt.show()
+    
+    if figext==True:
+        savefig(filename="spectrumEvo")
 
 def plot_spectrum(hid, step=-1, fig=True):
     
@@ -234,10 +347,13 @@ def plot_rmsSizeEvo_sliceJ(hid, slicej=10 ,output_step=1, fig=True, field=True):
     
 
 def plot_BeamEnergyDetune(hid, sampleFreq=3, fig=True):
-    z = hid['Lattice']['z'][::sampleFreq]
-
-    bE0 = hid["Beam"]["Global"]["energy"][0:-1] *0.511 #MeV
-    sigE = hid["Beam"]["Global"]["energyspread"][0:-1] *0.511  #MeV
+    # z = hid['Lattice']['z'][::sampleFreq]
+    # bE0 = hid["Beam"]["Global"]["energy"][0:-1] *0.511 #MeV
+    # sigE = hid["Beam"]["Global"]["energyspread"][0:-1] *0.511  #MeV
+    
+    z = hid['Lattice']['z'][:]
+    bE0 = hid["Beam"]["Global"]["energy"][:] *0.511 #MeV
+    sigE = hid["Beam"]["Global"]["energyspread"][:] *0.511  #MeV
 
     E0_i = bE0[0]
     eta_off = (bE0-E0_i)/E0_i
@@ -253,10 +369,13 @@ def plot_BeamEnergyDetune(hid, sampleFreq=3, fig=True):
 
 
 def plot_BeamEnergySpread(hid, sampleFreq=3, fig=True):
-    z = hid['Lattice']['z'][::sampleFreq]
-
-    bE0 = hid["Beam"]["Global"]["energy"][0:-1] *0.511 #MeV
-    sigE = hid["Beam"]["Global"]["energyspread"][0:-1] *0.511  #MeV
+    # z = hid['Lattice']['z'][::sampleFreq]
+    # bE0 = hid["Beam"]["Global"]["energy"][0:-1] *0.511 #MeV
+    # sigE = hid["Beam"]["Global"]["energyspread"][0:-1] *0.511  #MeV
+    
+    z = hid['Lattice']['z'][:]
+    bE0 = hid["Beam"]["Global"]["energy"][:] *0.511 #MeV
+    sigE = hid["Beam"]["Global"]["energyspread"][:] *0.511  #MeV
 
     E0_i = bE0[0]
     eta_off = (bE0-E0_i)/E0_i
@@ -290,3 +409,9 @@ def plot_BeamCurrentProfile(hid):
     ax2.tick_params(axis='y', labelcolor=color)
     ax2.plot(s,energy,'-',color = color)
     plt.show()
+    
+    return current 
+    
+    
+    
+    
