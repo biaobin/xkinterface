@@ -39,7 +39,7 @@ import numpy as np
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 
-def plot_twiss(tws_track, z0 = 0, nrows = 1, label = '', fig_ext = None, fout = None, plot = True):
+def plot_twiss(tws_track, z0 = 0, nrows = 1, label = '', fig_ext = None, fout = None, plot = True, flipz=False):
     
     bg = (tws_track[0].E*1e3)/0.51099895000; print(bg)
         
@@ -51,18 +51,20 @@ def plot_twiss(tws_track, z0 = 0, nrows = 1, label = '', fig_ext = None, fout = 
     res = np.array(res)
     res[:,0] += z0
     
+    if flipz==True:
+        res[:,0] = np.flip(res[:,0])
+    
     if fout != None:
         fout = 'track-%s.dat' % label
         np.savetxt(fout, res, fmt = '%14.6E')
     
     if plot:
+        
         fig, ax = plt.subplots(nrows = nrows, ncols = 4//nrows, figsize = (6*4/nrows, 6*nrows))
         ax = ax.flatten()
         
         ax[0].plot(res[:,0], res[:,1], 'r-', label = r'$x$')
         ax[0].plot(res[:,0], res[:,2], 'b-', label = r'$y$')
-        
-        
         
         ax[1].plot(res[:,0], res[:,3], 'r-', label = r'$x$')
         ax[1].plot(res[:,0], res[:,4], 'b-', label = r'$y$')
@@ -108,7 +110,7 @@ def plot_sig(tws_track, z0 = 0, nrows = 1, label = '', fig_ext = None, fout = No
     
     if plot:
                 
-        # plt.figure(figsize=(8,6))
+        plt.figure()
         plt.plot(res[:,0], res[:,3], 'r-', label = r'ocelot, sigx')
         plt.plot(res[:,0], res[:,4], 'b-', label = r'ocelot, sigy')
         # plt.plot(res[:,0], res[:,5], 'g-', label = r'ocelot, sigz')
@@ -132,21 +134,21 @@ def plot_result(res, z0 = 0, nrows = 1, label = '', fig_ext = '.png', fout = Non
         fout = 'track-%s.dat' % label
         np.savetxt(fout, res, fmt = '%14.6E')
     
-    fig, ax = plt.subplots(nrows = nrows, ncols = 4//nrows, figsize = (3*4/nrows, 3*nrows))
+    fig, ax = plt.subplots(nrows = nrows, ncols = 4//nrows, figsize = (6*4/nrows, 6*nrows))
     ax = ax.flatten()
     
-    ax[0].plot(res[:,0], res[:,1], 'r-*', label = r'$x$')
-    ax[0].plot(res[:,0], res[:,2], 'b-<', label = r'$y$')
+    ax[0].plot(res[:,0], res[:,1], 'r-', label = r'$x$')
+    ax[0].plot(res[:,0], res[:,2], 'b-', label = r'$y$')
     
-    ax[1].plot(res[:,0], res[:,3], 'r-*', label = r'$x$')
-    ax[1].plot(res[:,0], res[:,4], 'b-<', label = r'$y$')
-    ax[1].plot(res[:,0], res[:,5], 'g-<', label = r'$z$')
+    ax[1].plot(res[:,0], res[:,3], 'r-', label = r'$x$')
+    ax[1].plot(res[:,0], res[:,4], 'b-', label = r'$y$')
+    ax[1].plot(res[:,0], res[:,5], 'g-', label = r'$z$')
     
-    ax[2].plot(res[:,0], res[:,6], 'r-*', label = r'$x$')
-    ax[2].plot(res[:,0], res[:,7], 'b-<', label = r'$y$')
+    ax[2].plot(res[:,0], res[:,6], 'r-', label = r'$x$')
+    ax[2].plot(res[:,0], res[:,7], 'b-', label = r'$y$')
     
-    ax[3].plot(res[:,0], res[:,8], 'r-*', label = r'$x$')
-    ax[3].plot(res[:,0], res[:,9], 'b-<', label = r'$y$')
+    ax[3].plot(res[:,0], res[:,8], 'r-', label = r'$x$')
+    ax[3].plot(res[:,0], res[:,9], 'b-', label = r'$y$')
     
     ylabels = ['Norm. emit. (um)', 'RMS size (mm)', 'beta function (m)', 'alpha function']
     titles = ['Emittance', 'RMS size', 'beta', 'alpha']
@@ -155,7 +157,7 @@ def plot_result(res, z0 = 0, nrows = 1, label = '', fig_ext = '.png', fout = Non
         ax[i].set_xlabel(r'$s$ (m)')
         ax[i].set_ylabel(ylabels[i])
         ax[i].legend()
-        ax[i].grid()
+        ax[i].grid(True)
     plt.tight_layout()
     
     fig.savefig(('%s' % label)+fig_ext)
