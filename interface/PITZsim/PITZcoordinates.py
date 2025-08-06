@@ -68,6 +68,7 @@ bpms['DISP5.BPM1'] = 27.407 # Length of path from cathode
 bpms['DISP5.BPM2'] = 29.831 # Length of path from cathode
 
 # 2024.11.28
+# ----------
 # Quads backward counted from undulator entrance
 quads['BACK.Q1'] = scrns['HIGH3.UND']-quads['HIGH3.Q3']
 quads['BACK.Q2'] = scrns['HIGH3.UND']-quads['HIGH3.Q2']
@@ -76,6 +77,18 @@ quads['BACK.Q3'] = scrns['HIGH3.UND']-quads['HIGH3.Q1']
 # Screens backward counted from undulator entrance
 scrns['BACK.SCR1'] = scrns['HIGH3.UND']-scrns['HIGH3.SCR1']
 scrns['BACK.SCR2'] = scrns['HIGH3.UND']-scrns['HIGH2.SCR3']
+
+# 2025.08.06 
+# ----------
+# Quads backward counted from High2.Scr2
+quads['BACK_PST.Q1'] = scrns['HIGH2.SCR2']-quads['PST.QT5']
+quads['BACK_PST.Q2'] = scrns['HIGH2.SCR2']-quads['PST.QT2']
+quads['BACK_PST.Q3'] = scrns['HIGH2.SCR2']-quads['PST.QM2']
+
+# Screens backward counted from undulator entrance
+scrns['BACK_PST.SCR1'] = scrns['HIGH2.SCR2']-scrns['PST.SCR1']
+scrns['BACK_PST.SCR2'] = scrns['HIGH2.SCR2']-scrns['HIGH1.SCR5']
+
 
 bpms.update({'LOW.BPM1':0.664, 'LOW.BPM2':1.319, 'BOOSTER.BPM1':2.455,'BOOSTER.BPM2':4.605,
       'RFD.BPM1':10.599,'RFD.BPM2':11.3718,'PST.BPM1':12.2013,'PST.BPM2':12.9613,
