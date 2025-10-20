@@ -81,12 +81,12 @@ scrns['BACK.SCR2'] = scrns['HIGH3.UND']-scrns['HIGH2.SCR3']
 # 2025.08.06 
 # ----------
 # Quads backward counted from High2.Scr2
-quads['BACK_PST.Q1'] = scrns['HIGH2.SCR2']-quads['PST.QT5']
-quads['BACK_PST.Q2'] = scrns['HIGH2.SCR2']-quads['PST.QT2']
-quads['BACK_PST.Q3'] = scrns['HIGH2.SCR2']-quads['PST.QM2']
+quads['BACK_PST.Q1'] = scrns['HIGH2.SCR2']-quads['HIGH2.Q2']
+quads['BACK_PST.Q2'] = scrns['HIGH2.SCR2']-quads['PST.QT5']
+quads['BACK_PST.Q3'] = scrns['HIGH2.SCR2']-quads['PST.QT4']
 
 # Screens backward counted from undulator entrance
-scrns['BACK_PST.SCR1'] = scrns['HIGH2.SCR2']-scrns['PST.SCR1']
+scrns['BACK_PST.SCR1'] = scrns['HIGH2.SCR2']-scrns['PST.SCR3']
 scrns['BACK_PST.SCR2'] = scrns['HIGH2.SCR2']-scrns['HIGH1.SCR5']
 
 

@@ -123,14 +123,23 @@ class PostGenesis13:
             plt.figure(figsize=(18,10))
             plt.subplot(2,3,1)
             self.plot_current(fig_ext = fig_ext, fig=False)
+            plt.grid(True)
+            
             plt.subplot(2,3,2)
             self.plot_power(fig_ext = fig_ext, fig=False)
+            plt.grid(True)
+            
             plt.subplot(2,3,3)
             self.plot_energy(fig_ext = fig_ext, fig=False)
+            plt.grid(True)
+            
             plt.subplot(2,3,4)
             self.plot_tpower(fig_ext = fig_ext, fig=False, at=self.Lsat)
+            plt.grid(True)
+            
             plt.subplot(2,3,5)
             self.plot_spectrum(fig_ext = fig_ext, fig=False, at=self.Lsat)
+            plt.grid(True)
        
     def print_all(self, prop = None, order = 2):
         if self.version == 2:
@@ -196,7 +205,9 @@ class PostGenesis13:
         self.lslice = lslice # length of a slice
         #self.zbunch = np.linspace(lslice/2, self.slen-lslice/2, nslice)
         self.zbunch = np.arange(nslice)*self.lslice+self.lslice/2
-        self.current = file.get('Beam/current')[:].flatten()
+        
+        # self.current = file.get('Beam/current')[:].flatten()
+        self.current = file.get('Beam/current')[0,:].flatten()
         
         #self.bunching = file.get('Beam/bunching')
         

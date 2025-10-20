@@ -2,9 +2,10 @@ import matplotlib.pyplot as plt
 import matplotlib as mpl
 from datetime import datetime
 import random
+import numpy as np
 
 font = 20
-font = 15
+font = 18
 plt.rcParams['font.size'] = font
 plt.rcParams['lines.linewidth'] = 2
 plt.rcParams['lines.markersize'] = 10
@@ -51,9 +52,10 @@ def winpath(path):
         return None
 # win_path = r"C:\Users\Username\Documents\file.txt"
 
-def setplot():
-    font = 20
-    font = 15
+# def setplot(figsize=(12,10)):
+def setplot(figsize=(8,6), font=18):
+    # font = 20
+    # font = 18
     plt.rcParams['font.size'] = font
     plt.rcParams['lines.linewidth'] = 2
     plt.rcParams['lines.markersize'] = 10
@@ -63,8 +65,8 @@ def setplot():
     mpl.rcParams['savefig.bbox'] = 'tight'
 
     # plt.rcParams['figure.figsize'] = (10,8)
-    plt.rcParams['figure.figsize'] = (8,6)
-    
+    plt.rcParams['figure.figsize'] = figsize
+    plt.rcParams['axes.grid'] = True
     
 def savefig(filename=None):
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
@@ -74,6 +76,19 @@ def savefig(filename=None):
         plt.savefig(f"{timestamp}_{jj}.png", dpi=300, bbox_inches='tight')    
     else:
         plt.savefig(f"{filename}_{timestamp}_{jj}.png", dpi=300, bbox_inches='tight')     
+    
+from matplotlib.ticker import LogLocator, LogFormatter    
+def set_logy_ticks(ax):
+    #add minor ticks on y axis 
+    # ax.yaxis.set_major_locator(LogLocator(base=10.0))
+    # ax.yaxis.set_minor_locator(LogLocator(base=10.0, subs=np.arange(2,10)*0.1, numticks=10))
+    # ax.yaxis.set_minor_formatter(LogFormatter(base=10.0, labelOnlyBase=False))    
+    
+    # ax = plt.gca()
+    ax.yaxis.set_minor_locator(LogLocator(base=10.0, subs=np.arange(2,10), numticks=15))
+    # ax.tick_params(which='major', length=8)
+    # ax.tick_params(which='minor', length=4)
+    plt.grid(True, which='both', linestyle='--', linewidth=0.5)
     
     
    

@@ -43,19 +43,24 @@ def add_drift(line: list, pitzlat):
     
 
 #%% lattice
-def iniPitzLat(P0=17):
+def iniPitzLat(P0=21.04):
     nest_dict = lambda: defaultdict(nest_dict)
     pitzlat = nest_dict()
     
     Lquad, Rquad = 0.0675, 0.0215
     
     pitzlat['HIGH1.SCR1'] = Marker()
+    pitzlat['HIGH1.SCR5'] = Marker()
     pitzlat['PST.SCR1']   = Marker()
+    pitzlat['PST.SCR3']   = Marker()
+    pitzlat['HIGH2.SCR1'] = Marker()
     pitzlat['HIGH2.SCR2'] = Marker()
     pitzlat['HIGH2.SCR3'] = Marker()
     pitzlat['HIGH3.BPM1'] = Marker()
     pitzlat['HIGH3.UND']  = Marker()
     pitzlat['HIGH3.SCR2'] = Marker()
+    pitzlat['BACK_PST.SCR1']  = Marker()
+    pitzlat['BACK_PST.SCR2']  = Marker()
     
     # P0 = 17 #MeV
     pitzlat['HIGH1.Q4'] = Quadrupole(l=Lquad, k1=G2K(0.00/astra_to_sco,P0))
@@ -81,6 +86,11 @@ def iniPitzLat(P0=17):
     pitzlat['HIGH3.Q1'] = Quadrupole(l=Lquad, k1=G2K(0.00/astra_to_sco,P0))
     pitzlat['HIGH3.Q2'] = Quadrupole(l=Lquad, k1=G2K(0.00/astra_to_sco,P0))
     pitzlat['HIGH3.Q3'] = Quadrupole(l=Lquad, k1=G2K(0.00/astra_to_sco,P0))
+    
+    pitzlat['BACK_PST.Q1'] = Quadrupole(l=Lquad, k1=G2K(0.00/astra_to_sco,P0))
+    pitzlat['BACK_PST.Q2'] = Quadrupole(l=Lquad, k1=G2K(0.00/astra_to_sco,P0))
+    pitzlat['BACK_PST.Q3'] = Quadrupole(l=Lquad, k1=G2K(0.00/astra_to_sco,P0))
+    
     
     # centers of dipoles
     Larc = 0.33161

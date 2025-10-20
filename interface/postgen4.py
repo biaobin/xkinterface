@@ -5,6 +5,9 @@ from xkinterface.startup import *
 
 setplot()
 
+def get_rho(lamdau=30e-3, Lg=0.1):
+    return lamdau/(4*np.pi*np.sqrt(3)*Lg)
+
 def getBunchingFactor(hid, plot=True, fig=True, figext=False) :
 
     z = hid['Lattice']['zplot'][()]
@@ -38,8 +41,26 @@ def getBunchingFactor(hid, plot=True, fig=True, figext=False) :
     
     return z,bunchingFac
 
+def get_gainlen(xx, yy, zmin=0.5, zmax=1.5):
+                  
+    # xx = hid["Lattice"]["zplot"][:]
+    # yy = np.max( hid["Field"]["power"], axis=1)
+    
+    mask = (xx >= zmin) & (xx <= zmax)
+    
+    xx_fit = xx[mask]
+    yy_fit = np.log( yy[mask] )
+    
+    coeffs = np.polyfit(xx_fit, yy_fit, deg=1)
+    slope, intercept = coeffs
+    
+    #1D gain length
+    Lg = 1/slope
 
-def plot_gainCurvePeakPower(hid, plot=True, fig=True, line='-', figext=False, semilog=True):
+    return Lg, coeffs
+
+
+def plot_gainCurvePeakPower(hid, plot=True, figp=True, figext=False, semilog=True, fig=None, ax1=None, linestyle='-'):
     
     z = hid["Lattice"]["zplot"][:]
     peak_power = np.max( hid["Field"]["power"], axis=1)
@@ -47,13 +68,13 @@ def plot_gainCurvePeakPower(hid, plot=True, fig=True, line='-', figext=False, se
     z, bunchingFac = getBunchingFactor(hid, plot=False)
 
     if plot==True:
-        if fig==True:
+        if figp==True:
             fig,ax1 = plt.subplots()
-        
+            
         if semilog == True:
-            ax1.semilogy(z,peak_power/1e6,line)
+            ax1.semilogy(z,peak_power/1e6,linestyle)
         else:
-            ax1.plot(z,peak_power/1e6,line)
+            ax1.plot(z,peak_power/1e6,linestyle)
         ax1.set_xlabel(r'$s$ (m)')
         ax1.set_ylabel(r'peak power (MW)')
         plt.grid(True)
@@ -63,18 +84,43 @@ def plot_gainCurvePeakPower(hid, plot=True, fig=True, line='-', figext=False, se
         ax2.set_ylabel(r'bunching factor',color = color)
         ax2.tick_params(axis='y', labelcolor=color)
         if semilog == True:
-            ax2.semilogy(z,bunchingFac,line,color = color, label='bunching factor')
+            ax2.semilogy(z,bunchingFac,linestyle,color = color, label='bunching factor')
         else:
-            ax2.plot(z,bunchingFac,line,color = color, label='bunching factor')
+            ax2.plot(z,bunchingFac,linestyle,color = color, label='bunching factor')
         plt.show()
         
         if figext==True:
             savefig(filename="gaincurvePeakPower")        
 
     return z, peak_power
+
+def plot_gainCurvePeakPower2(hid, plot=True, figp=True, figext=False, semilog=True, linestyle='-'):
+    
+    z = hid["Lattice"]["zplot"][:]
+    peak_power = np.max( hid["Field"]["power"], axis=1)
+    
+    z, bunchingFac = getBunchingFactor(hid, plot=False)
+
+    if plot==True:
+        if figp==True:
+            plt.figure()
+            
+        if semilog == True:
+            plt.plot(z,peak_power/1e6,linestyle)
+            plt.yscale("log") 
+        else:
+            plt.plot(z,peak_power/1e6,linestyle)
+        plt.xlabel(r'$s$ (m)')
+        plt.ylabel(r'peak power (MW)')
+        plt.grid(True)
+                
+        if figext==True:
+            savefig(filename="gaincurvePeakPower")        
+
+    return z, peak_power
     
 
-def plot_gainCurvePower(hid, bunching=True, semilog=True, figext=False):
+def plot_gainCurvePower(hid, bunching=True, semilog=True, figext=False, figp=True, fig=None, ax1=None,linestyle='-'):
 
     z, bunchingFac = getBunchingFactor(hid, plot=False)
     
@@ -84,15 +130,17 @@ def plot_gainCurvePower(hid, bunching=True, semilog=True, figext=False):
     #nearfield = hid['Field']['Global']['intensity-nearfield'][()]*1e-21  #inital unit [w/rad]
     #farfield  = hid['Field']['Global']['intensity-farfield'][()]*1e-21  #inital unit [w/rad]  => GW/urad^2
     
-    fig,ax1 = plt.subplots()
+    if figp == True:
+        fig,ax1 = plt.subplots()
+        
     color = 'tab:red'
     ax1.set_xlabel(r'$z$ (m)')
     ax1.set_ylabel(r'$E$ ($\mu$J)',color = color)
     ax1.tick_params(axis='y', labelcolor=color)
     if semilog == True:
-        ax1.semilogy(z,energy,'-',color = color,label='energy')
+        ax1.semilogy(z,energy,linestyle,color = color,label='energy')
     else:
-        ax1.plot(z,energy,'-',color = color,label='energy')
+        ax1.plot(z,energy,linestyle,color = color,label='energy')
     # ax1.set_ylim([1e-3,1e3])
     # plt.legend()
     plt.grid(True)
@@ -102,9 +150,9 @@ def plot_gainCurvePower(hid, bunching=True, semilog=True, figext=False):
     ax2.set_ylabel(r'bunching factor',color = color)
     ax2.tick_params(axis='y', labelcolor=color)
     if semilog == True:
-        ax2.semilogy(z,bunchingFac,'-',color = color, label='bunching factor')
+        ax2.semilogy(z,bunchingFac,linestyle,color = color, label='bunching factor')
     else:
-        ax2.plot(z,bunchingFac,'-',color = color, label='bunching factor')
+        ax2.plot(z,bunchingFac,linestyle,color = color, label='bunching factor')
     # ax2.semilogy(z,farfield,color ='g', label='farfield')
     # ax2.set_ylim([1e-2,1e5])
     # plt.legend()
@@ -113,31 +161,77 @@ def plot_gainCurvePower(hid, bunching=True, semilog=True, figext=False):
     if figext==True:
         savefig(filename="gaincurve")
 
-def plot_powerEvolution(hid, norm=True, figext=False):
+def plot_gainCurvePower2(hid, plot=True, figp=True, figext=False, semilog=True, linestyle='-'):
+    
+    z = hid["Lattice"]["zplot"][:]
+    energy = hid['Field']['Global']['energy'][()]*1e6  #uJ
+    
+    z, bunchingFac = getBunchingFactor(hid, plot=False)
+
+    if plot==True:
+        if figp==True:
+            plt.figure()
+            
+        if semilog == True:
+            plt.plot(z,energy,linestyle)
+            plt.yscale("log") 
+        else:
+            plt.plot(z,energy,linestyle)
+        plt.xlabel(r'$s$ (m)')
+        plt.ylabel(r'energy (uJ)')
+        plt.grid(True)
+                
+        if figext==True:
+            savefig(filename="gaincurveEnergy")        
+
+    return z, energy
+
+def plot_powerEvolution(hid, norm=True, figext=False, slicenum=True):
     
     z = hid['Lattice']['zplot'][:]
     s = hid['Global']['s'][()]/2.998e8*1e12  #ps
     power =  hid['Field']['power'][()]
     
+    current = hid['Beam']['current'][()][0,:]
+    
+    if slicenum == True:
+        s = np.arange(0,len(s),1)
+    
+    
     fig,ax1 = plt.subplots()
     if norm == True:
-        plt.title(r"$power_{step_i}/mean(power_{step_i})$")
+        # plt.title(r"$power_{step_i}/mean(power_{step_i})$")
+        plt.title(r"$power_{step_i}/max(power_{step_i})$")
     
-        pmean= np.mean(power, axis = 1)
+        #pmean= np.mean(power, axis = 1)
+        pmean = np.max(power, axis=1)
+        
         for i in range(len(pmean)):
             if pmean[i] == 0:
                 pmean[i]=1.
             power[i,:]*=1./pmean[i]
         plt.imshow(np.flipud(power), aspect='auto', interpolation='none', extent=(np.min(s),np.max(s),np.min(z),np.max(z)))
-        plt.xlabel(r'z (ps)')
+        
+        plt.plot(current/np.max(current)*2.5,'w--')
+        
+        if slicenum==True:
+            plt.xlabel("slice #")
+        else:
+            plt.xlabel(r'z (ps)')
         plt.ylabel(r'$s$ (m)')
-        # plt.colorbar()
+        plt.colorbar()
         plt.show()
     else:
-        plt.title("power evolution (W)")
-        # plt.imshow(np.flipud(np.log10(abs(power))), aspect='auto', interpolation='none',extent=(np.min( s ),np.max(s),np.min( z ),np.max(z)))
-        plt.imshow(np.flipud(power), aspect='auto', interpolation='none',extent=(np.min( s ),np.max(s),np.min( z ),np.max(z)))
-        plt.xlabel(r'z (ps)')
+        plt.title("log10(power) evolution (W)")
+        plt.imshow(np.flipud(np.log10(abs(power))), aspect='auto', interpolation='none',extent=(np.min( s ),np.max(s),np.min( z ),np.max(z)))
+        # plt.imshow(np.abs(np.flipud(power)), aspect='auto', interpolation='none',extent=(np.min( s ),np.max(s),np.min( z ),np.max(z)))
+        
+        plt.plot(current/np.max(current)*2.5,'w--')
+        
+        if slicenum==True:
+            plt.xlabel("slice #")
+        else:
+            plt.xlabel(r'z (ps)')
         plt.ylabel(r'$s$ (m)')
         plt.colorbar()
         plt.show()
@@ -146,7 +240,7 @@ def plot_powerEvolution(hid, norm=True, figext=False):
         savefig(filename="powerevo")
         
         
-def plot_beamEnergyEvolution(hid, figext=False, sliceRange=[0,90]):
+def plot_beamEnergyEvolution(hid, figext=False, sliceRange=[0,-1]):
     
     z = hid['Lattice']['zplot'][:]
     
@@ -167,7 +261,7 @@ def plot_beamEnergyEvolution(hid, figext=False, sliceRange=[0,90]):
         savefig(filename="beamSliceEnergyEvo")
         
 
-def plot_beamBunchingEvolution(hid, figext=False, norm=False, sliceRange=[0,90]):
+def plot_beamBunchingEvolution(hid, figext=False, norm=False, sliceRange=[0,-1]):
     
     z = hid['Lattice']['zplot'][:]
     
@@ -355,17 +449,20 @@ def plot_BeamEnergyDetune(hid, sampleFreq=3, fig=True):
     bE0 = hid["Beam"]["Global"]["energy"][:] *0.511 #MeV
     sigE = hid["Beam"]["Global"]["energyspread"][:] *0.511  #MeV
 
+    tmpN = len(bE0)
+    s = np.linspace(np.min(z), np.max(z), tmpN)
+
     E0_i = bE0[0]
     eta_off = (bE0-E0_i)/E0_i
 
     if fig==True:
         plt.figure()
 
-    plt.plot(z,eta_off*100,'-')
+    plt.plot(s,eta_off*100,'-')
 
     plt.xlabel("s (m)")
     plt.ylabel("beam energy detune (%)")
-    plt.grid()
+    plt.grid(True)
 
 
 def plot_BeamEnergySpread(hid, sampleFreq=3, fig=True):
@@ -376,6 +473,9 @@ def plot_BeamEnergySpread(hid, sampleFreq=3, fig=True):
     z = hid['Lattice']['z'][:]
     bE0 = hid["Beam"]["Global"]["energy"][:] *0.511 #MeV
     sigE = hid["Beam"]["Global"]["energyspread"][:] *0.511  #MeV
+    
+    tmpN = len(bE0)
+    s = np.linspace(np.min(z), np.max(z), tmpN)
 
     E0_i = bE0[0]
     eta_off = (bE0-E0_i)/E0_i
@@ -383,21 +483,27 @@ def plot_BeamEnergySpread(hid, sampleFreq=3, fig=True):
     if fig==True:
         plt.figure()
         
-    plt.plot(z,sigE/bE0*100,'-')
+    plt.plot(s,sigE/bE0*100,'-')
     plt.xlabel("s (m)")
     plt.ylabel(r"beam energy spread $\Delta E/E$ (%)")
-    plt.grid()
+    plt.grid(True)
 
 
-def plot_BeamCurrentProfile(hid):
+def plot_BeamCurrentProfile(hid,slicex=False):
     s = hid['Global']['s'][()]/2.998e8*1e12 #ps
     current = hid['Beam']['current'][()][0,:]
     energy = hid['Beam']['energy'][()][0,:]*0.511
-
+    
+    if slicex == True:
+        s=np.arange(0,len(current),1)
 
     fig,ax1 = plt.subplots()
     color = 'tab:red'
-    ax1.set_xlabel(r'$s$ (ps)')
+    
+    if slicex == True:
+        ax1.set_xlabel(r'slice #')
+    else:
+        ax1.set_xlabel(r'$s$ (ps)')
     ax1.set_ylabel(r'$I$ (A)',color = color)
     ax1.tick_params(axis='y', labelcolor=color)
     ax1.plot(s,current,'-',color = color)
