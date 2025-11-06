@@ -569,7 +569,7 @@ def resampleParticles(inputBeamDist, mpart = 8192, force = False, closest = None
             beamDist[:nlen] = (beamDist[:nlen]-avg)*std_inv
         
         # Step 4.0 - find the most closest particle of each particle
-        if np.any(closest) == None:
+        if np.any(closest) == False:
             hw = 1024
             closest = np.zeros(nlen)
             for i in np.arange(nlen):
