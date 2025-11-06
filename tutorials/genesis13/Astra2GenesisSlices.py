@@ -1,9 +1,10 @@
 import sys
-sys.path.append('/afs/ifh.de/group/pitz/data/lixiangk/work/sync/python')
+# sys.path.append('/afs/ifh.de/group/pitz/data/lixiangk/work/sync/python')
 #sys.path.append('\\afs\ifh.de\group\pitz\data\lixiangk\work\sync\python')
 
 from timeit import default_timer
 import numpy as np
+import h5py 
 
 import time
 
@@ -12,8 +13,12 @@ import time
 #% Define the Hammersley sequence and the function to convert Astra distrution 
 #   to slices for Genesis1.3 Version 2
 from xkinterface.interface import *
+from xkinterface.interface.Misc import *
+from xkinterface.interface.BeamFormat import *
 
 from scipy.stats import qmc
+
+import scipy as sp
 erf = sp.special.erf
 erfinv = sp.special.erfinv
 
