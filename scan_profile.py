@@ -71,7 +71,12 @@ def gen_impzin(profile='parabolic',Lbuncht=6e-12,Ipeak=400, Np=1e6, folderName='
     with open(folderName+'/lte.impz',"a",encoding="utf-8") as f:
         f.write("&lattice \n")
         f.write(f"match: match2twiss, betax={betax}, alphax={alphax},betay={betay},alphay={alphay} \n")
-        f.write("w1: watch, filename_id=1001, sample_freq=1, coord_conv='GenesisV4',coord_info=1 \n")
+        
+        if one4one == True:
+            f.write("w1: watch, filename_id=1001, sample_freq=1, coord_conv='GenesisV4',coord_info=1 \n")
+        else:
+            f.write("w1: watch, filename_id=1001, sample_freq=1, coord_conv='Astra',coord_info=1 \n")
+            
         f.write("line: line=(match,w1) \n")
         f.write("&end")
     
@@ -146,6 +151,7 @@ def gen_gen4in(Lbuncht, Ipeak, folderName='.',slsc="ON",llsc="ON"):
     # Ipeak=120
     Lbunch=c*Lbuncht
     
+    
     setup = Namelist('setup', 
                      rootname = 'gen4',
                      lattice = 'gen4.lat',
@@ -154,18 +160,25 @@ def gen_gen4in(Lbuncht, Ipeak, folderName='.',slsc="ON",llsc="ON"):
                      lambda0 = lamda0,
                      delz = delz,
                      seed = 2,
-                     one4one = True,
+                     one4one = one4one,
+                     npart = npart,
+                     nbins = 4,
                      shotnoise = True)
     
     time = Namelist('time',
                     s0 = 0,
-                    slen = Lbunch+120*lamda0,
+                    slen = Lbunch+100*lamda0,
                     sample = 1,
                     time = True)
-        
-    importbeam = Namelist('importbeam',
-                     file = '../01_impz/gen4_sliced_one4one.h5',
-                     time=True)
+    
+    if one4one == True:    
+        importbeam = Namelist('importbeam',
+                         file = '../01_impz/gen4_sliced_one4one.h5',
+                         time=True)
+    else:
+        importbeam = Namelist('importbeam',
+                         file = f'../01_impz/scan.seed{seed}.nper{nperlambda}.fitdeg{degree}.out.par.h5',
+                         time=True)
     
     field = Namelist('field',
                      power = 0,
@@ -207,8 +220,6 @@ def gen_gen4in(Lbuncht, Ipeak, folderName='.',slsc="ON",llsc="ON"):
         f.write("screen: marker={dumpfield = 0, dumpbeam = 0, stop = 1}; \n")
         f.write("THzBL: line={lcls, screen}; \n")
         
-    
-
 def gen_one(Q,lamdas,path="."):   
     
     with open(path+'/one',"w",encoding="utf-8") as f:
@@ -225,11 +236,14 @@ def gen_one(Q,lamdas,path="."):
         f.write("genimpactzin lte.impz line \n")
         f.write("mpirun -np 4 ImpactZ.exe \n")
         
-        f.write(f"impz2sliceh5 gen4_dist.1001 {Q} {lamdas} 1 \n")
-        #delete the .1001 file
-        f.write("rm -f gen4_dist.1001 \n")
-        # f.write("mv gen4_sliced_one4one.h5 ../02_gen4 \n")
-        
+        if one4one == True:
+            f.write(f"impz2sliceh5 gen4_dist.1001 {Q} {lamdas} 1 \n")
+            #delete the .1001 file
+            f.write("rm -f gen4_dist.1001 \n")
+        else:
+            f.write(f"xk_astra2gen4 fort.1001.001 {seed} {npart} {degree} {nperlambda} {lamda0} \n")
+            f.write("rm -f fort.1001.001 \n")  
+            
         f.write("\n\n")
         f.write("cd ../02_gen4 \n")
         f.write("module purge && module add mpi/openmpi-x86_64 phdf5/1.14.4 szip/2.1.1 \n")
@@ -240,6 +254,12 @@ def gen_one(Q,lamdas,path="."):
 #------------------------------------------------------------------------
 #------------------------------------------------------------------------
 c=2.998e8
+
+one4one = False
+seed = 2
+npart = 8192
+degree = 3
+nperlambda = 10
 
 # profile='parabolic'
 profile='flattop'
@@ -261,23 +281,24 @@ if helical==False:
 else:
     unduu="helical"
 
-Lbunchtl = np.arange(0.1e-12, 30e-12, 1e-12)  # [s]
-Ipeakl= np.arange(60,600,20)  #A
+# Lbunchtl = np.arange(0.1e-12, 20e-12, 1e-12)  # [s]
+# Ipeakl= np.arange(60,600,20)  #A
 
-# Lbunchtl=[7.5e-12]
-# Ipeakl=[400]
+Lbunchtl=[6.4e-12]
+Ipeakl=[350]
 
 slsc="ON"
 llsc="ON"
-Np=2e6
+Np=1e6
 
 # rootdir=f'/mnt/f/simu_2025/202510_idealMachineTHzFEL'
 # rootdir=f'/mnt/f/simu_2025/202510_idealMachineTHzFEL/04_scan_scripts_impz_gen4'
 # rootdir='/mnt/f/simu_2025/202510_idealMachineTHzFEL/scan_scripts'
 # rootdir = '/mnt/f/simu_2025/202510_idealMachineTHzFEL/202511_scan_currentProfile_parabolic_flattop/00_ScanPythonScripts'
+rootdir = '/mnt/f/simu_2025/202510_idealMachineTHzFEL/202511_scan_currentProfile_parabolic_flattop/00_ScanPythonScripts'
 
 # rootdir='/lustre/fs25/group/pitz/biaobin/202510_idealMachine/PlanarUndulator'
-rootdir='/lustre/fs25/group/pitz/biaobin/202511_idealMachine'
+# rootdir='/lustre/fs25/group/pitz/biaobin/202511_idealMachine'
 #-------------------------------------------------------------------------
 
 print(f"total job is {len(Lbunchtl)}*{len(Ipeakl)}=",len(Lbunchtl)*len(Ipeakl))
@@ -288,7 +309,7 @@ os.chdir(rootdir)
 
 
 #mkdir the folder
-rootdir2=f'{unduu}_{profile}_slsc{slsc}_llsc{llsc}'
+rootdir2=f'{unduu}_{profile}_slsc{slsc}_llsc{llsc}_one4one{one4one}'
 os.makedirs(rootdir2, exist_ok=True)
 os.chdir(rootdir2)
 
