@@ -246,7 +246,7 @@ def gen_one(Q,lamdas,path="."):
             
         f.write("\n\n")
         f.write("cd ../02_gen4 \n")
-        f.write("module purge && module add mpi/openmpi-x86_64 phdf5/1.14.4 szip/2.1.1 \n")
+        f.write("module purge && module add mpi/openmpi-x86_64 hdf5/1.14.4 szip/2.1.1 \n")
         f.write("mpirun -np 4 genesis4 gen4.in \n")
     
     os.chmod(path+"/one", 0o755)
@@ -267,22 +267,26 @@ profile='flattop'
 lamda0 = 99.93e-6
 E0=16.15e6+0.511e6
 enx = 10e-6; eny = 10e-6
-betax=8;  betay=0.4
-alphax=4.55; alphay=2.5
+
 
 aw=2.4678
 lamdau=30e-3
 nwig=113
-helical=False
-kx=0; ky=1
+helical=True
 
 if helical==False:
     unduu="Planar"
+    kx=0; ky=1
+    betax=8;  betay=0.4
+    alphax=4.55; alphay=2.5
 else:
     unduu="helical"
-
-# Lbunchtl = np.arange(0.1e-12, 20e-12, 1e-12)  # [s]
-# Ipeakl= np.arange(60,600,20)  #A
+    kx=0.5; ky=0.5
+    betax=0.4;  betay=0.4
+    alphax=0; alphay=0
+    
+Lbunchtl = np.arange(0.1e-12, 20e-12, 1e-12)  # [s]
+Ipeakl= np.arange(60,600,20)  #A
 
 Lbunchtl=[6.4e-12]
 Ipeakl=[350]
