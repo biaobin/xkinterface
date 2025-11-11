@@ -1031,7 +1031,7 @@ def Astra2GenesisSlices(inputName = None, inputDist = None,
     f.create_dataset('/slicelength', data = [lambda0])
     f.create_dataset('/refposition', data = [0])
     f.create_dataset('/slicecount', data = [Ns])
-    nbins = 16
+    nbins = 4
     
     f.create_dataset('/beamletsize', data = [nbins])
     if version == 4:
