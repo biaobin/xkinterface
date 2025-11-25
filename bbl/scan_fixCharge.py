@@ -132,7 +132,7 @@ def gen_gen4in(Lbuncht,folderName='.',slsc="ON",llsc="ON"):
 
     # c=2.998e8
     gam0=E0/0.511e6
-    gambet=sqrt(gam0**2-1)
+    gambet=np.sqrt(gam0**2-1)
     
     # lamda0=99.93e-6
     # lamdau = 30e-3
@@ -254,7 +254,7 @@ nperlambda = 10
 profile='flattop'
 
 lamda0 = 100e-6
-E0=17
+E0=17e6
 gam0=E0/0.511e6
 enx=5e-6;  eny=10e-6
 sigE=10e3  #slice energy spread eV
