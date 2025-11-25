@@ -6,9 +6,6 @@ import os
 import shutil
 
 def gen_impzin(profile='parabolic',Lbuncht=6e-12,tol_charge=2e-9, Np=1e6, folderName='.'):    
-    #rms t=3.6 ps => 10keV, consider about the compression C*sigE
-    # Lbuncht, 6ps, sigE=50 keV
-    sigE = 6e-12/Lbuncht*50e3  #eV     
     
     if profile=='parabolic':
         # sigz=c*sigt
@@ -26,8 +23,6 @@ def gen_impzin(profile='parabolic',Lbuncht=6e-12,tol_charge=2e-9, Np=1e6, folder
         print("Error...")
         sys.exit(0)
     
-    # E0=16.15e6+0.511e6
-    # Ekin=16.15e6
     Ekin = E0-0.511e6
     
     control = Namelist('control',
@@ -258,28 +253,48 @@ nperlambda = 10
 # profile='parabolic'
 profile='flattop'
 
-lamda0 = 99.93e-6
-E0=16.15e6+0.511e6
-enx = 5e-6; eny = 20e-6
+lamda0 = 100e-6
+E0=17
+gam0=E0/0.511e6
+enx=5e-6;  eny=10e-6
+sigE=10e3  #slice energy spread eV
 
-aw=2.4678
+
 lamdau=30e-3
 nwig=113
 helical=False
+# aw=2.4678
+aw= np.sqrt( 2*gam0**2*lamda0/lamdau -1)
 
 if helical==False:
     unduu="Planar"
+    Ku=np.sqrt(2)*aw
+    K1 = 2*np.pi**2*Ku**2/(gam0**2*lamdau**2)    
+
     kx=0; ky=1
-    betax=8;  betay=0.4
-    alphax=4.55; alphay=2.5
+    #betax=8;  betay=0.4
+    #alphax=4.55; alphay=2.5
+    
+    betax=8  
+    alphax=4.55 
+    betay=1/np.sqrt(K1)
+    alphay=0
+
 else:
     unduu="helical"
-    kx=0.5; ky=0.5
-    betax=0.4;  betay=0.4
-    alphax=0; alphay=0
+    Ku=aw
+    K1 = 2*np.pi**2*Ku**2/(gam0**2*lamdau**2)    
 
-tol_chargel = [1e-9, 2e-9, 3e-9, 5e-9]    
-Lbunchtl = np.arange(2.0e-12, 21e-12, 1e-12)  # [s]
+    kx=0.5; ky=0.5
+    # betax=0.4;  betay=0.4
+    # alphax=0; alphay=0
+
+    betax=1/np.sqrt(K1); betay=1/np.sqrt(K1)
+    alphax=0;            alphay=0
+
+
+tol_chargel = [1e-9, 2e-9, 3e-9]    
+Lbunchtl = np.arange(4.0e-12, 21e-12, 1e-12)  # [s]
 
 slsc="ON"
 llsc="ON"
@@ -289,10 +304,10 @@ Np=1e6
 # rootdir=f'/mnt/f/simu_2025/202510_idealMachineTHzFEL/04_scan_scripts_impz_gen4'
 # rootdir='/mnt/f/simu_2025/202510_idealMachineTHzFEL/scan_scripts'
 # rootdir = '/mnt/f/simu_2025/202510_idealMachineTHzFEL/202511_scan_currentProfile_parabolic_flattop/00_ScanPythonScripts'
-rootdir = '/mnt/f/simu_2025/202510_idealMachineTHzFEL/202511_scan_currentProfile_parabolic_flattop/00_ScanPythonScripts'
+# rootdir = '/mnt/f/simu_2025/202510_idealMachineTHzFEL/202511_scan_currentProfile_parabolic_flattop/00_ScanPythonScripts'
 
 # rootdir='/lustre/fs25/group/pitz/biaobin/202510_idealMachine/PlanarUndulator'
-# rootdir='/lustre/fs25/group/pitz/biaobin/202511_idealMachine'
+rootdir='/lustre/fs25/group/pitz/biaobin/202511_idealMachine'
 #-------------------------------------------------------------------------
 
 print(f"total job is {len(Lbunchtl)}*{len(tol_chargel)}=",len(Lbunchtl)*len(tol_chargel))
@@ -303,7 +318,7 @@ os.chdir(rootdir)
 
 
 #mkdir the folder
-rootdir2=f'{unduu}_{profile}_slsc{slsc}_llsc{llsc}_one4one{one4one}_fixCharge'
+rootdir2=f'{unduu}_{profile}_slsc{slsc}_llsc{llsc}_one4one{one4one}_fixCharge_1125'
 os.makedirs(rootdir2, exist_ok=True)
 os.chdir(rootdir2)
 
@@ -329,7 +344,7 @@ for tol_charge in tol_chargel:
         shutil.copy2(f"{rootdir}/runFile/submit.sh", ".")
                 
         # #ready to submit all the jobs
-        # os.system("condor_submit submit.sh")
+        os.system("condor_submit submit.sh")
         os.chdir(rootdir+'/'+rootdir2)
         
 os.chdir(rootdir)        
