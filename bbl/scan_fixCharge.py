@@ -253,16 +253,23 @@ nperlambda = 10
 # profile='parabolic'
 profile='flattop'
 
+#==============
+# E0=17e6
+# lamdau=30e-3
+# nwig=113
+# helical=False
+
+E0=40e6
+lamdau=110e-3
+nwig=60
+helical=True
+#==============
+
 lamda0 = 100e-6
-E0=17e6
 gam0=E0/0.511e6
 enx=5e-6;  eny=10e-6
 sigE=10e3  #slice energy spread eV
 
-
-lamdau=30e-3
-nwig=113
-helical=False
 # aw=2.4678
 aw= np.sqrt( 2*gam0**2*lamda0/lamdau -1)
 
