@@ -6,11 +6,6 @@ import os
 import shutil
 
 def gen_impzin(profile='parabolic',Lbuncht=6e-12,Ipeak=400, Np=1e6, folderName='.'):    
-    #rms t=3.6 ps => 10keV, consider about the compression C*sigE
-    # Lbuncht, 6ps, sigE=50 keV
-    sigE = 6e-12/Lbuncht*50e3  #eV     
-    
-    # sigE = (5.8e-12)/(sigt*1.3416)*10e3  #eV  #from MK prab paper   
     
     if profile=='parabolic':
         # sigz=c*sigt
@@ -264,32 +259,54 @@ nperlambda = 10
 # profile='parabolic'
 profile='flattop'
 
-lamda0 = 99.93e-6
-E0=16.15e6+0.511e6
-enx = 10e-6; eny = 10e-6
-
-
-aw=2.4678
+#==============
+E0=17e6
 lamdau=30e-3
 nwig=113
-helical=True
+helical=False
 
+# E0=40e6
+# lamdau=110e-3
+# nwig=60
+# helical=True
+#==============
+
+lamda0 = 100e-6
+gam0=E0/0.511e6
+enx = 5e-6; eny = 10e-6
+sigE=10e3
+
+aw= np.sqrt( 2*gam0**2*lamda0/lamdau -1)
+   
 if helical==False:
     unduu="Planar"
+    Ku=np.sqrt(2)*aw
+    K1 = 2*np.pi**2*Ku**2/(gam0**2*lamdau**2)    
+
     kx=0; ky=1
-    betax=8;  betay=0.4
-    alphax=4.55; alphay=2.5
+    #betax=8;  betay=0.4
+    #alphax=4.55; alphay=2.5
+    betax=8  
+    alphax=4.55 
+    betay=1/np.sqrt(K1)
+    alphay=0
+
 else:
     unduu="helical"
+    Ku=aw
+    K1 = 2*np.pi**2*Ku**2/(gam0**2*lamdau**2)    
+
     kx=0.5; ky=0.5
-    betax=0.4;  betay=0.4
-    alphax=0; alphay=0
-    
-Lbunchtl = np.arange(0.1e-12, 20e-12, 1e-12)  # [s]
+    # betax=0.4;  betay=0.4
+    # alphax=0; alphay=0
+    betax=1/np.sqrt(K1); betay=1/np.sqrt(K1)
+    alphax=0;            alphay=0
+ 
+Lbunchtl = np.arange(3e-12, 20e-12, 1e-12)  # [s]
 Ipeakl= np.arange(60,600,20)  #A
 
-Lbunchtl=[6.4e-12]
-Ipeakl=[350]
+# Lbunchtl=[6.4e-12]
+# Ipeakl=[350]
 
 slsc="ON"
 llsc="ON"
@@ -299,13 +316,13 @@ Np=1e6
 # rootdir=f'/mnt/f/simu_2025/202510_idealMachineTHzFEL/04_scan_scripts_impz_gen4'
 # rootdir='/mnt/f/simu_2025/202510_idealMachineTHzFEL/scan_scripts'
 # rootdir = '/mnt/f/simu_2025/202510_idealMachineTHzFEL/202511_scan_currentProfile_parabolic_flattop/00_ScanPythonScripts'
-rootdir = '/mnt/f/simu_2025/202510_idealMachineTHzFEL/202511_scan_currentProfile_parabolic_flattop/00_ScanPythonScripts'
+#rootdir = '/mnt/f/simu_2025/202510_idealMachineTHzFEL/202511_scan_currentProfile_parabolic_flattop/00_ScanPythonScripts'
 
 # rootdir='/lustre/fs25/group/pitz/biaobin/202510_idealMachine/PlanarUndulator'
-# rootdir='/lustre/fs25/group/pitz/biaobin/202511_idealMachine'
+rootdir='/lustre/fs25/group/pitz/biaobin/202511_idealMachine'
 #-------------------------------------------------------------------------
-
-print(f"total job is {len(Lbunchtl)}*{len(Ipeakl)}=",len(Lbunchtl)*len(Ipeakl))
+totalJob=len(Lbunchtl)*len(Ipeakl)
+print(f"total job is {len(Lbunchtl)}*{len(Ipeakl)}=",totalJob)
 os.chdir(rootdir)
 
 # import sys
@@ -313,7 +330,7 @@ os.chdir(rootdir)
 
 
 #mkdir the folder
-rootdir2=f'{unduu}_{profile}_slsc{slsc}_llsc{llsc}_one4one{one4one}'
+rootdir2=f'{unduu}_{profile}_slsc{slsc}_llsc{llsc}_one4one{one4one}_2DSCAN_1125'
 os.makedirs(rootdir2, exist_ok=True)
 os.chdir(rootdir2)
 
