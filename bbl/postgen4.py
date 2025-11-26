@@ -72,9 +72,9 @@ def plot_gainCurvePeakPower(hid, plot=True, figp=True, figext=False, semilog=Tru
             fig,ax1 = plt.subplots()
             
         if semilog == True:
-            ax1.semilogy(z,peak_power/1e6,linestyle)
+            ax1.semilogy(z,peak_power/1e6,linestyle,color='red')
         else:
-            ax1.plot(z,peak_power/1e6,linestyle)
+            ax1.plot(z,peak_power/1e6,linestyle,color='red')
         ax1.set_xlabel(r'$s$ (m)')
         ax1.set_ylabel(r'peak power (MW)')
         plt.grid(True)
