@@ -1,6 +1,15 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
+def getchirp(p_array):
+    # return chirp h [/m]
+    x = -p_array.tau()
+    y = p_array.p()
+
+    coeff = np.polyfit(x, y, deg=5)
+    
+    return coeff[4]
+
 def removechirp(x,y,removeorder=2):
     # remove 1,2,...removeorder energy modulation
     coeff = np.polyfit(x, y, deg=5)   # a,b,c
@@ -15,6 +24,7 @@ def removechirp(x,y,removeorder=2):
 
 def longi_show(p_array):
     # with chirp h labeled
+    #-------------------------
     plt.figure(figsize=(15,6))
     
     plt.subplot(1,2,1)
@@ -77,7 +87,8 @@ def longi_removechirp(p_array, removeorder=1):
     y = p_array.p()
     x, y_detrend = removechirp(x, y, removeorder=removeorder)
     
-    plt.scatter(x, y_detrend, s=0.01, color='r')
+    plt.scatter(x, y, s=0.01, color='g',label='initial')
+    plt.scatter(x, y_detrend, s=0.01, color='r',label='chirp removed')
     # impzplt.plot_heatpha(x, y_detrend, bins=100)
     
     plt.xlabel('z (ps)')
@@ -92,8 +103,9 @@ def longi_removechirp(p_array, removeorder=1):
     plt.grid(True)
     plt.show()
 
+from ocelot import * 
 def get_BC_r56(cell, energy=17e-3):
-
+    
     lat_chic = MagneticLattice(cell)
     # in that case energy is not important we do not have 
     # energy dependant elements here

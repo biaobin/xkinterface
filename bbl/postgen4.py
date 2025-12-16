@@ -1,7 +1,7 @@
 import h5py
 import numpy as np
 import matplotlib.pyplot as plt
-from xkinterface.startup import *
+from xkinterface.bbl.startup import *
 
 setplot()
 
@@ -87,6 +87,7 @@ def plot_gainCurvePeakPower(hid, plot=True, figp=True, figext=False, semilog=Tru
             ax2.semilogy(z,bunchingFac,linestyle,color = color, label='bunching factor')
         else:
             ax2.plot(z,bunchingFac,linestyle,color = color, label='bunching factor')
+        plt.grid(False)
         plt.show()
         
         if figext==True:
@@ -94,7 +95,7 @@ def plot_gainCurvePeakPower(hid, plot=True, figp=True, figext=False, semilog=Tru
 
     return z, peak_power
 
-def plot_gainCurvePeakPower2(hid, plot=True, figp=True, figext=False, semilog=True, linestyle='-'):
+def plot_gainCurvePeakPower2(hid, plot=True, figp=True, figext=False, semilog=True, linestyle='-',label='label1'):
     
     z = hid["Lattice"]["zplot"][:]
     peak_power = np.max( hid["Field"]["power"], axis=1)
@@ -106,10 +107,10 @@ def plot_gainCurvePeakPower2(hid, plot=True, figp=True, figext=False, semilog=Tr
             plt.figure()
             
         if semilog == True:
-            plt.plot(z,peak_power/1e6,linestyle)
+            plt.plot(z,peak_power/1e6,linestyle,label=label)
             plt.yscale("log") 
         else:
-            plt.plot(z,peak_power/1e6,linestyle)
+            plt.plot(z,peak_power/1e6,linestyle,label=label)
         plt.xlabel(r'$s$ (m)')
         plt.ylabel(r'peak power (MW)')
         plt.grid(True)
@@ -156,12 +157,13 @@ def plot_gainCurvePower(hid, bunching=True, semilog=True, figext=False, figp=Tru
     # ax2.semilogy(z,farfield,color ='g', label='farfield')
     # ax2.set_ylim([1e-2,1e5])
     # plt.legend()
+    plt.grid(False)
     plt.show()
     
     if figext==True:
         savefig(filename="gaincurve")
 
-def plot_gainCurvePower2(hid, plot=True, figp=True, figext=False, semilog=True, linestyle='-'):
+def plot_gainCurvePower2(hid, plot=True, figp=True, figext=False, semilog=True, linestyle='-',label="None"):
     
     z = hid["Lattice"]["zplot"][:]
     energy = hid['Field']['Global']['energy'][()]*1e6  #uJ
@@ -173,10 +175,10 @@ def plot_gainCurvePower2(hid, plot=True, figp=True, figext=False, semilog=True, 
             plt.figure()
             
         if semilog == True:
-            plt.plot(z,energy,linestyle)
+            plt.plot(z,energy,linestyle,label=label)
             plt.yscale("log") 
         else:
-            plt.plot(z,energy,linestyle)
+            plt.plot(z,energy,linestyle,label=label)
         plt.xlabel(r'$s$ (m)')
         plt.ylabel(r'energy (uJ)')
         plt.grid(True)
@@ -411,7 +413,7 @@ def plot_rmsSizeEvo(hid, output_step=1, fig=True, field=True):
     plt.ylabel(r'$\sigma_{x,y}$ (mm)')
     # plt.ylim([0,60])
 
-    plt.grid()
+    plt.grid(True)
     
 def plot_rmsSizeEvo_sliceJ(hid, slicej=10 ,output_step=1, fig=True, field=True):
     
