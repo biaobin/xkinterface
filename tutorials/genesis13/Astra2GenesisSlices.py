@@ -896,16 +896,23 @@ def Astra2GenesisSlices(inputName = None, inputDist = None,
         
         #select = (znorm>a-0.02)*(znorm<b+0.02); #print(np.sum(select))
         ilast = islice
+        # print("ilast=",ilast)
         if np.sum(select)>0 and current1>0:
             temp, _ = resampleParticles(newdist[select], 
                                         mpart = Nm_slice)
             Nm_slices += Nm_slice
             
             eps_scale = 1 #np.sqrt(2)
-            xx = temp[:,0]*eps_scale
-            yy = temp[:,2]*eps_scale
+            xx = temp[:,0]*eps_scale 
+            yy = temp[:,2]*eps_scale; 
             xp = temp[:,1]*eps_scale
-            yp = temp[:,3]*eps_scale
+            yp = temp[:,3]*eps_scale; 
+            
+            # manually collim the beam
+            # =================================
+            # yy= yy-np.mean(yy)
+            # yp= yp-np.mean(yp)
+            # =================================
             
             theta1 = (temp[:,4]-x1)/lambda0*2*np.pi
             gamma = temp[:,-1]
@@ -1039,7 +1046,7 @@ def Astra2GenesisSlices(inputName = None, inputDist = None,
     
     f.close()
     
-    ilast += 1
+    ilast += 3
     fig, ax = plt.subplots(nrows = 4, figsize = (5, 9), sharex = True)
     ax1, ax2, ax3, ax4 = ax.flatten()
     ax1.plot(stat[:ilast,0], stat[:ilast,3], '-')

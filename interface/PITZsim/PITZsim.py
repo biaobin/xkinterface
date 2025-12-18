@@ -78,6 +78,7 @@ try:
         fEb_EG = interp1d(EG, Eb)
         
         E1 = fEG2d_gun(MaxE_gun, phi_gun)
+        # print("Egun=",E1)
         
         MaxE_booster = fEb_EG(Ef-E1)
         return MaxE_booster.item()

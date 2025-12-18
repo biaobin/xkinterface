@@ -4,12 +4,15 @@
 !_TAG_OUTPUT_FILESEP	slash	/slash or backslash/
 !_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
 !_TAG_PATTERN_LENGTH_LIMIT	96	/0 for no limit/
-!_TAG_PROC_CWD	/home/ubuntu2404/github/interface/	//
+!_TAG_PROC_CWD	/home/ubuntu2404/github/xkinterface/	//
 !_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
 !_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
 !_TAG_PROGRAM_URL	https://ctags.io/	/official site/
 !_TAG_PROGRAM_VERSION	5.9.0	//
 %   Backward tracking from undultor entrance to High2.Scr3	tutorials/ocelot/THzMatching2025.py	/^#%%%   Backward tracking from undultor entrance to High2.Scr3$/;"	c
+% 2D-energy, with contour lines	scan_post.py	/^#%%% 2D-energy, with contour lines$/;"	c
+% 2D-energy, with contour plot for charge and energy	scan_post.py	/^#%%% 2D-energy, with contour plot for charge and energy$/;"	c
+% 2D-peak_power, with contour plot for charge and energy	scan_post.py	/^#%%% 2D-peak_power, with contour plot for charge and energy$/;"	c
 % Call a cell in a loop, batch processing	tutorials/genesis13/postG4.py	/^#%%% Call a cell in a loop, batch processing$/;"	c
 % Either define a function for parameter scan	tutorials/astra/ParaScan2024.py	/^#%%% Either define a function for parameter scan$/;"	c
 % Energy	tutorials/genesis13/postG4.py	/^#%%% Energy$/;"	c
@@ -34,7 +37,10 @@
 % Temporal profile	tutorials/genesis13/postG4.py	/^#%%% Temporal profile$/;"	c
 % Xrms-vs-booster-phase-vs-gun-phase	tutorials/astra/ParaScan2024.py	/^#%%% Xrms-vs-booster-phase-vs-gun-phase$/;"	c
 % cor_Ek-vs-phi2-vs-	tutorials/astra/ParaScan2024.py	/^#%%% cor_Ek-vs-phi2-vs-$/;"	c
+% energy change of given slice	main_gen4Plot_250801.py	/^#%%% energy change of given slice$/;"	c
 % energy vs z	tutorials/genesis13/postG4.py	/^#%%% energy vs z$/;"	c
+% get the Lbunch=10.1 ps, Q=0.5, 1.0, 1.5, ...  => peakPower & energy	scan_post.py	/^#%%% get the Lbunch=10.1 ps, Q=0.5, 1.0, 1.5, ...  => peakPower & energy$/;"	c
+% local bunching evolution	main_gen4Plot_250801.py	/^#%%% local bunching evolution$/;"	c
 % nemit-vs-Imain-vs-	tutorials/astra/ParaScan2024.py	/^#%%% nemit-vs-Imain-vs-$/;"	c
 % nemit-vs-Imain-vs-BSA	tutorials/astra/ParaScan2024.py	/^#%%% nemit-vs-Imain-vs-BSA$/;"	c
 % power along the undulator for various seed numbers	tutorials/genesis13/postG4.py	/^#%%% power along the undulator for various seed numbers$/;"	c
@@ -42,9 +48,11 @@
 % power vs z	tutorials/genesis13/postG4.py	/^#%%% power vs z$/;"	c
 % rms-vs-Imain-vs-	tutorials/astra/ParaScan2024.py	/^#%%% rms-vs-Imain-vs-$/;"	c
 % spectrum for various seed numbers	tutorials/genesis13/postG4.py	/^#%%% spectrum for various seed numbers$/;"	c
+% spectrum heat plot	main_gen4Plot_250801.py	/^#%%% spectrum heat plot$/;"	c
 % spectrum in THz	tutorials/genesis13/postG4.py	/^#%%% spectrum in THz$/;"	c
 % temporal profile	tutorials/genesis13/postG4.py	/^#%%% temporal profile$/;"	c
 % temporal profiles	tutorials/genesis13/postG4.py	/^#%%% temporal profiles$/;"	c
+%%	scan_post.py	/^#%%%%$/;"	c
 1D plot: vs charge	tutorials/genesis13/postG4.py	/^#%% 1D plot: vs charge$/;"	c
 2D scan of peak current and bunch charge	tutorials/genesis13/postG4.py	/^#%% 2D scan of peak current and bunch charge$/;"	c
 2D scan with Apple II undulator	tutorials/genesis13/postG4.py	/^#%% 2D scan with Apple II undulator$/;"	c
@@ -165,6 +173,9 @@ Distribution	tutorials/ocelot/THz-2nC-booster-to-undulator.py	/^Distribution = '
 Distribution	tutorials/ocelot/TripletTuning.py	/^        Distribution = '..'+os.sep+fname0$/;"	v
 Distribution	tutorials/ocelot/TripletTuning.py	/^        Distribution = '..'+os.sep+fname1$/;"	v
 Dz	tutorials/genesis13/postG4.py	/^Dz = 0$/;"	v
+E0	scan_fixCharge.py	/^E0=16.15e6+0.511e6$/;"	v
+E0	scan_profile.py	/^E0=16.15e6+0.511e6$/;"	v
+E0_i	main_gen4Plot_250801.py	/^E0_i = bE0[0]$/;"	v
 EE	interface/Astra2G4Slices.py	/^EE = np.loadtxt('energy-z-ipseed'+ext+'.txt'); EE = EE.T; print (EE.shape)$/;"	v
 EE	interface/PostG4_dev.py	/^EE = np.loadtxt('energy-z-ipseed'+ext+'.txt'); EE = EE.T; print (EE.shape)$/;"	v
 EE	tutorials/genesis13/postG4.py	/^        EE = np.loadtxt('energy-z-ipseed'+ext); EE = EE.T; #print EE.shape$/;"	v
@@ -182,6 +193,7 @@ E_booster	interface/PITZsim/PITZsim.py	/^    E_booster   = np.reshape(data_boost
 E_gun	demo/ObjectFunc.py	/^E_gun   = np.reshape(data_gun[:,0], shape)$/;"	v
 E_gun	interface/PITZsim/PITZsim.py	/^    E_gun   = np.reshape(data_gun[:,0], shape)$/;"	v
 E_gun1	interface/PITZsim/PITZsim.py	/^    E_gun1   = np.reshape(data_thermal_imaging[:,0], shape1)$/;"	v
+E_interp	scan_post.py	/^E_interp = energy_interp((Lb_target, Ip_target))$/;"	v
 Ek	examples/THz_FEL_demo_G2.py	/^Ek = momentum2kinetic(P0) # MeV$/;"	v
 Examples	tutorials/astra/README.md	/^# Examples$/;"	c
 F	tutorials/astra/MOGA_MPI.py	/^            F = ALL[:,n_var:n_var+n_obj]$/;"	v
@@ -233,15 +245,23 @@ I2B	demo/ObjectFunc.py	/^I2B = lambda I: -(0.0000372+0.000588*I)$/;"	f
 I2B	examples/injector_demo.py	/^I2B = lambda I: -(0.0000372+0.000588*I)$/;"	f
 I2B	interface/PITZsim/PITZsim.py	/^I2B = lambda I: -(0.0000372+0.000588*I)$/;"	f
 II	tutorials/astra/postpro.py	/^    II = d1[:,-2]; print(II.max())$/;"	v
+I_A	scan_post.py	/^I_A = Ipeakl             # in A$/;"	v
 Imain_te	interface/PITZsim/PITZsim.py	/^    Imain_te  = np.reshape(data_thermal_imaging[:,2], shape1)$/;"	v
 In undulator	tutorials/ocelot/THz-2nC-booster-to-undulator.py	/^#%% In undulator$/;"	c
-InvCDF	tutorials/genesis13/Astra2GenesisSlices.py	/^def InvCDF(samples, wbin = 100e-6, degree = 4):$/;"	f
+InvCDF	tutorials/genesis13/Astra2GenesisSlices.py	/^def InvCDF(samples,wbin=100e-6,degree=4,nperlambda=3,seed=5):$/;"	f
+Ip_target	scan_post.py	/^Ip_target = Ipeak$/;"	v
 Ipeak	interface/Astra2G4Slices.py	/^    Ipeak = Qb\/np.sqrt(2*np.pi)\/sigma_t$/;"	v
 Ipeak	interface/Astra2G4Slices.py	/^Ipeak = Qb\/np.sqrt(2*np.pi)\/sigma_t$/;"	v
+Ipeak	scan_post.py	/^    Ipeak = tmpQ\/(0.9*Lbuncht)$/;"	v
+Ipeak	scan_post.py	/^    Ipeak = tmpQ\/(13.3422*sigz*1e-9)$/;"	v
 Ipeak	tutorials/genesis13/create_jobs.py	/^    Ipeak, Qtot, seed = v[:] # A, nC, iprime$/;"	v
 Ipeak	tutorials/genesis13/postG4.py	/^    Ipeak, Qtot = v[:] # A, nC$/;"	v
 Ipeak	tutorials/genesis13/run_job3.py	/^    Ipeak, Qtot, seed = v[:] # A, nC, iprime$/;"	v
-Ipeak	tutorials/genesis13/run_job4.py	/^    Ipeak, Qtot, seed = v[:] # A, nC, iprime$/;"	v
+Ipeak	tutorials/genesis13/run_job4.py	/^        Ipeak, Qtot, seed = v[:] # A, nC, iprime$/;"	v
+Ipeakl	scan_post.py	/^Ipeakl = np.array(data["Ipeakl"])$/;"	v
+Ipeakl	scan_post.py	/^Ipeakl= np.arange(60,400,20)  #A$/;"	v
+Ipeakl	scan_profile.py	/^Ipeakl= np.arange(60,600,20)  #A$/;"	v
+Ipeakl	scan_profile.py	/^Ipeakl=[350]$/;"	v
 Job submission and cancaling	tutorials/astra/ParaScan.py	/^#%% Job submission and cancaling$/;"	c
 Job submission and cancaling	tutorials/astra/ParaScan2024.py	/^#%% Job submission and cancaling$/;"	c
 K	examples/THz_FEL_demo_G2.py	/^K = 3.49$/;"	v
@@ -250,6 +270,16 @@ Kin2B	interface/Misc.py	/^Kin2B = kinetic2beta$/;"	v
 Kin2G	interface/Misc.py	/^Kin2G = kinetic2gamma$/;"	v
 Kin2M	interface/Misc.py	/^Kin2M = kinetic2momentum$/;"	v
 L	interface/Transport.py	/^L, rho, theta = 2.230, 0.3, np.pi\/3$/;"	v
+Lb_target	scan_post.py	/^Lb_target = Lbuncht$/;"	v
+Lbuncht	scan_post.py	/^Lbuncht = 10.1e-12 $/;"	v
+Lbuncht_ps	scan_post.py	/^Lbuncht_ps = Lbunchtl * 1e12    # in ps$/;"	v
+Lbuncht_ps	scan_post.py	/^Lbuncht_ps = Lbunchtl * 1e12   # in ps$/;"	v
+Lbuncht_ps	scan_post.py	/^Lbuncht_ps = Lbunchtl * 1e12  # in ps$/;"	v
+Lbunchtl	scan_fixCharge.py	/^Lbunchtl = np.arange(2.0e-12, 21e-12, 1e-12)  # [s]$/;"	v
+Lbunchtl	scan_post.py	/^Lbunchtl = np.arange(0.1e-12, 15e-12, 1e-12)  # [s]$/;"	v
+Lbunchtl	scan_post.py	/^Lbunchtl = np.array(data["Lbunchtl"])$/;"	v
+Lbunchtl	scan_profile.py	/^Lbunchtl = np.arange(0.1e-12, 20e-12, 1e-12)  # [s]$/;"	v
+Lbunchtl	scan_profile.py	/^Lbunchtl=[6.4e-12]$/;"	v
 Ldip	interface/Transport.py	/^Ldip = rho*theta$/;"	v
 Ldrift	demo/ObjectFunc.py	/^Ldrift = 0.12$/;"	v
 Lextent	tutorials/astra/postpro.py	/^Lextent = True$/;"	v
@@ -284,9 +314,9 @@ NSGAII	interface/NSGAPlus.py	/^class NSGAII(AbstractGeneticAlgorithm):$/;"	c
 NSGAIII	interface/NSGAPlus.py	/^class NSGAIII(AbstractGeneticAlgorithm):$/;"	c
 Namelist	interface/Namelists.py	/^class Namelist():$/;"	c
 Namelists	interface/Namelists.py	/^class Namelists:$/;"	c
-Nbins	tutorials/genesis13/Astra2GenesisSlices.py	/^    curpeak, curlen, Nslice, Nbins, outputName = Astra2GenesisSlices(fname, $/;"	v
+Nbins	tutorials/genesis13/Astra2GenesisSlices.py	/^    curpeak, curlen, Nslice, Nbins, outputName, beam_P0 = Astra2GenesisSlices(fname, $/;"	v
 Nbins	tutorials/genesis13/run_job3.py	/^    curpeak, curlen, Nslice, Nbins, outputName = Astra2Genesis3Slices(fname, $/;"	v
-Nbins	tutorials/genesis13/run_job4.py	/^    curpeak, curlen, Nslice, Nbins, outputName = Astra2Genesis4Slices(fname, $/;"	v
+Nbins	tutorials/genesis13/run_job4.py	/^        curpeak, curlen, Nslice, Nbins, outputName = Astra2Genesis4Slices(fname, $/;"	v
 Nm_slice	interface/Astra2G4Slices.py	/^        theta = f[name+'\/theta'][:]; Nm_slice = len(theta)$/;"	v
 Nm_slice	interface/Astra2G4Slices.py	/^    Nm_slice = 32768$/;"	v
 Nm_slice	interface/Astra2G4Slices.py	/^Nm_slice = 32768$/;"	v
@@ -295,15 +325,17 @@ Nm_slices	interface/Astra2G4Slices.py	/^    Nm_slices = 0$/;"	v
 Nm_slices	interface/Astra2G4Slices.py	/^Nm_slices = 0$/;"	v
 NoP	tutorials/genesis13/postG4.py	/^NoP = np.array([1, 1, 1, 1, 1, 1, 2, 3])$/;"	v
 NoPeaksFound	interface/Misc.py	/^class NoPeaksFound(Exception): pass$/;"	c
+Np	scan_fixCharge.py	/^Np=1e6$/;"	v
+Np	scan_profile.py	/^Np=1e6$/;"	v
 Ns	interface/Astra2G4Slices.py	/^    Ns = 150$/;"	v
 Ns	interface/Astra2G4Slices.py	/^    Ns = int((z.max()-z.min())\/lambda0)\/\/2*2-4$/;"	v
 Ns	interface/Astra2G4Slices.py	/^Ns = 150$/;"	v
 Ns	interface/Astra2G4Slices.py	/^Ns = f['slicecount'][0]$/;"	v
 Ns_b	interface/Astra2G4Slices.py	/^    Ns_b = int(sigma_z*c_sig*2\/lambda0)\/\/2*2+2$/;"	v
 Ns_b	interface/Astra2G4Slices.py	/^Ns_b = int(sigma_z*c_sig*2\/lambda0)\/\/2*2+2$/;"	v
-Nslice	tutorials/genesis13/Astra2GenesisSlices.py	/^    curpeak, curlen, Nslice, Nbins, outputName = Astra2GenesisSlices(fname, $/;"	v
+Nslice	tutorials/genesis13/Astra2GenesisSlices.py	/^    curpeak, curlen, Nslice, Nbins, outputName, beam_P0 = Astra2GenesisSlices(fname, $/;"	v
 Nslice	tutorials/genesis13/run_job3.py	/^    curpeak, curlen, Nslice, Nbins, outputName = Astra2Genesis3Slices(fname, $/;"	v
-Nslice	tutorials/genesis13/run_job4.py	/^    curpeak, curlen, Nslice, Nbins, outputName = Astra2Genesis4Slices(fname, $/;"	v
+Nslice	tutorials/genesis13/run_job4.py	/^        curpeak, curlen, Nslice, Nbins, outputName = Astra2Genesis4Slices(fname, $/;"	v
 Ntail	interface/Astra2G4Slices.py	/^    Ntail = -Ns\/\/2$/;"	v
 Ntail	interface/Astra2G4Slices.py	/^curpeak, curlen, Ntail = Astra2Genesis2Slices(fname, outputName = 'test', seed = 1, npart = 4096/;"	v
 Ntail	interface/Astra2G4Slices.py	/^curpeak, curlen, Ntail = Astra2Genesis2Slices(fname, outputName = 'test', seed = 2, npart = 4096/;"	v
@@ -327,6 +359,7 @@ PE_exp	tutorials/genesis13/postG4.py	/^PE_exp = np.array([[1, 6.118, 0.784],$/;"
 PE_exp1	tutorials/genesis13/postG4.py	/^PE_exp1 = np.array([[2, 33.517, 3.574]])$/;"	v
 P_booster	tutorials/astra/ParaScan.py	/^P_booster = 22$/;"	v
 P_gun	tutorials/astra/ParaScan.py	/^P_gun = 6.3$/;"	v
+P_interp	scan_post.py	/^P_interp = power_interp((Lb_target, Ip_target))$/;"	v
 Parameter scan using Astra	tutorials/astra/ParaScan2024.py	/^#%% Parameter scan using Astra$/;"	c
 Parameter scan using Ocelot	tutorials/astra/ParaScan2024.py	/^#%% Parameter scan using Ocelot$/;"	c
 Plot	examples/G4Tools_demo.py	/^#%% Plot$/;"	c
@@ -338,13 +371,14 @@ Plot: energy and power along z	interface/PostG4_dev.py	/^#%% Plot: energy and po
 Plot: spectrum and waveform profile	interface/PostG4_dev.py	/^#%% Plot: spectrum and waveform profile$/;"	c
 Pool	tutorials/astra/MOGA_MPI.py	/^    from mpi4py.futures import MPIPoolExecutor as Pool$/;"	x	nameref:unknown:MPIPoolExecutor
 Post processing of Astra parameter scan	demo/ParaScan.py	/^#%% Post processing of Astra parameter scan$/;"	c
-PostGenesis	interface/PostGenesis13.py	/^PostGenesis = PostGenesis13/;"	v
+PostGenesis	interface/PostGenesis13.py	/^PostGenesis = PostGenesis13$/;"	v
 PostGenesis13	interface/PostGenesis13.py	/^class PostGenesis13:$/;"	c
 Postprocess output	interface/Astra2G4Slices.py	/^#%% Postprocess output$/;"	c
 Postprocess output, batch	interface/Astra2G4Slices.py	/^#%% Postprocess output, batch$/;"	c
 PrepareDipoleCoordinates	examples/dogleg_demo.py	/^def PrepareDipoleCoordinates(rho, theta, poleWidth = 0, X0 = [0, 0],$/;"	f
 PrintResultsCallback	tutorials/astra/MOGA_MPI.py	/^class PrintResultsCallback(Callback):$/;"	c
 Q	examples/THz_FEL_demo_G2.py	/^Q = 4000e-12 # Coulumb$/;"	v
+Q	scan_profile.py	/^        Q = gen_impzin(profile=profile,Lbuncht=Lbuncht,Ipeak=Ipeak, Np=Np, folderName='01_impz')$/;"	v
 Q01	interface/Transport.py	/^Q01, Q02 = 0, 0$/;"	v
 Q01	interface/Transport.py	/^Q01, Q02 = 0.5, -0.1$/;"	v
 Q02	interface/Transport.py	/^Q01, Q02 = 0, 0$/;"	v
@@ -375,6 +409,7 @@ Q3_scanned	tutorials/ocelot/DoubletTuning.py	/^        Q3_scanned, Q3_found = 0,
 Q3_scanned	tutorials/ocelot/MultiQuadTuning.py	/^        Q3_scanned, Q3_found = 0, 0$/;"	v
 Q3_scanned	tutorials/ocelot/QuadrupletTuning.py	/^        Q3_scanned, Q3_found = 0, 0$/;"	v
 Q3_scanned	tutorials/ocelot/TripletTuning.py	/^        Q3_scanned, Q3_found = 0, 0$/;"	v
+Q_interp	scan_post.py	/^Q_interp = charge_interp((Lb_target, Ip_target))              $/;"	v
 Q_total	tutorials/astra/ParaScan.py	/^Q_total = -2000$/;"	v
 Qb	interface/Astra2G4Slices.py	/^    Qb = 2e-9$/;"	v
 Qb	interface/Astra2G4Slices.py	/^Qb = 2e-9$/;"	v
@@ -382,7 +417,7 @@ QsubJob	interface/Job.py	/^class QsubJob:$/;"	c
 Qtot	tutorials/genesis13/create_jobs.py	/^    Ipeak, Qtot, seed = v[:] # A, nC, iprime$/;"	v
 Qtot	tutorials/genesis13/postG4.py	/^    Ipeak, Qtot = v[:] # A, nC$/;"	v
 Qtot	tutorials/genesis13/run_job3.py	/^    Ipeak, Qtot, seed = v[:] # A, nC, iprime$/;"	v
-Qtot	tutorials/genesis13/run_job4.py	/^    Ipeak, Qtot, seed = v[:] # A, nC, iprime$/;"	v
+Qtot	tutorials/genesis13/run_job4.py	/^        Ipeak, Qtot, seed = v[:] # A, nC, iprime$/;"	v
 R56	tutorials/genesis13/postG4.py	/^R56 = 0.2$/;"	v
 README	README.md	/^# README #$/;"	c
 Read the 3D fields, version 3	tutorials/genesis13/postG4.py	/^#%% Read the 3D fields, version 3$/;"	c
@@ -423,7 +458,13 @@ Use or not use MPI	tutorials/ocelot/TripletTuning.py	/^#%% Use or not use MPI$/;
 Visualize the slices from Genesis1.3-version2	interface/Astra2G4Slices.py	/^#%% Visualize the slices from Genesis1.3-version2$/;"	c
 What can it do	tutorials/astra/README.md	/^# What can it do$/;"	c
 What is this repository for?	README.md	/^### What is this repository for? ###$/;"	S	chapter:README
+X	scan_post.py	/^X, Y = np.meshgrid(Lbuncht_ps, I_A)$/;"	v
 X	tutorials/astra/MOGA_MPI.py	/^            X = ALL[:,0:n_var]$/;"	v
+Y	scan_post.py	/^X, Y = np.meshgrid(Lbuncht_ps, I_A)$/;"	v
+Z	scan_post.py	/^Z = chargel.reshape(n_Lbuncht, n_I).T #nC$/;"	v
+Z	scan_post.py	/^Z = energyl.reshape(n_Lbuncht, n_I).T*1e3 #mJ$/;"	v
+Z	scan_post.py	/^Z = peakPowerl.reshape(n_Lbuncht, n_I).T\/1e6 #MW$/;"	v
+Zc	scan_post.py	/^Zc = chargel.reshape(n_Lbuncht, n_I).T            # nC$/;"	v
 Zfinal	tutorials/ocelot/DoubletTuning.py	/^        Zfinal = pitz['High1.Scr3']$/;"	v
 Zfinal	tutorials/ocelot/QuadrupletTuning.py	/^        Zfinal = scrns['High1.Scr3']$/;"	v
 Zfinal	tutorials/ocelot/TripletTuning.py	/^        Zfinal = scrns['PST.SCR1']$/;"	v
@@ -479,12 +520,12 @@ __init__	interface/NSGAPlus.py	/^    def __init__(self, problem,$/;"	m	class:NSG
 __init__	interface/Namelists.py	/^        def __init__(self, *args, **kwargs):$/;"	m	class:CaseInsensitiveDict
 __init__	interface/Namelists.py	/^    def __init__(self, name = 'Input', **kwargs):$/;"	m	class:Namelist
 __init__	interface/Namelists.py	/^    def __init__(self, namelists = None, *args):$/;"	m	class:Namelists
-__init__	interface/PostGenesis13.py	/^    def __init__(self, fname = None, version = 3, **kwargs):$/;"	m	class:PostGenesis13
+__init__	interface/PostGenesis13.py	/^    def __init__(self, fname = None, version = 4, **kwargs):$/;"	m	class:PostGenesis13
 __init__	interface/Transport.py	/^    def __init__(self):$/;"	m	class:Transport
 __init__	tutorials/astra/MOGA_MPI.py	/^    def __init__(self):$/;"	m	class:PrintResultsCallback
 __init__	tutorials/astra/MOGA_MPI.py	/^    def __init__(self, **kwargs):$/;"	m	class:MyProblem
 __setitem__	interface/Namelists.py	/^        def __setitem__(self, key, value):$/;"	m	class:CaseInsensitiveDict
-__version__	interface/__init__.py	/^__version__ = "1.0.0"/;"	v
+__version__	interface/__init__bk.py	/^__version__ = "1.0.0"/;"	v
 __version__	interface/__version__.py	/^__version__ = "1.0.0"$/;"	v
 _associate_to_reference_point	interface/NSGAPlus.py	/^    def _associate_to_reference_point(self, solutions, reference_points):$/;"	m	class:NSGAIII
 _backup_	tutorials/astra/MOGA_MPI.py	/^def _backup_(flags, target_dir, source_dir = '.'):$/;"	f
@@ -511,6 +552,7 @@ add_beam	interface/Transport.py	/^    def add_beam(self,label='BEAM'):$/;"	m	cla
 add_beam_corr	interface/Transport.py	/^    def add_beam_corr(self,label='CORR'):$/;"	m	class:Transport
 add_beam_type	interface/Transport.py	/^    def add_beam_type(self,i,value):$/;"	m	class:Transport
 add_bend	interface/Transport.py	/^    def add_bend(self,length,alpha,strength,label):$/;"	m	class:Transport
+add_drift	interface/PITZsim/pitzLat.py	/^def add_drift(line: list, pitzlat):$/;"	f
 add_drift	interface/Transport.py	/^    def add_drift(self,length,label):$/;"	m	class:Transport
 add_fit	interface/Transport.py	/^    def add_fit(self,n,i,j,value,accuracy=0.001,label='F001'):$/;"	m	class:Transport
 add_fit_emittance	interface/Transport.py	/^    def add_fit_emittance(self,n,value,accuracy=0.001,label='XEMI'):$/;"	m	class:Transport
@@ -534,10 +576,18 @@ alpha_x	examples/THz_FEL_demo_G2.py	/^alpha_x, alpha_y = 7.18, 1.72$/;"	v
 alpha_y	examples/THz_FEL_demo_G2.py	/^alpha_x, alpha_y = 7.18, 1.72$/;"	v
 alphax	examples/G4Tools_demo.py	/^alphax=10.93$/;"	v
 alphax	interface/PostG4_dev.py	/^alphax = 7.180000$/;"	v
+alphax	scan_fixCharge.py	/^    alphax=0; alphay=0$/;"	v
+alphax	scan_fixCharge.py	/^    alphax=4.55; alphay=2.5$/;"	v
+alphax	scan_profile.py	/^    alphax=0; alphay=0$/;"	v
+alphax	scan_profile.py	/^    alphax=4.55; alphay=2.5$/;"	v
 alphax	tutorials/ocelot/THz-2nC-booster-to-undulator.py	/^alphax, alphay = 10.92*0.667, 3.25 $/;"	v
 alphax	tutorials/ocelot/THz-2nC-booster-to-undulator.py	/^alphax, alphay = 5.257*0.65, 1.894$/;"	v
 alphay	examples/G4Tools_demo.py	/^alphay=3.25$/;"	v
 alphay	interface/PostG4_dev.py	/^alphay = 1.720000$/;"	v
+alphay	scan_fixCharge.py	/^    alphax=0; alphay=0$/;"	v
+alphay	scan_fixCharge.py	/^    alphax=4.55; alphay=2.5$/;"	v
+alphay	scan_profile.py	/^    alphax=0; alphay=0$/;"	v
+alphay	scan_profile.py	/^    alphax=4.55; alphay=2.5$/;"	v
 alphay	tutorials/ocelot/THz-2nC-booster-to-undulator.py	/^alphax, alphay = 10.92*0.667, 3.25 $/;"	v
 alphay	tutorials/ocelot/THz-2nC-booster-to-undulator.py	/^alphax, alphay = 5.257*0.65, 1.894$/;"	v
 amp	tutorials/genesis13/postG4.py	/^amp = np.abs(bf_)$/;"	v
@@ -573,10 +623,13 @@ astra_format	interface/G4Tools.py	/^astra_format = fmt$/;"	v
 astra_post	interface/BeamDiagnostics.py	/^def astra_post(fname = None, dist = None, **kwargs):$/;"	f
 astra_to_sco	demo/ObjectFunc.py	/^astra_to_sco = 1.590444459638447$/;"	v
 astra_to_sco	interface/PITZsim/PITZsim.py	/^astra_to_sco = 1.590444459638447$/;"	v
+astra_to_sco	interface/PITZsim/pitzLat.py	/^astra_to_sco = 1.590444459638447$/;"	v
 astra_to_sco	tutorials/astra/ParaScan2024.py	/^    astra_to_sco = 1.590444459638447$/;"	v
 astra_to_sco	tutorials/astra/ParaScan2024.py	/^astra_to_sco = 1.590444459638447$/;"	v
 astra_to_sco	tutorials/ocelot/THz-2nC-booster-to-undulator.py	/^astra_to_sco = 1.590444459638447$/;"	v
 aw	interface/PostG4_dev.py	/^aw = lattice.get('aw')[:]$/;"	v
+aw	scan_fixCharge.py	/^aw=2.4678$/;"	v
+aw	scan_profile.py	/^aw=2.4678$/;"	v
 ax	demo/ParaScan.py	/^fig, ax = plt.subplots()$/;"	v
 ax	examples/G4Tools_demo.py	/^    bx, by, ax, ay = diag.beta_x, diag.beta_y, diag.alpha_x, diag.alpha_y$/;"	v
 ax	examples/G4Tools_demo.py	/^fig, ax = plt.subplots(nrows = 2, sharex = True, figsize = (6, 4))$/;"	v
@@ -644,12 +697,18 @@ b	interface/Astra2G4Slices.py	/^        b = (x1+0.5*lambda0)\/sigma_z$/;"	v
 b	interface/Astra2G4Slices.py	/^    b = (x1+0.5*lambda0)\/sigma_z$/;"	v
 b	tutorials/genesis13/postG4.py	/^l, b, w, h = 0.135, 0.15, 0.70, 0.70$/;"	v
 b	tutorials/genesis13/postG4.py	/^l, b, w, h = 0.15, 0.15, 0.75, 0.75$/;"	v
+bE0	main_gen4Plot_250801.py	/^bE0 = hid["Beam"]["Global"]["energy"][:] *0.511 #MeV$/;"	v
 basename	tutorials/genesis13/postG4.py	/^basename = measure+os.sep+'GainCurve_1429'$/;"	v
 beam	examples/THz_FEL_demo_G4.py	/^beam = Namelist('beam',$/;"	v
 beam	interface/PostG4_dev.py	/^beam = f.get('Beam')$/;"	v
 beam	tutorials/genesis13/postG4.py	/^        beam = f1.get(step)$/;"	v
+beam current	main_gen4Plot_250801.py	/^#%% beam current$/;"	c
+beam info, energy spread and detune	main_gen4Plot_250801.py	/^#%% beam info, energy spread and detune$/;"	c
+beam slice bunching evo	main_gen4Plot_250801.py	/^#%% beam slice bunching evo$/;"	c
+beam slice energy evo	main_gen4Plot_250801.py	/^#%% beam slice energy evo$/;"	c
 beam1	interface/PostG4_dev.py	/^beam1 = pd_loadtxt('beam_und_250k_4_shot.ini')$/;"	v
 beamAstra	interface/Astra2G4Slices.py	/^    beamAstra = '..\/368A.2809.003'$/;"	v
+beam_P0	tutorials/genesis13/Astra2GenesisSlices.py	/^    curpeak, curlen, Nslice, Nbins, outputName, beam_P0 = Astra2GenesisSlices(fname, $/;"	v
 beam_from_astra	interface/Transport.py	/^    def beam_from_astra(self,infile):$/;"	m	class:Transport
 beamfile	examples/THz_FEL_demo_G2.py	/^beamfile = '..\/pithz.2745.019'$/;"	v
 beta	interface/Transport.py	/^beta = 0  #17$/;"	v
@@ -663,10 +722,18 @@ beta2bg	interface/Misc.py	/^def beta2bg(beta):$/;"	f
 beta2gamma	interface/Misc.py	/^def beta2gamma(beta):$/;"	f
 betax	examples/G4Tools_demo.py	/^betax=19.99072$/;"	v
 betax	interface/PostG4_dev.py	/^betax = 20.772$/;"	v
+betax	scan_fixCharge.py	/^    betax=0.4;  betay=0.4$/;"	v
+betax	scan_fixCharge.py	/^    betax=8;  betay=0.4$/;"	v
+betax	scan_profile.py	/^    betax=0.4;  betay=0.4$/;"	v
+betax	scan_profile.py	/^    betax=8;  betay=0.4$/;"	v
 betax	tutorials/ocelot/THz-2nC-booster-to-undulator.py	/^betax, betay =  20.0,  0.75$/;"	v
 betax	tutorials/ocelot/THz-2nC-booster-to-undulator.py	/^betax, betay =  7.934690,  0.4165$/;"	v
 betay	examples/G4Tools_demo.py	/^betay=0.74887$/;"	v
 betay	interface/PostG4_dev.py	/^betay = 0.270$/;"	v
+betay	scan_fixCharge.py	/^    betax=0.4;  betay=0.4$/;"	v
+betay	scan_fixCharge.py	/^    betax=8;  betay=0.4$/;"	v
+betay	scan_profile.py	/^    betax=0.4;  betay=0.4$/;"	v
+betay	scan_profile.py	/^    betax=8;  betay=0.4$/;"	v
 betay	tutorials/ocelot/THz-2nC-booster-to-undulator.py	/^betax, betay =  20.0,  0.75$/;"	v
 betay	tutorials/ocelot/THz-2nC-booster-to-undulator.py	/^betax, betay =  7.934690,  0.4165$/;"	v
 bf	tutorials/genesis13/postG4.py	/^        bf = np.mean(np.exp(-1j*theta1))$/;"	v
@@ -684,6 +751,8 @@ bf2_new	interface/Astra2G4Slices.py	/^        bf2_new = np.abs(np.mean(np.exp(1j
 bf2_new	interface/Astra2G4Slices.py	/^    bf2_new = np.abs(np.mean(np.exp(1j*theta1)))**2$/;"	v
 bf_	tutorials/genesis13/postG4.py	/^bf_ = []$/;"	v
 bf_all	tutorials/genesis13/postG4.py	/^bf_all = 0$/;"	v
+bf_local	main_gen4Plot_250801.py	/^    bf_local = hid["Beam"]["bunching"][jj,:] $/;"	v
+bf_local	main_gen4Plot_250801.py	/^bf_local = hid["Beam"]["bunching"][jj,:] $/;"	v
 bg2beta	interface/Misc.py	/^def bg2beta(bg):$/;"	f
 bg2gamma	interface/Misc.py	/^def bg2gamma(bg):$/;"	f
 binomial	interface/Misc.py	/^binomial= lambda x, a, b, c: a+b*x+c*x*x$/;"	f
@@ -701,6 +770,9 @@ bunching2	tutorials/genesis13/postG4.py	/^    bunching2 = pg2.get_beamdata('bunc
 bunchingPlot	tutorials/genesis13/Astra2GenesisSlices.py	/^def bunchingPlot(stat, ilast = -1):$/;"	f
 bx	examples/G4Tools_demo.py	/^    bx, by, ax, ay = diag.beta_x, diag.beta_y, diag.alpha_x, diag.alpha_y$/;"	v
 by	examples/G4Tools_demo.py	/^    bx, by, ax, ay = diag.beta_x, diag.beta_y, diag.alpha_x, diag.alpha_y$/;"	v
+c	scan_fixCharge.py	/^c=2.998e8$/;"	v
+c	scan_post.py	/^c = 2.998e8$/;"	v
+c	scan_profile.py	/^c=2.998e8$/;"	v
 c	tutorials/genesis13/postG4.py	/^    c = f1.get(sss)[0]; $/;"	v
 c_sig	interface/Astra2G4Slices.py	/^    c_sig = 2$/;"	v
 c_sig	interface/Astra2G4Slices.py	/^    c_sig = Ns\/\/2*lambda0\/sigma_z$/;"	v
@@ -725,7 +797,12 @@ cell	tutorials/ocelot/THz-2nC-booster-to-undulator.py	/^cell = [Marker()]$/;"	v
 charge	examples/G4Tools_demo.py	/^        charge = np.sum(dist[select,-3])$/;"	v
 charge	examples/G4Tools_demo.py	/^    charge = current*sliceLength\/g_c$/;"	v
 charge	tutorials/genesis13/run_job3.py	/^    charge = float(sys.argv[2])$/;"	v
-charge	tutorials/genesis13/run_job4.py	/^    charge = float(sys.argv[2])$/;"	v
+charge	tutorials/genesis13/run_job4.py	/^        charge = float(sys.argv[2])$/;"	v
+charge_interp	scan_post.py	/^charge_interp = RegularGridInterpolator((Lbunchtl, Ipeakl), chargel2)$/;"	v
+chargel	scan_post.py	/^chargel = np.array(chargel)$/;"	v
+chargel	scan_post.py	/^chargel = np.array(data["chargel"])$/;"	v
+chargel	scan_post.py	/^chargel=[]$/;"	v
+chargel2	scan_post.py	/^chargel2 = np.array(chargel).reshape(len(Lbunchtl), len(Ipeakl))$/;"	v
 charges	tutorials/genesis13/create_jobs.py	/^charges = [2.]$/;"	v
 charges	tutorials/genesis13/create_jobs.py	/^charges = np.linspace(1.5, 5, 8)$/;"	v
 charges	tutorials/genesis13/postG4.py	/^charges = [0.5, 1, 1.5, 2, 3, 4]$/;"	v
@@ -734,8 +811,12 @@ charges	tutorials/genesis13/postG4.py	/^charges = [2]$/;"	v
 charges	tutorials/genesis13/postG4.py	/^charges = np.linspace(1.5, 5, 8)$/;"	v
 charges	tutorials/genesis13/run_job3.py	/^charges = [2]$/;"	v
 charges	tutorials/genesis13/run_job3.py	/^charges = np.linspace(1.5, 5, 8)$/;"	v
-charges	tutorials/genesis13/run_job4.py	/^charges = [2.0]$/;"	v
-charges	tutorials/genesis13/run_job4.py	/^charges = np.linspace(1.5, 5, 8)$/;"	v
+charges	tutorials/genesis13/run_job4.py	/^    charges = [2.0]$/;"	v
+charges	tutorials/genesis13/run_job4.py	/^    charges = np.linspace(1.5, 5, 8)$/;"	v
+chicane	interface/PITZsim/PITZcoordinates.py	/^    chicane = CaseInsensitiveDict(**chicane)$/;"	v
+chicane	interface/PITZsim/PITZcoordinates.py	/^chicane= {"CHICANE.D1":zc1, "CHICANE.D2":zc2, "CHICANE.D3":zc3, "CHICANE.D4":zc4}$/;"	v
+cla	startup.py	/^cla = lambda: plt.close('all')$/;"	f
+clearall	startup.py	/^def clearall():$/;"	f
 cmd1	tutorials/genesis13/create_jobs.py	/^        cmd1 = 'module purge && module add python\/3.9 mpi\/openmpi-x86_64 phdf5\/1.14.4 szip\/2/;"	v
 cmd1	tutorials/genesis13/create_jobs.py	/^        cmd1 = 'module purge && module add python\/3.9 mpi\/openmpi-x86_64 phdf5\/1.14.4-2 szip\//;"	v
 cmin	tutorials/genesis13/postG4.py	/^cmin = 1$/;"	v
@@ -751,8 +832,8 @@ combi	tutorials/genesis13/postG4.py	/^combi = np.array([[v1, v2, v3] for v1 in c
 combi	tutorials/genesis13/postG4.py	/^combi = np.array([[v1, v2] for v1 in var1 for v2 in var2])$/;"	v
 combi	tutorials/genesis13/run_job3.py	/^combi = [[current, charge, seed]]$/;"	v
 combi	tutorials/genesis13/run_job3.py	/^combi = np.array([[v1, v2, v3] for v1 in currents for v2 in charges for v3 in seeds])$/;"	v
-combi	tutorials/genesis13/run_job4.py	/^combi = [[current, charge, seed]]$/;"	v
-combi	tutorials/genesis13/run_job4.py	/^combi = np.array([[v1, v2, v3] for v1 in currents for v2 in charges for v3 in seeds])$/;"	v
+combi	tutorials/genesis13/run_job4.py	/^    combi = [[current, charge, seed]]$/;"	v
+combi	tutorials/genesis13/run_job4.py	/^    combi = np.array([[v1, v2, v3] for v1 in currents for v2 in charges for v3 in seeds])$/;"	v
 combi	tutorials/ocelot/DoubletTuning.py	/^        combi = np.array([[grad1, v2, 0] for v2 in var2])$/;"	v
 combi	tutorials/ocelot/MultiQuadTuning.py	/^        combi = np.array([grad_+[grad2, v3] for v3 in var3])$/;"	v
 combi	tutorials/ocelot/MultiQuadTuning.py	/^        combi = np.array([grad_+[v2, 0] for v2 in var2])$/;"	v
@@ -776,6 +857,9 @@ create	interface/Job.py	/^    def create(self, jobName = None, inputName = 'ast.
 create	interface/Job.py	/^    def create(self, jobName = None, inputName = 'ast.in', direc = '.',$/;"	m	class:QsubJob
 create	interface/Job.py	/^    def create(self, jobName = None, inputName = 'ast.in', direc = '.',$/;"	m	class:SbatchJob
 create_folder	tutorials/ocelot/THzMatching2025.py	/^def create_folder(y):$/;"	f
+cs	scan_post.py	/^cs = plt.contour(X, Y, Z, levels=levels, colors='gray', linewidths=1.5,linestyles='--')$/;"	v
+cs	scan_post.py	/^cs = plt.contour(X, Y, Z, levels=levels, colors='white', linewidths=1.5,linestyles='-')$/;"	v
+cs	scan_post.py	/^cs = plt.contour(X, Y, Zc, levels=levels, colors='gray', linewidths=1.5,linestyles='--')$/;"	v
 cs_alpha	interface/Misc.py	/^    cs_alpha = r'$\\alpha$'$/;"	v	class:Unit
 cs_beta	interface/Misc.py	/^    cs_beta  = r'$\\beta$ (m)'$/;"	v	class:Unit
 cs_gamma	interface/Misc.py	/^    cs_gamma = r'$\\gamma$ (m$^{-1}$)'$/;"	v	class:Unit
@@ -783,17 +867,17 @@ curlen	interface/Astra2G4Slices.py	/^curpeak, curlen, Ntail = Astra2Genesis2Slic
 curlen	interface/Astra2G4Slices.py	/^curpeak, curlen, Ntail = Astra2Genesis2Slices(fname, outputName = 'test', seed = 2, npart = 4096/;"	v
 curlen	interface/Astra2G4Slices.py	/^curpeak, curlen, Ntail = Astra2Genesis2Slices(fname, outputName = 'test', seed = 8, npart = 4096/;"	v
 curlen	interface/Astra2G4Slices.py	/^curpeak, curlen, Ntail = Astra2Genesis2Slices(fname, outputName = 'test', seed = 9, $/;"	v
-curlen	tutorials/genesis13/Astra2GenesisSlices.py	/^    curpeak, curlen, Nslice, Nbins, outputName = Astra2GenesisSlices(fname, $/;"	v
+curlen	tutorials/genesis13/Astra2GenesisSlices.py	/^    curpeak, curlen, Nslice, Nbins, outputName, beam_P0 = Astra2GenesisSlices(fname, $/;"	v
 curlen	tutorials/genesis13/run_job3.py	/^    curpeak, curlen, Nslice, Nbins, outputName = Astra2Genesis3Slices(fname, $/;"	v
-curlen	tutorials/genesis13/run_job4.py	/^    curpeak, curlen, Nslice, Nbins, outputName = Astra2Genesis4Slices(fname, $/;"	v
+curlen	tutorials/genesis13/run_job4.py	/^        curpeak, curlen, Nslice, Nbins, outputName = Astra2Genesis4Slices(fname, $/;"	v
 curpeak	examples/THz_FEL_demo_G2.py	/^curpeak = -Q\/FWHM; print ('peak current: ', curpeak)$/;"	v
 curpeak	interface/Astra2G4Slices.py	/^curpeak, curlen, Ntail = Astra2Genesis2Slices(fname, outputName = 'test', seed = 1, npart = 4096/;"	v
 curpeak	interface/Astra2G4Slices.py	/^curpeak, curlen, Ntail = Astra2Genesis2Slices(fname, outputName = 'test', seed = 2, npart = 4096/;"	v
 curpeak	interface/Astra2G4Slices.py	/^curpeak, curlen, Ntail = Astra2Genesis2Slices(fname, outputName = 'test', seed = 8, npart = 4096/;"	v
 curpeak	interface/Astra2G4Slices.py	/^curpeak, curlen, Ntail = Astra2Genesis2Slices(fname, outputName = 'test', seed = 9, $/;"	v
-curpeak	tutorials/genesis13/Astra2GenesisSlices.py	/^    curpeak, curlen, Nslice, Nbins, outputName = Astra2GenesisSlices(fname, $/;"	v
+curpeak	tutorials/genesis13/Astra2GenesisSlices.py	/^    curpeak, curlen, Nslice, Nbins, outputName, beam_P0 = Astra2GenesisSlices(fname, $/;"	v
 curpeak	tutorials/genesis13/run_job3.py	/^    curpeak, curlen, Nslice, Nbins, outputName = Astra2Genesis3Slices(fname, $/;"	v
-curpeak	tutorials/genesis13/run_job4.py	/^    curpeak, curlen, Nslice, Nbins, outputName = Astra2Genesis4Slices(fname, $/;"	v
+curpeak	tutorials/genesis13/run_job4.py	/^        curpeak, curlen, Nslice, Nbins, outputName = Astra2Genesis4Slices(fname, $/;"	v
 current	examples/G4Tools_demo.py	/^        current = -charge*1e-9\/sliceLength*g_c$/;"	v
 current	examples/G4Tools_demo.py	/^    current = f[name+'\/current'][0]$/;"	v
 current	examples/G4Tools_demo.py	/^current = 0$/;"	v
@@ -802,13 +886,14 @@ current	interface/Astra2G4Slices.py	/^current = pg.current$/;"	v
 current	interface/PostG4_dev.py	/^current = beam.get('current')[:]$/;"	v
 current	interface/PostG4_dev.py	/^current = pg.current$/;"	v
 current	interface/PostG4_dev.py	/^current = slice.get('current')[0]$/;"	v
+current	main_gen4Plot_250801.py	/^current = postgen4.plot_BeamCurrentProfile(hid)$/;"	v
 current	tutorials/genesis13/postG4.py	/^        current = s1.get('current')[0]$/;"	v
 current	tutorials/genesis13/postG4.py	/^    current = s1.get('current')[0]$/;"	v
 current	tutorials/genesis13/postG4.py	/^current = current[select]$/;"	v
 current	tutorials/genesis13/postG4.py	/^current = pg.current$/;"	v
 current	tutorials/genesis13/postG4.py	/^current = pg.current[1:]$/;"	v
 current	tutorials/genesis13/run_job3.py	/^    current = float(sys.argv[1])$/;"	v
-current	tutorials/genesis13/run_job4.py	/^    current = float(sys.argv[1])$/;"	v
+current	tutorials/genesis13/run_job4.py	/^        current = float(sys.argv[1])$/;"	v
 current1	interface/Astra2G4Slices.py	/^        current1 = fG(x1)$/;"	v
 current1	interface/Astra2G4Slices.py	/^    current1 = fG(x1)$/;"	v
 current_all	tutorials/genesis13/postG4.py	/^current_all = 0$/;"	v
@@ -819,8 +904,8 @@ currents	tutorials/genesis13/postG4.py	/^currents = [50, 100, 150, 200]$/;"	v
 currents	tutorials/genesis13/postG4.py	/^currents = np.linspace(50, 200, 4)$/;"	v
 currents	tutorials/genesis13/run_job3.py	/^currents = [112]$/;"	v
 currents	tutorials/genesis13/run_job3.py	/^currents = np.linspace(50, 200, 4)$/;"	v
-currents	tutorials/genesis13/run_job4.py	/^currents = [112]$/;"	v
-currents	tutorials/genesis13/run_job4.py	/^currents = np.linspace(50, 200, 4)$/;"	v
+currents	tutorials/genesis13/run_job4.py	/^    currents = [112]$/;"	v
+currents	tutorials/genesis13/run_job4.py	/^    currents = np.linspace(50, 200, 4)$/;"	v
 cwd	interface/PITZsim/PITZsim.py	/^    cwd = os.path.dirname(os.path.abspath(__file__))$/;"	v
 cwd	tutorials/genesis13/postG4.py	/^cwd = os.getcwd()$/;"	v
 d1	tutorials/astra/postpro.py	/^    d1 = astra2slice(fname, 'slice@'+fname, nslice = 20, momentum_z = True)$/;"	v
@@ -829,6 +914,8 @@ dB2U	interface/Misc.py	/^def dB2U(x):$/;"	f
 dBm2W	interface/Misc.py	/^def dBm2W(x):$/;"	f
 dBm2mW	interface/Misc.py	/^def dBm2mW(x):$/;"	f
 data	demo/ParaScan.py	/^data = np.loadtxt('ParaScan_250pC@5.28m.dat')$/;"	v
+data	scan_post.py	/^    data = json.load(f)$/;"	v
+data	scan_post.py	/^data = {$/;"	v
 data	tutorials/astra/ParaScan2024.py	/^data = np.loadtxt('ParaScan_2nC_3.5mm@5.28m.dat')$/;"	v
 data	tutorials/astra/my_eval.py	/^    data = np.loadtxt(filename)$/;"	v
 data	tutorials/genesis13/postG4.py	/^    data = pg.get_beamdata('bunching')$/;"	v
@@ -857,6 +944,8 @@ data_gun	demo/ObjectFunc.py	/^data_gun = np.loadtxt(field_maps+os.sep+'gun51_sca
 data_gun	examples/injector_demo.py	/^data_gun = np.loadtxt(field_maps+os.sep+'phiGun42_scan.dat')$/;"	v
 data_gun	interface/PITZsim/PITZsim.py	/^    data_gun = np.loadtxt(field_maps+os.sep+'gun51_scan2d.dat')$/;"	v
 default_evaluator	interface/NSGAPlus.py	/^default_evaluator = PlatypusConfig.default_evaluator$/;"	v
+degree	scan_fixCharge.py	/^degree = 3$/;"	v
+degree	scan_profile.py	/^degree = 3$/;"	v
 delete	interface/Namelists.py	/^    def delete(self, key, *args):$/;"	m	class:Namelist
 delete	interface/Namelists.py	/^    def delete(self, key, *args):$/;"	m	class:Namelists
 delgam	examples/THz_FEL_demo_G2.py	/^delgam = gamma*0.5e-2$/;"	v
@@ -876,7 +965,7 @@ direc	tutorials/astra/ParaScan2024.py	/^    direc = '.'$/;"	v
 direc	tutorials/genesis13/postG4.py	/^    direc = 'P0_%.0fMeV_c_lam_%.0fum_opt' % (P0, lambda0*1e6)$/;"	v
 direc	tutorials/genesis13/postG4.py	/^    direc = 'beam_%.0fA_%.1fnC' % (Ipeak, Qtot)$/;"	v
 direc	tutorials/genesis13/run_job3.py	/^    direc = 'beam_%.0fA_%.1fnC_shotnoise_ffspec0' % (Ipeak, Qtot); print(direc)$/;"	v
-direc	tutorials/genesis13/run_job4.py	/^    direc = 'beam_%.0fA_%.1fnC_shotnoise_v4_gaussian' % (Ipeak, Qtot); print(direc)$/;"	v
+direc	tutorials/genesis13/run_job4.py	/^        direc = 'beam_%.0fA_%.1fnC_shotnoise_v4_gaussian' % (Ipeak, Qtot); print(direc)$/;"	v
 direc	tutorials/ocelot/DoubletTuning.py	/^                        direc = ''$/;"	v
 direc	tutorials/ocelot/DoubletTuning.py	/^                        direc = direc[:-1]$/;"	v
 direc	tutorials/ocelot/MultiQuadTuning.py	/^                        direc = ''$/;"	v
@@ -932,13 +1021,23 @@ end	tutorials/genesis13/postG4.py	/^end = ss.shape[1]$/;"	v
 ending	interface/Genesis13.py	/^    ending = ' $end'$/;"	v	class:Genesis2
 ending	interface/Namelists.py	/^    ending = '&end'$/;"	v	class:Namelist
 energy	interface/PostG4_dev.py	/^energy = np.sum(power, axis = 1)*lam_s\/g_c$/;"	v
+energy_interp	scan_post.py	/^energy_interp = RegularGridInterpolator((Lbunchtl, Ipeakl), energyl2)$/;"	v
 energy_spread	interface/Misc.py	/^    energy_spread = r'$\\Delta E$ (keV)'$/;"	v	class:Unit
+energyl	scan_post.py	/^energyl = []$/;"	v
+energyl	scan_post.py	/^energyl = np.array(data["energyl"])$/;"	v
+energyl	scan_post.py	/^energyl = np.array(energyl)$/;"	v
+energyl2	scan_post.py	/^energyl2 = np.array(energyl).reshape(len(Lbunchtl), len(Ipeakl))$/;"	v
 envelope	interface/Misc.py	/^def envelope(s):$/;"	f
+enx	scan_fixCharge.py	/^enx = 5e-6; eny = 20e-6$/;"	v
+enx	scan_profile.py	/^enx = 10e-6; eny = 10e-6$/;"	v
+eny	scan_fixCharge.py	/^enx = 5e-6; eny = 20e-6$/;"	v
+eny	scan_profile.py	/^enx = 10e-6; eny = 10e-6$/;"	v
 erf	interface/Astra2G4Slices.py	/^erf = sp.special.erf$/;"	v
 erf	tutorials/genesis13/Astra2GenesisSlices.py	/^erf = sp.special.erf$/;"	v
 erfinv	interface/Astra2G4Slices.py	/^erfinv = sp.special.erfinv$/;"	v
 erfinv	tutorials/genesis13/Astra2GenesisSlices.py	/^erfinv = sp.special.erfinv$/;"	v
 errPE	tutorials/genesis13/postG4.py	/^errPE = f1.get('errorPE')[:,0]\/NoP$/;"	v
+eta_off	main_gen4Plot_250801.py	/^eta_off = (bE0-E0_i)\/E0_i$/;"	v
 ex	examples/G4Tools_demo.py	/^ex=4e-06$/;"	v
 ext	interface/Astra2G4Slices.py	/^ext = ''$/;"	v
 ext	interface/PostG4_dev.py	/^ext = '_test'$/;"	v
@@ -947,6 +1046,7 @@ ext	tutorials/genesis13/postG4.py	/^ext = '.txt'$/;"	v
 ext	tutorials/genesis13/postG4.py	/^ext = '_.txt'$/;"	v
 ext	tutorials/genesis13/postG4.py	/^ext = '_5.40m.txt'$/;"	v
 ext	tutorials/genesis13/postG4.py	/^ext = flag+'.txt'$/;"	v
+extent	scan_post.py	/^extent = [Lbuncht_ps[0], Lbuncht_ps[-1], I_A[0], I_A[-1]]$/;"	v
 extent	tutorials/astra/postpro.py	/^    extent = None$/;"	v
 extent	tutorials/genesis13/postG4.py	/^extent = [xmin, xmax, ymin, ymax]$/;"	v
 ey	examples/G4Tools_demo.py	/^ey=4e-06$/;"	v
@@ -1076,13 +1176,13 @@ fname	interface/Astra2G4Slices.py	/^fname = 'temp.par.h5'$/;"	v
 fname	interface/PostG4_dev.py	/^        fname = 'pithz.%d.out' % ipseed$/;"	v
 fname	interface/PostG4_dev.py	/^fname = 'pithz.1.out'$/;"	v
 fname	interface/PostG4_dev.py	/^fname = 'test.out.h5'$/;"	v
+fname	main_gen4Plot_250801.py	/^fname = "gen4.out.h5"$/;"	v
+fname	scan_post.py	/^        fname = f"Ipeak{Ipeak:.0f}A_Lbuncht{Lbuncht*1e12:.2f}ps\/02_gen4\/gen4.out.h5"$/;"	v
 fname	tutorials/astra/MOGA_MPI.py	/^            fname = f"checkpoint_{load_checkpoint:d}"$/;"	v
 fname	tutorials/astra/MOGA_MPI.py	/^            fname = f'episode_{load_episode:d}.dat'$/;"	v
 fname	tutorials/astra/postpro.py	/^        fname = kv['fname']$/;"	v
 fname	tutorials/astra/postpro.py	/^    fname = fname+suffix$/;"	v
-fname	tutorials/genesis13/Astra2GenesisSlices.py	/^    fname = '368A.2809.002.1000'$/;"	v
-fname	tutorials/genesis13/Astra2GenesisSlices.py	/^    fname = 'beam.ini'$/;"	v
-fname	tutorials/genesis13/Astra2GenesisSlices.py	/^    fname = 'run1.2809.001'$/;"	v
+fname	tutorials/genesis13/Astra2GenesisSlices.py	/^    fname = 'fort.1032.001'$/;"	v
 fname	tutorials/genesis13/postG4.py	/^    fname = '..\/beam_112A_2.0nC_gaussian\/bunching@scan.%d.out.par' % seed$/;"	v
 fname	tutorials/genesis13/postG4.py	/^    fname = 'bunching_32768@scan.%d.out.par.h5' % seed$/;"	v
 fname	tutorials/genesis13/postG4.py	/^    fname = f'g4.{seed}.out.h5'$/;"	v
@@ -1101,9 +1201,9 @@ fname	tutorials/genesis13/postG4.py	/^fname = 'test_sc_on_v2.out'$/;"	v
 fname	tutorials/genesis13/postG4.py	/^fname = basename+'_.mat'$/;"	v
 fname	tutorials/genesis13/postG4.py	/^fname = f'g4.21.{i:d}.fld.h5'$/;"	v
 fname	tutorials/genesis13/run_job3.py	/^    fname = '..'+os.sep+'368A.2809.002.1000' # 2nC$/;"	v
-fname	tutorials/genesis13/run_job4.py	/^    fname = '..'+os.sep+'368A.2809.002.1000' # 2 nC$/;"	v
-fname	tutorials/genesis13/run_job4.py	/^    fname = '..'+os.sep+'beam_112A_2.0nC.ini' # 2.0 nC, perfect Gaussian profile$/;"	v
-fname	tutorials/genesis13/run_job4.py	/^    fname = '..'+os.sep+'oce_2.5nC.2809.001' # 2.5 nC$/;"	v
+fname	tutorials/genesis13/run_job4.py	/^        fname = '..'+os.sep+'368A.2809.002.1000' # 2 nC$/;"	v
+fname	tutorials/genesis13/run_job4.py	/^        fname = '..'+os.sep+'beam_112A_2.0nC.ini' # 2.0 nC, perfect Gaussian profile$/;"	v
+fname	tutorials/genesis13/run_job4.py	/^        fname = '..'+os.sep+'oce_2.5nC.2809.001' # 2.5 nC$/;"	v
 fname	tutorials/ocelot/THz-2nC-booster-to-undulator.py	/^fname = '368A.2809.002.1000'$/;"	v
 fname	tutorials/ocelot/THz-2nC-booster-to-undulator.py	/^fname = 'beam_112A_2.0nC.ini'$/;"	v
 fname0	tutorials/ocelot/DoubletTuning.py	/^        fname0 = 'ast.0450.002'$/;"	v
@@ -1113,6 +1213,10 @@ fname0	tutorials/ocelot/TripletTuning.py	/^        fname0 = 'ast.0528.001'$/;"	v
 fname1	tutorials/ocelot/MultiQuadTuning.py	/^        fname1 = fname0$/;"	v
 fname1	tutorials/ocelot/QuadrupletTuning.py	/^        fname1 = fname0$/;"	v
 fname1	tutorials/ocelot/TripletTuning.py	/^        fname1 = fname0$/;"	v
+folderName	scan_fixCharge.py	/^        folderName = f"Q{tol_charge*1e9:.1f}nC_Lbuncht{Lbuncht*1e12:.2f}ps"$/;"	v
+folderName	scan_profile.py	/^        folderName = f"Ipeak{Ipeak:.0f}A_Lbuncht{Lbuncht*1e12:.2f}ps"$/;"	v
+font	startup.py	/^font = 18$/;"	v
+font	startup.py	/^font = 20$/;"	v
 for PITZ Flash RT	interface/Transport.py	/^#%% for PITZ Flash RT$/;"	c
 fout	examples/G4Tools_demo.py	/^fout = h5py.File('test.par.h5', 'w')$/;"	v
 fout	tutorials/ocelot/THz-2nC-booster-to-undulator.py	/^fout = 'matched@'+fname$/;"	v
@@ -1148,6 +1252,7 @@ g_mu0	interface/Misc.py	/^g_mu0  = const.mu_0$/;"	v
 g_qe	interface/Misc.py	/^g_qe  = const.e$/;"	v
 g_re	interface/Misc.py	/^g_re  = const.physical_constants.get('classical electron radius')[0]$/;"	v
 g_sigma	interface/Misc.py	/^g_sigma = const.Stefan_Boltzmann$/;"	v
+gain curve	main_gen4Plot_250801.py	/^#%% gain curve$/;"	c
 gall	tutorials/genesis13/postG4.py	/^gall = np.zeros(nps*nz)$/;"	v
 gamma	examples/G4Tools_demo.py	/^    gamma = f[name+'\/gamma'][:]$/;"	v
 gamma	examples/G4Tools_demo.py	/^gamma = np.sqrt(1+dist[:,3]**2+dist[:,4]**2+dist[:,5]**2)$/;"	v
@@ -1174,20 +1279,32 @@ gammay	examples/G4Tools_demo.py	/^gammax, gammay = (1+alphax**2)\/betax, (1+alph
 gap	interface/Transport.py	/^gap = 5.0 # cm$/;"	v
 gaussian	interface/Misc.py	/^gaussian = lambda x, sigma, mean, amp: amp*np.exp(-(x-mean)**2\/2.\/sigma**2)$/;"	f
 gen	examples/THz_FEL_demo_G2.py	/^gen = Genesis2()$/;"	v
+gen_flattopProfile	scan_fixCharge.py	/^def gen_flattopProfile(folderName='.',plot=False):$/;"	f
+gen_flattopProfile	scan_profile.py	/^def gen_flattopProfile(folderName='.',plot=False):$/;"	f
+gen_gen4in	scan_fixCharge.py	/^def gen_gen4in(Lbuncht,folderName='.',slsc="ON",llsc="ON"):$/;"	f
+gen_gen4in	scan_profile.py	/^def gen_gen4in(Lbuncht, Ipeak, folderName='.',slsc="ON",llsc="ON"):$/;"	f
+gen_impzin	scan_fixCharge.py	/^def gen_impzin(profile='parabolic',Lbuncht=6e-12,tol_charge=2e-9, Np=1e6, folderName='.'):    $/;"	f
+gen_impzin	scan_profile.py	/^def gen_impzin(profile='parabolic',Lbuncht=6e-12,Ipeak=400, Np=1e6, folderName='.'):    $/;"	f
+gen_one	scan_fixCharge.py	/^def gen_one(Q,lamdas,path="."):   $/;"	f
+gen_one	scan_profile.py	/^def gen_one(Q,lamdas,path="."):   $/;"	f
 get	interface/BeamDiagnostics.py	/^    def get(self, key):$/;"	m	class:BeamDiagnostics
 get	interface/Hammersley.py	/^    def get(self):$/;"	m	class:Hammersley
 get	interface/Misc.py	/^    def get(self, key):$/;"	m	class:Dict
 get	interface/Namelists.py	/^        def get(self, key, *args, **kwargs):$/;"	m	class:CaseInsensitiveDict
+getBunchingFactor	interface/postgen4.py	/^def getBunchingFactor(hid, plot=True, fig=True, figext=False) :$/;"	f
+getLat	interface/PITZsim/pitzLat.py	/^def getLat(line, pitzlat):$/;"	f
 get_MaxE_booster	demo/ObjectFunc.py	/^def get_MaxE_booster(MaxE_gun = 60, phi_gun = 0, phi_booster = 0, Ef = 17.05):$/;"	f
 get_MaxE_booster	examples/injector_demo.py	/^def get_MaxE_booster(MaxE_gun = 60, phi_gun = 0, phi_booster = 0, Ef = 17.05):$/;"	f
 get_MaxE_booster	interface/PITZsim/PITZsim.py	/^    def get_MaxE_booster(MaxE_gun = 60, phi_gun = 0, phi_booster = 0, Ef = 17.05):$/;"	f
 get_MaxE_gun	demo/ObjectFunc.py	/^def get_MaxE_gun(phi_gun = 0, EG = 6.3):$/;"	f
 get_MaxE_gun	interface/PITZsim/PITZsim.py	/^    def get_MaxE_gun(phi_gun = 0, EG = 6.3):$/;"	f
 get_beamdata	interface/PostGenesis13.py	/^    def get_beamdata(self, name, at = None):$/;"	m	class:PostGenesis13
+get_cum_dE_lsc	interface/PostGenesis13.py	/^    def get_cum_dE_lsc(self, delz=0.015):$/;"	m	class:PostGenesis13
 get_data	interface/PostGenesis13.py	/^    def get_data(self, path, *args):$/;"	m	class:PostGenesis13
 get_fielddata	interface/PostGenesis13.py	/^    def get_fielddata(self, name, at = None):$/;"	m	class:PostGenesis13
 get_file	interface/Misc.py	/^    def get_file(filetype = '.txt', initialdir = "\/"):$/;"	f
 get_file_to_save	interface/Misc.py	/^    def get_file_to_save(filetype = None, initialdir = "\/"):$/;"	f
+get_gainlen	interface/postgen4.py	/^def get_gainlen(xx, yy, zmin=0.5, zmax=1.5):$/;"	f
 get_index	interface/BeamDiagnostics.py	/^    def get_index(self, key):$/;"	m	class:BeamDiagnostics
 get_nemixrms	interface/BeamDiagnostics.py	/^def get_nemixrms(fname = 'ast.Xemit.001'):$/;"	f
 get_nemixrms_at	interface/BeamDiagnostics.py	/^def get_nemixrms_at(z, fname = 'ast.Xemit.001'):$/;"	f
@@ -1198,7 +1315,11 @@ get_obj2	tutorials/ocelot/ObjOcelot.py	/^def get_obj2(x, fname = 'BeamDynamics.d
 get_obj3	tutorials/ocelot/ObjOcelot.py	/^def get_obj3(x, fname = 'BeamDynamics.dat', direc = None, zmin = 0, **kwargs):$/;"	f
 get_path	interface/Misc.py	/^    def get_path():$/;"	f
 get_ref_momentum	interface/BeamDiagnostics.py	/^def get_ref_momentum(fname = 'ast.ref.001'):$/;"	f
+get_rho	interface/postgen4.py	/^def get_rho(lamdau=30e-3, Lg=0.1):$/;"	f
+get_satpos	interface/PostGenesis13.py	/^    def get_satpos(self):$/;"	m	class:PostGenesis13
 get_spectrum	interface/PostGenesis13.py	/^    def get_spectrum(self, at = None, nearfield = False):$/;"	m	class:PostGenesis13
+get_tpower	interface/PostGenesis13.py	/^    def get_tpower(self, at=-1):$/;"	m	class:PostGenesis13
+gotoFilePath	spyder_settings.py	/^def gotoFilePath():$/;"	f
 grad0	tutorials/ocelot/MultiQuadTuning.py	/^            grad0 = np.float(sys.argv[1])$/;"	v
 grad0	tutorials/ocelot/MultiQuadTuning.py	/^        grad0 = -1.4$/;"	v
 grad0	tutorials/ocelot/MultiQuadTuning.py	/^        grad0 = -1.6$/;"	v
@@ -1256,7 +1377,10 @@ halton	interface/Astra2G4Slices.py	/^halton = Halton;$/;"	v
 ham	interface/Hammersley.py	/^ham = Hammersley(25)$/;"	v
 has_key	interface/Namelists.py	/^        def has_key(self, key):$/;"	m	class:CaseInsensitiveDict
 header	tutorials/genesis13/postG4.py	/^header = '%14s%16s%16s%16s%16s%16s' % ('current (A)', 'charge (nC)', $/;"	v
+helical	scan_fixCharge.py	/^helical=False$/;"	v
+helical	scan_profile.py	/^helical=True$/;"	v
 hh	tutorials/genesis13/postG4.py	/^hh, xedges, yedges = np.histogram2d(xx, yy, bins = bins, range = range, $/;"	v
+hid	main_gen4Plot_250801.py	/^hid = h5py.File(fname,'r')$/;"	v
 hist2d_contourf	interface/Plot.py	/^def hist2d_contourf(x, y, weights = None, bins = [100, 100], range = None):$/;"	f
 hist2d_scattered	interface/Plot.py	/^def hist2d_scattered(x, y, bins = [100, 100], range = None, weights = None, **kwargs):$/;"	f
 hist_centered	interface/Plot.py	/^def hist_centered(x, bins = None, range = None, weights = None, **kwargs):$/;"	f
@@ -1268,10 +1392,12 @@ i	tutorials/genesis13/postG4.py	/^i = 240$/;"	v
 ig	tutorials/ocelot/MultiQuadTuning.py	/^                    ig = len(y)$/;"	v
 ilast	interface/Astra2G4Slices.py	/^        ilast = islice$/;"	v
 ilast	tutorials/genesis13/postG4.py	/^ilast = 100$/;"	v
+im	scan_post.py	/^im = plt.imshow(Z, origin='lower', aspect='auto', extent=extent)$/;"	v
 im	tutorials/genesis13/postG4.py	/^im = ax.imshow(hh.T[::-1], extent = extent, aspect = 'auto', interpolation='none'); $/;"	v
 importbeam	examples/THz_FEL_demo_G4.py	/^importbeam = Namelist('importbeam',$/;"	v
 index_max	interface/Misc.py	/^def index_max(x):$/;"	f
 index_min	interface/Misc.py	/^def index_min(x):$/;"	f
+iniPitzLat	interface/PITZsim/pitzLat.py	/^def iniPitzLat(P0=21.04):$/;"	f
 init	tutorials/ocelot/MultiQuadTuning.py	/^                    init = np.array([[grad2], [grad2*1.5]])$/;"	v
 init	tutorials/ocelot/QuadrupletTuning.py	/^                    init = np.array([[grad2], [grad2*1.5]])$/;"	v
 init	tutorials/ocelot/TripletTuning.py	/^                    init = np.array([[grad2], [grad2*1.5]])$/;"	v
@@ -1314,6 +1440,8 @@ iz	tutorials/genesis13/postG4.py	/^    iz = 0$/;"	v
 iz	tutorials/genesis13/postG4.py	/^    iz = int(zi\/0.015)$/;"	v
 jitter	interface/PostG4_dev.py	/^jitter = []$/;"	v
 jitter	tutorials/genesis13/postG4.py	/^    jitter = []$/;"	v
+jj	main_gen4Plot_250801.py	/^jj=0$/;"	v
+jjl	main_gen4Plot_250801.py	/^jjl = np.arange(0,75,10)$/;"	v
 job	tutorials/create_jobs.py	/^job = CondorJob(command = command)$/;"	v
 job	tutorials/genesis13/create_jobs.py	/^    job = SbatchJob(command = 'python')$/;"	v
 jobName	tutorials/genesis13/create_jobs.py	/^    jobName = 'beam_%.0fA_%.1fnC_%d_quiet2' % (Ipeak, Qtot, seed)$/;"	v
@@ -1339,6 +1467,14 @@ kwargs	tutorials/ocelot/QuadrupletTuning.py	/^        kwargs = {'Run':Run0+2, 'D
 kwargs	tutorials/ocelot/THz-2nC-booster-to-undulator.py	/^kwargs = {}$/;"	v
 kwargs	tutorials/ocelot/TripletTuning.py	/^        kwargs = {'Run':Run0+1, 'Distribution':Distribution, 'Zstart':z0,$/;"	v
 kwargs	tutorials/ocelot/TripletTuning.py	/^        kwargs = {'Run':Run0+2, 'Distribution':Distribution, 'Zstart':z0,$/;"	v
+kx	scan_fixCharge.py	/^    kx=0.5; ky=0.5$/;"	v
+kx	scan_fixCharge.py	/^    kx=0; ky=1$/;"	v
+kx	scan_profile.py	/^    kx=0.5; ky=0.5$/;"	v
+kx	scan_profile.py	/^    kx=0; ky=1$/;"	v
+ky	scan_fixCharge.py	/^    kx=0.5; ky=0.5$/;"	v
+ky	scan_fixCharge.py	/^    kx=0; ky=1$/;"	v
+ky	scan_profile.py	/^    kx=0.5; ky=0.5$/;"	v
+ky	scan_profile.py	/^    kx=0; ky=1$/;"	v
 l	tutorials/genesis13/postG4.py	/^l, b, w, h = 0.135, 0.15, 0.70, 0.70$/;"	v
 l	tutorials/genesis13/postG4.py	/^l, b, w, h = 0.15, 0.15, 0.75, 0.75$/;"	v
 l0	tutorials/ocelot/THz-2nC-booster-to-undulator.py	/^l0 = (3.6-113*3e-2)\/2$/;"	v
@@ -1356,21 +1492,34 @@ lambda0	interface/Astra2G4Slices.py	/^    lambda0 = 100e-6$/;"	v
 lambda0	interface/Astra2G4Slices.py	/^lambda0 = 100e-6$/;"	v
 lambda0	tutorials/genesis13/postG4.py	/^    P0, lambda0 = v[:]$/;"	v
 lambda0	tutorials/genesis13/run_job3.py	/^lambda0 = 100e-6$/;"	v
-lambda0	tutorials/genesis13/run_job4.py	/^lambda0 = 100e-6$/;"	v
+lambda0	tutorials/genesis13/run_job4.py	/^    lambda0 = 100e-6$/;"	v
 lambda2mu	tutorials/genesis13/postG4.py	/^def lambda2mu(l, v = g_c, f0 = 1):$/;"	f
 lambda2mu	tutorials/genesis13/postG4.py	/^def lambda2mu(l, v = g_c, f0 = 3e12):$/;"	f
+lamda0	scan_fixCharge.py	/^lamda0 = 99.93e-6$/;"	v
+lamda0	scan_profile.py	/^lamda0 = 99.93e-6$/;"	v
+lamdau	scan_fixCharge.py	/^lamdau=30e-3$/;"	v
+lamdau	scan_profile.py	/^lamdau=30e-3$/;"	v
 lat	tutorials/astra/ParaScan2024.py	/^lat = MagneticLattice(cell, method=method)$/;"	v
 lat	tutorials/ocelot/THz-2nC-booster-to-undulator.py	/^lat = MagneticLattice(cell, method=method)$/;"	v
+lattice	interface/PITZsim/pitzLat.py	/^#%% lattice$/;"	c
 lattice	interface/PostG4_dev.py	/^lattice = f.get('Lattice')$/;"	v
+levels	scan_post.py	/^levels = np.linspace(np.nanmin(Z), np.nanmax(Z), 12)$/;"	v
+levels	scan_post.py	/^levels = np.linspace(np.nanmin(Z), np.nanmax(Z), 15)$/;"	v
+levels	scan_post.py	/^levels = np.linspace(np.nanmin(Z), np.nanmax(Z), 30)$/;"	v
+levels	scan_post.py	/^levels=np.arange(0.5,int(np.nanmax(Zc)),0.5)$/;"	v
 linear	interface/Misc.py	/^linear = lambda x, a, b: a+b*x$/;"	f
 linear	tutorials/genesis13/postG4.py	/^linear = lambda x, a, b:a+b*x$/;"	f
 linear_interp	interface/Misc.py	/^def linear_interp(x, p1, p2):$/;"	f
+llsc	scan_fixCharge.py	/^llsc="ON"$/;"	v
+llsc	scan_post.py	/^llsc="ON"$/;"	v
+llsc	scan_profile.py	/^llsc="ON"$/;"	v
 load	interface/PostGenesis13.py	/^    load = load4$/;"	v	class:PostGenesis13
 load2	interface/PostGenesis13.py	/^    def load2(self, fname):$/;"	m	class:PostGenesis13
 load3	interface/PostGenesis13.py	/^    def load3(self, fname):$/;"	m	class:PostGenesis13
 load4	interface/PostGenesis13.py	/^    def load4(self, fname):$/;"	m	class:PostGenesis13
 load_checkpoint	tutorials/astra/MOGA_MPI.py	/^load_checkpoint = 0 # this output will start from load_checkpoint+1$/;"	v
 load_episode	tutorials/astra/MOGA_MPI.py	/^load_episode = 0  # this will become the first episode in the output of the resumed run$/;"	v
+local bunching	main_gen4Plot_250801.py	/^#%% local bunching$/;"	c
 long_description	setup.py	/^    long_description = f.read()$/;"	v
 lsq	interface/Misc.py	/^def lsq(x,y):$/;"	f
 m	tutorials/ocelot/DoubletTuning.py	/^                m = int(math.ceil(float(len(combi))\/size))$/;"	v
@@ -1407,6 +1556,8 @@ momentum_z	interface/Misc.py	/^    momentum_z  = r'$P_z$ (MeV\/c)'$/;"	v	class:U
 mpart	examples/G4Tools_demo.py	/^mpart = 4096*2$/;"	v
 mpl	interface/Misc.py	/^import matplotlib as mpl$/;"	I	nameref:module:matplotlib
 mpl	interface/ocelot_tool.py	/^import matplotlib as mpl$/;"	I	nameref:module:matplotlib
+mpl	spyder_settings.py	/^import matplotlib as mpl$/;"	I	nameref:module:matplotlib
+mpl	startup.py	/^import matplotlib as mpl$/;"	I	nameref:module:matplotlib
 mpl	tutorials/ocelot/DoubletTuning.py	/^import matplotlib as mpl$/;"	I	nameref:module:matplotlib
 mpl	tutorials/ocelot/MultiQuadTuning.py	/^import matplotlib as mpl$/;"	I	nameref:module:matplotlib
 mpl	tutorials/ocelot/QuadrupletTuning.py	/^import matplotlib as mpl$/;"	I	nameref:module:matplotlib
@@ -1417,6 +1568,8 @@ nTrials	tutorials/ocelot/DoubletTuning.py	/^                    nTrials, maxTria
 nTrials	tutorials/ocelot/MultiQuadTuning.py	/^                    nTrials, maxTrials = 0, 5$/;"	v
 nTrials	tutorials/ocelot/QuadrupletTuning.py	/^                    nTrials, maxTrials = 0, 5$/;"	v
 nTrials	tutorials/ocelot/TripletTuning.py	/^                    nTrials, maxTrials = 0, 5$/;"	v
+n_I	scan_post.py	/^n_I = len(Ipeakl)  $/;"	v
+n_Lbuncht	scan_post.py	/^n_Lbuncht = len(Lbunchtl)$/;"	v
 n_gen	tutorials/astra/MOGA_MPI.py	/^n_gen = 20$/;"	v
 n_ieq	tutorials/astra/MOGA_MPI.py	/^n_ieq = 0$/;"	v
 n_obj	tutorials/astra/MOGA_MPI.py	/^n_obj = 2$/;"	v
@@ -1446,10 +1599,12 @@ nemixrms	interface/BeamDiagnostics.py	/^def nemixrms(x, xp, w = None):$/;"	f
 nemixrms_	interface/BeamDiagnostics.py	/^def nemixrms_(x, xp, w = None):$/;"	f
 nemixrms__	interface/BeamDiagnostics.py	/^def nemixrms__(x, xp, w = None, ratio = 1):$/;"	f
 nemiyrms	interface/BeamDiagnostics.py	/^nemiyrms = nemixrms$/;"	v
+nest_dict	interface/PITZsim/pitzLat.py	/^    nest_dict = lambda: defaultdict(nest_dict)$/;"	f	function:iniPitzLat	file:
 nm2eV	interface/Misc.py	/^def nm2eV(nm):$/;"	f
 nmin	examples/G4Tools_demo.py	/^nmin = 1$/;"	v
 notify	tutorials/astra/MOGA_MPI.py	/^    def notify(self, algorithm):$/;"	m	class:PrintResultsCallback
 notify_0	tutorials/astra/MOGA_MPI.py	/^    def notify_0(self, algorithm):$/;"	m	class:PrintResultsCallback
+now imshow for Lbunchtl-Ipeak VS pulse energy	scan_post.py	/^#%% now imshow for Lbunchtl-Ipeak VS pulse energy$/;"	c
 np	demo/ObjectFunc.py	/^import numpy as np$/;"	I	nameref:module:numpy
 np	demo/ParaScan.py	/^import numpy as np$/;"	I	nameref:module:numpy
 np	interface/Misc.py	/^import numpy as np$/;"	I	nameref:module:numpy
@@ -1457,15 +1612,27 @@ np	interface/NSGAPlus.py	/^import numpy as np$/;"	I	nameref:module:numpy
 np	interface/Namelists.py	/^import numpy as np$/;"	I	nameref:module:numpy
 np	interface/PITZsim/PITZcoordinates.py	/^import numpy as np$/;"	I	nameref:module:numpy
 np	interface/PITZsim/PITZsim.py	/^import numpy as np$/;"	I	nameref:module:numpy
+np	interface/PITZsim/pitzLat.py	/^import numpy as np$/;"	I	nameref:module:numpy
 np	interface/ocelot_tool.py	/^import numpy as np$/;"	I	nameref:module:numpy
+np	interface/postgen4.py	/^import numpy as np$/;"	I	nameref:module:numpy
+np	main_gen4Plot_250801.py	/^import numpy as np$/;"	I	nameref:module:numpy
+np	scan_fixCharge.py	/^import numpy as np$/;"	I	nameref:module:numpy
+np	scan_post.py	/^import numpy as np$/;"	I	nameref:module:numpy
+np	scan_profile.py	/^import numpy as np$/;"	I	nameref:module:numpy
+np	spyder_settings.py	/^import numpy as np$/;"	I	nameref:module:numpy
+np	startup.py	/^import numpy as np$/;"	I	nameref:module:numpy
 np	tutorials/astra/MOGA_MPI.py	/^import numpy as np$/;"	I	nameref:module:numpy
 np	tutorials/astra/ParaScan2024.py	/^import numpy as np$/;"	I	nameref:module:numpy
 np	tutorials/genesis13/Astra2GenesisSlices.py	/^import numpy as np$/;"	I	nameref:module:numpy
 np	tutorials/ocelot/ObjOcelot.py	/^import numpy as np$/;"	I	nameref:module:numpy
 np	tutorials/ocelot/THzMatching2025.py	/^import numpy as np$/;"	I	nameref:module:numpy
 npar	examples/G4Tools_demo.py	/^    npar = np.sum(select)$/;"	v
+npart	scan_fixCharge.py	/^npart = 8192$/;"	v
+npart	scan_profile.py	/^npart = 8192$/;"	v
 npart	tutorials/genesis13/run_job3.py	/^npart = 4096*8$/;"	v
-npart	tutorials/genesis13/run_job4.py	/^npart = 4096*8$/;"	v
+npart	tutorials/genesis13/run_job4.py	/^    npart = 4096*8$/;"	v
+nperlambda	scan_fixCharge.py	/^nperlambda = 10$/;"	v
+nperlambda	scan_profile.py	/^nperlambda = 10$/;"	v
 nps	tutorials/genesis13/postG4.py	/^nps = 8192*4$/;"	v
 nquads	tutorials/astra/ParaScan2024.py	/^nquads = len(quadNames)$/;"	v
 nquads	tutorials/ocelot/THz-2nC-booster-to-undulator.py	/^nquads = len(quadNames)$/;"	v
@@ -1474,6 +1641,8 @@ nslice	examples/G4Tools_demo.py	/^nslice = int((zmax-zmin)\/sliceLength) # slice
 nslice	examples/THz_FEL_demo_G2.py	/^nslice = 150$/;"	v
 nslice	examples/THz_FEL_demo_G2.py	/^nslice = Nu+sigma_z\/lam_s; print ('# of slice: ', nslice-Nu)$/;"	v
 ntail	examples/THz_FEL_demo_G2.py	/^ntail = 0$/;"	v
+nwig	scan_fixCharge.py	/^nwig=113$/;"	v
+nwig	scan_profile.py	/^nwig=113$/;"	v
 nx	tutorials/genesis13/postG4.py	/^nx, ny, nz = 251, 251, 187$/;"	v
 nx	tutorials/genesis13/postG4.py	/^nx, nz = f1['gridpoints'][0], f1['slicecount'][0]$/;"	v
 ny	tutorials/genesis13/postG4.py	/^nx, ny, nz = 251, 251, 187$/;"	v
@@ -1490,6 +1659,8 @@ obj_dogleg	examples/dogleg_demo.py	/^def obj_dogleg(x, *args, **kwargs):$/;"	f
 obj_func	tutorials/ocelot/MultiQuadTuning.py	/^                    def obj_func(x):$/;"	f
 obj_func	tutorials/ocelot/QuadrupletTuning.py	/^                    def obj_func(x):$/;"	f
 obj_func	tutorials/ocelot/TripletTuning.py	/^                    def obj_func(x):$/;"	f
+one4one	scan_fixCharge.py	/^one4one = False$/;"	v
+one4one	scan_profile.py	/^one4one = False$/;"	v
 optics	tutorials/ocelot/THz-2nC-booster-to-undulator.py	/^optics = 'undulator'$/;"	v
 output	interface/PostG4_dev.py	/^output =  f'Centre wavelength: {np.mean(xlamds):.2f} +\/- {np.std(xlamds):.2f} um\\n'$/;"	v
 output	interface/PostG4_dev.py	/^output = f'P =: {np.mean(pp[-1,1:end])\/1e6:.2f} +\/- {np.std(pp[-1,1:end])\/1e6:.2f} MW\\n'$/;"	v
@@ -1503,12 +1674,11 @@ output	tutorials/genesis13/postG4.py	/^output = f'Arrival time: {np.mean(arrival
 output	tutorials/genesis13/postG4.py	/^output = f'E =: {np.mean(EE[-1,1:end])*1e6:.2f} +\/- {np.std(EE[-1,1:end])*1e6:.2f} uJ\\n'$/;"	v
 output	tutorials/genesis13/postG4.py	/^output = f'P =: {np.mean(pp[-1,1:end])\/1e6:.2f} +\/- {np.std(pp[-1,1:end])\/1e6:.2f} MW\\n'$/;"	v
 outputName	interface/Astra2G4Slices.py	/^outputName = 'temp.8.out.par'$/;"	v
-outputName	tutorials/genesis13/Astra2GenesisSlices.py	/^    curpeak, curlen, Nslice, Nbins, outputName = Astra2GenesisSlices(fname, $/;"	v
-outputName	tutorials/genesis13/Astra2GenesisSlices.py	/^    outputName = Astra2WarpHaltonZ(fname, $/;"	v
+outputName	tutorials/genesis13/Astra2GenesisSlices.py	/^    curpeak, curlen, Nslice, Nbins, outputName, beam_P0 = Astra2GenesisSlices(fname, $/;"	v
 outputName	tutorials/genesis13/run_job3.py	/^    curpeak, curlen, Nslice, Nbins, outputName = Astra2Genesis3Slices(fname, $/;"	v
 outputName	tutorials/genesis13/run_job3.py	/^    outputName = 'scan'+str.format('.%d.out.par.h5' % seed)$/;"	v
-outputName	tutorials/genesis13/run_job4.py	/^    curpeak, curlen, Nslice, Nbins, outputName = Astra2Genesis4Slices(fname, $/;"	v
-outputName	tutorials/genesis13/run_job4.py	/^    outputName = 'scan'+str.format('.%d.out.par.h5' % seed)$/;"	v
+outputName	tutorials/genesis13/run_job4.py	/^        curpeak, curlen, Nslice, Nbins, outputName = Astra2Genesis4Slices(fname, $/;"	v
+outputName	tutorials/genesis13/run_job4.py	/^        outputName = 'scan'+str.format('.%d.out.par.h5' % seed)$/;"	v
 p_array	tutorials/astra/ParaScan2024.py	/^p_array = deepcopy(p_array_i)$/;"	v
 p_array	tutorials/astra/ParaScan2024.py	/^tws_track, p_array = track(lat, p_array, navi); $/;"	v
 p_array	tutorials/ocelot/THz-2nC-booster-to-undulator.py	/^p_array = deepcopy(p_array_i)$/;"	v
@@ -1520,6 +1690,15 @@ p_mid	tutorials/genesis13/postG4.py	/^    p_mid = pg.get_fielddata(name1)$/;"	v
 p_mid	tutorials/genesis13/postG4.py	/^p_mid = pg.get_fielddata(name1)$/;"	v
 p_mid1	tutorials/genesis13/postG4.py	/^    p_mid1 = pg1.get_fielddata(name1)$/;"	v
 p_mid2	tutorials/genesis13/postG4.py	/^    p_mid2 = pg2.get_fielddata(name1)$/;"	v
+path	main_gen4Plot_250801.py	/^path = stp.winpath(r"F:\\simu_2025\\initialSamplingMethod\\plannerUndu\\04_match2twiss_timeON_Sm/;"	v
+path	main_gen4Plot_250801.py	/^path="\/mnt\/f\/simu_2025\/gen4_examples\/Example1-SteadyState"$/;"	v
+path	main_gen4Plot_250801.py	/^path="\/mnt\/f\/simu_2025\/initialSamplingMethod\/plannerUndu\/04_match2twiss_timeON_SmoothGauss/;"	v
+path	main_gen4Plot_250801.py	/^path="\/mnt\/f\/simu_2025\/initialSamplingMethod\/plannerUndu\/06_one4one_smoothFlattopProfile\//;"	v
+path	main_gen4Plot_250801.py	/^path='\/mnt\/c\/Users\/biaob\/Desktop\/02_addFODO\/test_timeOFF_FODO'$/;"	v
+path	main_gen4Plot_250801.py	/^path='\/mnt\/c\/Users\/biaob\/Desktop\/02_addFODO\/test_timeOFF_xyFocus'$/;"	v
+path	main_gen4Plot_250801.py	/^path=stp.winpath(r"F:\\simu_2025\\initialSamplingMethod\\plannerUndu\\04_match2twiss_timeON_Smoo/;"	v
+path	main_gen4Plot_250801.py	/^path=stp.winpath(r"F:\\simu_2025\\initialSamplingMethod\\plannerUndu\\04_match2twiss_timeON_shot/;"	v
+path	main_gen4Plot_250801.py	/^path=stp.winpath(r"F:\\simu_2025\\initialSamplingMethod\\plannerUndu\\04_xyFocus_smoothGaussProf/;"	v
 pcov	tutorials/genesis13/postG4.py	/^popt, pcov = curve_fit(linear, NN[select], gamma[select,islice]); print(popt)$/;"	v
 pcov	tutorials/ocelot/THzMatching2025.py	/^    popt, pcov = polyfit(data[:,0], data[:,iy])$/;"	v
 pcov	tutorials/ocelot/THzMatching2025.py	/^    popt, pcov = polyfit(data[:,0], np.sqrt(data[:,ix]*data[:,iy]))$/;"	v
@@ -1529,6 +1708,10 @@ pd	interface/Misc.py	/^    import pandas as pd$/;"	I	nameref:module:pandas
 pd	tutorials/astra/ParaScan2024.py	/^import pandas as pd$/;"	I	nameref:module:pandas
 pd_loadtxt	interface/Misc.py	/^    def pd_loadtxt(filename, **kwargs):$/;"	f
 pdist	interface/Plot.py	/^def pdist(z, bins = 50, range = None, weights = None, fig_ext = '.eps', **fig_kw):$/;"	f
+peakPowerl	scan_post.py	/^peakPowerl = np.array(data["peakPowerl"])$/;"	v
+peakPowerl	scan_post.py	/^peakPowerl = np.array(peakPowerl)$/;"	v
+peakPowerl	scan_post.py	/^peakPowerl=[]$/;"	v
+peakPowerl2	scan_post.py	/^peakPowerl2 = np.array(peakPowerl).reshape(len(Lbunchtl), len(Ipeakl))$/;"	v
 peaks_x	tutorials/genesis13/postG4.py	/^peaks_x, _ = find_peaks(sum_z.max(axis=1))$/;"	v
 peaks_y	tutorials/genesis13/postG4.py	/^peaks_y, _ = find_peaks(sum_z.max(axis=0))$/;"	v
 pg	interface/Astra2G4Slices.py	/^    pg = PostGenesis(fname, debug = 0)$/;"	v
@@ -1557,7 +1740,7 @@ phi_mid1	tutorials/genesis13/postG4.py	/^    phi_mid1 = pg1.get_fielddata(name2)
 phi_mid2	tutorials/genesis13/postG4.py	/^    phi_mid2 = pg2.get_fielddata(name2)$/;"	v
 pitz	demo/ObjectFunc.py	/^    pitz = CaseInsensitiveDict(**scrns, **quads, **steerers)$/;"	v
 pitz	demo/ObjectFunc.py	/^    pitz = {}$/;"	v
-pitz	interface/PITZsim/PITZcoordinates.py	/^    pitz = CaseInsensitiveDict(**scrns, **quads, **steerers, **bpms)$/;"	v
+pitz	interface/PITZsim/PITZcoordinates.py	/^    pitz = CaseInsensitiveDict(**scrns, **quads, **steerers, **bpms, **chicane, **undulator)$/;"	v
 pitz	interface/PITZsim/PITZcoordinates.py	/^    pitz = {}$/;"	v
 plot	tutorials/astra/MOGA_MPI.py	/^        plot = Scatter()$/;"	v
 plot2d	interface/Plot.py	/^def plot2d(x, y, weights = None, xlabel = r'$x$ (mm)', ylabel = r'$y$ (mm)', figname = 'xy2d',\\$/;"	f
@@ -1570,29 +1753,53 @@ plot2d_ypy	interface/Plot.py	/^def plot2d_ypy(fname = 'ast.0500.001', dist = Non
 plot2d_yyp	interface/Plot.py	/^def plot2d_yyp(fname = 'ast.0500.001', dist = None, fig_ext = '.eps', **kwargs):$/;"	f
 plot2d_zpz	interface/Plot.py	/^def plot2d_zpz(fname = 'ast.0500.001', dist = None, fig_ext = '.eps', **kwargs):$/;"	f
 plot2dx2	interface/Plot.py	/^def plot2dx2(x, y, x1, y1, weights = None, xlabel = r'$x$ (mm)', ylabel = r'$y$ (mm)', figname =/;"	f
+plot_BeamCurrentProfile	interface/postgen4.py	/^def plot_BeamCurrentProfile(hid,slicex=False):$/;"	f
+plot_BeamEnergyDetune	interface/postgen4.py	/^def plot_BeamEnergyDetune(hid, sampleFreq=3, fig=True):$/;"	f
+plot_BeamEnergySpread	interface/postgen4.py	/^def plot_BeamEnergySpread(hid, sampleFreq=3, fig=True):$/;"	f
 plot_all_z	interface/Plot.py	/^def plot_all_z(prefix = 'ast', suffix = '001', fig_ext = '.eps', extent = None, **fig_kw):$/;"	f
 plot_avg_xy	interface/Plot.py	/^def plot_avg_xy(prefix = 'ast', suffix = '001', fig_ext = '.eps', extent = None, **fig_kw):$/;"	f
+plot_beamBunchingEvolution	interface/postgen4.py	/^def plot_beamBunchingEvolution(hid, figext=False, norm=False, sliceRange=[0,-1]):$/;"	f
+plot_beamEnergyEvolution	interface/postgen4.py	/^def plot_beamEnergyEvolution(hid, figext=False, sliceRange=[0,-1]):$/;"	f
 plot_config	interface/Misc.py	/^def plot_config():$/;"	f
 plot_config	tutorials/astra/postpro.py	/^def plot_config():$/;"	f
-plot_current	interface/PostGenesis13.py	/^    def plot_current(self, x = 'time', fig_ext = '.png'):$/;"	m	class:PostGenesis13
+plot_current	interface/PostGenesis13.py	/^    def plot_current(self, x = 'time', fig_ext = '.png', fig=True):$/;"	m	class:PostGenesis13
 plot_emi_xy	interface/Plot.py	/^def plot_emi_xy(prefix = 'ast', suffix = '001', fig_ext = '.eps', extent = None, **fig_kw):$/;"	f
-plot_energy	interface/PostGenesis13.py	/^    def plot_energy(self, fig_ext = '.png'):$/;"	m	class:PostGenesis13
+plot_energy	interface/PostGenesis13.py	/^    def plot_energy(self, fig_ext = '.png', fig=True, line="-", label=" "):$/;"	m	class:PostGenesis13
+plot_gainCurvePeakPower	interface/postgen4.py	/^def plot_gainCurvePeakPower(hid, plot=True, figp=True, figext=False, semilog=True, fig=None, ax1/;"	f
+plot_gainCurvePeakPower2	interface/postgen4.py	/^def plot_gainCurvePeakPower2(hid, plot=True, figp=True, figext=False, semilog=True, linestyle='-/;"	f
+plot_gainCurvePower	interface/postgen4.py	/^def plot_gainCurvePower(hid, bunching=True, semilog=True, figext=False, figp=True, fig=None, ax1/;"	f
+plot_gainCurvePower2	interface/postgen4.py	/^def plot_gainCurvePower2(hid, plot=True, figp=True, figext=False, semilog=True, linestyle='-'):$/;"	f
 plot_kin	interface/Plot.py	/^def plot_kin(prefix = 'ast', suffix = '001', fig_ext = '.eps', extent = None, **fig_kw):$/;"	f
 plot_kin2	interface/Plot.py	/^def plot_kin2(prefix = 'ast', suffix = '001', fig_ext = '.eps', extent = None, **fig_kw):$/;"	f
 plot_particleArray	interface/ocelot_tool.py	/^def plot_particleArray(p_array, z0 = 0, xmax = 5, ncols = 5, nrows = 5, fig_ext = '.png', **kwar/;"	f
 plot_particleArray_zpz	interface/ocelot_tool.py	/^def plot_particleArray_zpz(p_array, z0 = 0, xmax = 5, ncols = 5, nrows = 5, fig_ext = '.png', **/;"	f
-plot_power	interface/PostGenesis13.py	/^    def plot_power(self, fig_ext = '.png'):$/;"	m	class:PostGenesis13
+plot_power	interface/PostGenesis13.py	/^    def plot_power(self, fig_ext = '.png', fig=True):$/;"	m	class:PostGenesis13
+plot_powerEvolution	interface/postgen4.py	/^def plot_powerEvolution(hid, norm=True, figext=False, slicenum=True):$/;"	f
 plot_result	interface/ocelot_tool.py	/^def plot_result(res, z0 = 0, nrows = 1, label = '', fig_ext = '.png', fout = None):$/;"	f
+plot_rmsSizeEvo	interface/postgen4.py	/^def plot_rmsSizeEvo(hid, output_step=1, fig=True, field=True):$/;"	f
+plot_rmsSizeEvo_sliceJ	interface/postgen4.py	/^def plot_rmsSizeEvo_sliceJ(hid, slicej=10 ,output_step=1, fig=True, field=True):$/;"	f
 plot_rms_xy	interface/Plot.py	/^def plot_rms_xy(prefix = 'ast', suffix = '001', fig_ext = '.eps', extent = None, **fig_kw):$/;"	f
 plot_rms_xyz	interface/Plot.py	/^def plot_rms_xyz(prefix = 'ast', suffix = '001', fig_ext = '.eps', extent = None, **fig_kw):$/;"	f
+plot_sig	interface/ocelot_tool.py	/^def plot_sig(tws_track, z0 = 0, nrows = 1, label = '', fig_ext = None, fout = None, plot = True)/;"	f
 plot_slice	interface/Plot.py	/^def plot_slice(fname, fig_ext = '.eps'):$/;"	f
-plot_spectrum	interface/PostGenesis13.py	/^    def plot_spectrum(self, fig_ext = '.png'):$/;"	m	class:PostGenesis13
-plot_twiss	interface/ocelot_tool.py	/^def plot_twiss(tws_track, z0 = 0, nrows = 1, label = '', fig_ext = '.png', fout = None, plot = T/;"	f
+plot_spectrum	interface/PostGenesis13.py	/^    def plot_spectrum(self, fig_ext = '.png', at=-1, fig=True, xrange=[80,120],linelabel=None,li/;"	m	class:PostGenesis13
+plot_spectrum	interface/postgen4.py	/^def plot_spectrum(hid, step=-1, fig=True):$/;"	f
+plot_spectrumEvolution	interface/postgen4.py	/^def plot_spectrumEvolution(hid, norm=False, figext=False, freqRange=None):$/;"	f
+plot_tpower	interface/PostGenesis13.py	/^    def plot_tpower(self,x="time", fig_ext='.png', at=-1, fig=True, xrange=None, linelabel=None,/;"	m	class:PostGenesis13
+plot_twiss	interface/ocelot_tool.py	/^def plot_twiss(tws_track, z0 = 0, nrows = 1, label = '', fig_ext = None, fout = None, plot = Tru/;"	f
 plot_twiss	tutorials/ocelot/ObjOcelot.py	/^def plot_twiss(tws_track, z0 = 0, nrows = 1, label = '', fig_ext = '.png', fout = None, plot = T/;"	f
 plot_zEk	interface/Plot.py	/^def plot_zEk(prefix = 'ast', suffix = '001', fig_ext = '.eps', extent = None, **fig_kw):$/;"	f
+plotsettings	spyder_settings.py	/^def plotsettings():$/;"	f
 plt	demo/ParaScan.py	/^import matplotlib.pyplot as plt$/;"	I	nameref:module:matplotlib.pyplot
 plt	interface/Misc.py	/^import matplotlib.pyplot as plt$/;"	I	nameref:module:matplotlib.pyplot
 plt	interface/ocelot_tool.py	/^import matplotlib.pyplot as plt$/;"	I	nameref:module:matplotlib.pyplot
+plt	interface/postgen4.py	/^import matplotlib.pyplot as plt$/;"	I	nameref:module:matplotlib.pyplot
+plt	main_gen4Plot_250801.py	/^import matplotlib.pyplot as plt$/;"	I	nameref:module:matplotlib.pyplot
+plt	scan_fixCharge.py	/^import matplotlib.pyplot as plt$/;"	I	nameref:module:matplotlib.pyplot
+plt	scan_post.py	/^import matplotlib.pyplot as plt$/;"	I	nameref:module:matplotlib.pyplot
+plt	scan_profile.py	/^import matplotlib.pyplot as plt$/;"	I	nameref:module:matplotlib.pyplot
+plt	spyder_settings.py	/^import matplotlib.pyplot as plt$/;"	I	nameref:module:matplotlib.pyplot
+plt	startup.py	/^import matplotlib.pyplot as plt$/;"	I	nameref:module:matplotlib.pyplot
 plt	tutorials/astra/MOGA_MPI.py	/^import matplotlib.pyplot as plt$/;"	I	nameref:module:matplotlib.pyplot
 plt	tutorials/astra/ParaScan2024.py	/^import matplotlib.pyplot as plt$/;"	I	nameref:module:matplotlib.pyplot
 plt	tutorials/ocelot/DoubletTuning.py	/^import matplotlib.pyplot as plt$/;"	I	nameref:module:matplotlib.pyplot
@@ -1618,6 +1825,8 @@ post_ParaScan	tutorials/astra/ParaScan2024.py	/^def post_ParaScan(x, *args):$/;"
 post_PhotoInjector	tutorials/astra/my_eval.py	/^def post_PhotoInjector(x, *args, Zstop = 5.28, **kwargs):$/;"	f
 post_job	tutorials/genesis13/create_jobs.py	/^def post_job(Ipeak, Qtot):$/;"	f
 power	interface/PostG4_dev.py	/^power = Field.get('power')[:]$/;"	v
+power profile evo	main_gen4Plot_250801.py	/^#%% power profile evo$/;"	c
+power_interp	scan_post.py	/^power_interp  = RegularGridInterpolator((Lbunchtl, Ipeakl), peakPowerl2)$/;"	v
 pp	interface/PostG4_dev.py	/^pp = np.loadtxt('peak-power-z-ipseed'+ext+'.txt'); pp = pp.T; print (pp.shape)$/;"	v
 pp	interface/PostG4_dev.py	/^pp = np.loadtxt('power-t-ipseed'+ext+'.txt'); pp = pp.T; print (pp.shape)$/;"	v
 pp	tutorials/genesis13/postG4.py	/^        pp = np.loadtxt('power-z-ipseed'+ext); pp = pp.T; #print pp.shape$/;"	v
@@ -1636,6 +1845,9 @@ prime	interface/Astra2G4Slices.py	/^prime = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29,
 print_all	interface/PostGenesis13.py	/^    def print_all(self, prop = None, order = 2):$/;"	m	class:PostGenesis13
 problem	examples/injector_optimization_demo.py	/^    problem = Problem(4, 3)$/;"	v
 problem	tutorials/astra/MOGA_MPI.py	/^        problem = MyProblem()$/;"	v
+profile	scan_fixCharge.py	/^profile='flattop'$/;"	v
+profile	scan_post.py	/^profile="parabolic"$/;"	v
+profile	scan_profile.py	/^profile='flattop'$/;"	v
 profile2d	tutorials/genesis13/postG4.py	/^profile2d = np.sum(np.abs(complex_field)**2, axis=2)$/;"	v
 profile_gauss	examples/THz_FEL_demo_G4.py	/^profile_gauss = Namelist('profile_gauss', $/;"	v
 profile_step	examples/THz_FEL_demo_G4.py	/^profile_step = Namelist('profile_step', $/;"	v
@@ -1739,6 +1951,7 @@ result	tutorials/ocelot/TripletTuning.py	/^        result = func_wrapper(y)$/;"	
 rho	interface/Transport.py	/^L, rho, theta = 2.230, 0.3, np.pi\/3$/;"	v
 rho	interface/Transport.py	/^rho, theta = 0.2, np.pi\/4$/;"	v
 rho	tutorials/ocelot/THz-2nC-booster-to-undulator.py	/^rho, theta = 0.3, np.pi*60\/180$/;"	v
+rms size	main_gen4Plot_250801.py	/^#%% rms size$/;"	c
 rms-vs-Imain-vs-	demo/ParaScan.py	/^#%% rms-vs-Imain-vs-$/;"	c
 rms_x	interface/Misc.py	/^    rms_x = r'$\\sigma_x$ (mm)'$/;"	v	class:Unit
 rms_xy	interface/Misc.py	/^    rms_xy  = r'$\\sigma_{x\/y}$ (mm)'$/;"	v	class:Unit
@@ -1747,8 +1960,13 @@ rms_y	interface/Misc.py	/^    rms_y = r'$\\sigma_y$ (mm)'$/;"	v	class:Unit
 rms_z	interface/Misc.py	/^    rms_z = r'$\\sigma_z$ (mm)'$/;"	v	class:Unit
 rootdir	demo/ObjectFunc.py	/^    rootdir = r'\/\/afs\/ifh.de\/group\/pitz\/data\/lixiangk\/work'$/;"	v
 rootdir	demo/ObjectFunc.py	/^    rootdir = r'\\\\afs\\ifh.de\\group\\pitz\\data\\lixiangk\\work'$/;"	v
+rootdir	scan_fixCharge.py	/^rootdir = '\/mnt\/f\/simu_2025\/202510_idealMachineTHzFEL\/202511_scan_currentProfile_parabolic_/;"	v
+rootdir	scan_post.py	/^rootdir = f"\/lustre\/fs25\/group\/pitz\/biaobin\/202511_idealMachine\/{unduu}_{profile}_slsc{sl/;"	v
+rootdir	scan_profile.py	/^rootdir = '\/mnt\/f\/simu_2025\/202510_idealMachineTHzFEL\/202511_scan_currentProfile_parabolic_/;"	v
 rootdir	tutorials/ocelot/ObjOcelot.py	/^    rootdir = r'\/\/afs\/ifh.de\/group\/pitz\/data\/lixiangk\/work'$/;"	v
 rootdir	tutorials/ocelot/ObjOcelot.py	/^    rootdir = r'\\\\afs\\ifh.de\\group\\pitz\\data\\lixiangk\\work'$/;"	v
+rootdir2	scan_fixCharge.py	/^rootdir2=f'{unduu}_{profile}_slsc{slsc}_llsc{llsc}_one4one{one4one}_fixCharge'$/;"	v
+rootdir2	scan_profile.py	/^rootdir2=f'{unduu}_{profile}_slsc{slsc}_llsc{llsc}_one4one{one4one}'$/;"	v
 rotational	interface/PITZsim/PITZcoordinates.py	/^rotational = ['LOW.ST1', 'LOW.ST3', 'LOW.ST4', 'LOW.ST5', 'HIGH2.ST1', 'HIGH2.ST3', 'HIGH2.ST5',/;"	v
 rr	interface/Astra2G4Slices.py	/^        rr = np.array([Halton(seed, Nm_slices+j) for j in np.arange(Nm_slice)])$/;"	v
 rr	interface/Astra2G4Slices.py	/^        rr = np.array([HaltonNorm2(Nm_slices+j, a = a, b = b) for j in np.arange(Nm_slice)])-a$/;"	v
@@ -1762,6 +1980,8 @@ run	interface/Astra.py	/^    def run(self, inputName = 'ast.in', force = True, c
 run	interface/Astra.py	/^    def run(self, inputName = 'gen.in', force = True, command = 'generator'):$/;"	m	class:Generator1
 run_genesis3	tutorials/genesis13/run_job3.py	/^def run_genesis3(x, npart = 8192*4, lambda0 = 100e-6, **kwargs):$/;"	f
 run_genesis4	tutorials/genesis13/run_job4.py	/^def run_genesis4(x, npart = 8192*4, lambda0 = 100e-6, **kwargs):$/;"	f
+s	main_gen4Plot_250801.py	/^    s = hid['Global']['s'][()]\/2.998e8*1e12  #\/5.5 -2.97 #-4.9 #ps$/;"	v
+s	main_gen4Plot_250801.py	/^s = hid['Global']['s'][()]\/2.998e8*1e12  #\/5.5 -2.97 #-4.9 #ps$/;"	v
 s	tutorials/genesis13/postG4.py	/^    w, s = pg.get_spectrum(pg.zplot[i])$/;"	v
 s	tutorials/genesis13/postG4.py	/^    w, s = pg.get_spectrum(zi)$/;"	v
 s0	tutorials/astra/ParaScan2024.py	/^s0 = np.abs(0-df['phi1'])<1$/;"	v
@@ -1774,6 +1994,7 @@ s2	tutorials/ocelot/THzMatching2025.py	/^    s1, s2 = scrns['BACK.SCR2'], scrns[
 s2	tutorials/ocelot/THzMatching2025.py	/^    s1, s2 = scrns['HIGH2.SCR3'], scrns['HIGH3.SCR1']$/;"	v
 sampler	interface/Astra2G4Slices.py	/^sampler = qmc.Halton(d=1, scramble=False, seed = 100)$/;"	v
 sampling	tutorials/genesis13/postG4.py	/^sampling = [2, 10]$/;"	v
+savefig	startup.py	/^def savefig(filename=None):$/;"	f
 sbatch	interface/Genesis13.py	/^    def sbatch(self, jobName = None, inputName = 'gene.in', direc = '.',$/;"	m	class:Genesis4
 sc1	tutorials/astra/ParaScan2024.py	/^sc1 = SpaceCharge()$/;"	v
 sc1	tutorials/ocelot/THz-2nC-booster-to-undulator.py	/^sc1 = SpaceCharge()$/;"	v
@@ -1790,17 +2011,19 @@ scrns	demo/ObjectFunc.py	/^scrns = {'LOW.SCR1':0.8030, 'LOW.SCR2':1.3790, 'LOW.S
 scrns	interface/PITZsim/PITZcoordinates.py	/^    scrns = CaseInsensitiveDict(**scrns)$/;"	v
 scrns	interface/PITZsim/PITZcoordinates.py	/^scrns = {'LOW.SCR1':0.8030, 'LOW.SCR2':1.3790, 'LOW.SCR3':1.7080, 'HIGH1.SCR1':5.2770, 'HIGH1.SC/;"	v
 seed	interface/Astra2G4Slices.py	/^seed = 5$/;"	v
+seed	scan_fixCharge.py	/^seed = 2$/;"	v
+seed	scan_profile.py	/^seed = 2$/;"	v
 seed	tutorials/genesis13/create_jobs.py	/^    Ipeak, Qtot, seed = v[:] # A, nC, iprime$/;"	v
 seed	tutorials/genesis13/postG4.py	/^    seed = i$/;"	v
 seed	tutorials/genesis13/postG4.py	/^seed = 5$/;"	v
 seed	tutorials/genesis13/run_job3.py	/^    Ipeak, Qtot, seed = v[:] # A, nC, iprime$/;"	v
 seed	tutorials/genesis13/run_job3.py	/^    seed = int(sys.argv[3])$/;"	v
-seed	tutorials/genesis13/run_job4.py	/^    Ipeak, Qtot, seed = v[:] # A, nC, iprime$/;"	v
-seed	tutorials/genesis13/run_job4.py	/^    seed = int(sys.argv[3])$/;"	v
+seed	tutorials/genesis13/run_job4.py	/^        Ipeak, Qtot, seed = v[:] # A, nC, iprime$/;"	v
+seed	tutorials/genesis13/run_job4.py	/^        seed = int(sys.argv[3])$/;"	v
 seeds	tutorials/genesis13/create_jobs.py	/^seeds = np.arange(100)+1$/;"	v
 seeds	tutorials/genesis13/postG4.py	/^seeds = np.arange(20)+1$/;"	v
 seeds	tutorials/genesis13/run_job3.py	/^seeds = np.arange(20)+1$/;"	v
-seeds	tutorials/genesis13/run_job4.py	/^seeds = np.arange(20)+1$/;"	v
+seeds	tutorials/genesis13/run_job4.py	/^    seeds = np.arange(20)+1$/;"	v
 select	demo/ParaScan.py	/^    select = np.abs(1-df[flag]\/v0)<0.05$/;"	v
 select	demo/ParaScan.py	/^    select = np.abs(df[flag]-v0)<0.01; print(select)$/;"	v
 select	examples/G4Tools_demo.py	/^    select = (ztemp>=i*sliceLength) * (ztemp<(i+1)*sliceLength)$/;"	v
@@ -1826,7 +2049,9 @@ select	tutorials/ocelot/THzMatching2025.py	/^    select = data[:,0]>quads['BACK.
 select	tutorials/ocelot/TripletTuning.py	/^                            select = (data[:,3]<1e4); data = data[select]$/;"	v
 set	interface/Hammersley.py	/^    def set(self, i):$/;"	m	class:Hammersley
 set	interface/Namelists.py	/^    def set(self, *args, **kwargs):$/;"	m	class:Namelist
+set_logy_ticks	startup.py	/^def set_logy_ticks(ax):$/;"	f
 setdefault	interface/Namelists.py	/^        def setdefault(self, key, *args, **kwargs):$/;"	m	class:CaseInsensitiveDict
+setplot	startup.py	/^def setplot(figsize=(8,6), font=18):$/;"	f
 setup	examples/THz_FEL_demo_G4.py	/^setup = Namelist('setup', $/;"	v
 shape	demo/ObjectFunc.py	/^shape = (51, 91)$/;"	v
 shape	demo/ObjectFunc.py	/^shape = (71, 121)$/;"	v
@@ -1834,6 +2059,7 @@ shape	interface/PITZsim/PITZsim.py	/^    shape = (51, 91)$/;"	v
 shape	interface/PITZsim/PITZsim.py	/^    shape = (71, 121)$/;"	v
 shape	tutorials/genesis13/postG4.py	/^shape = (nx, ny, 2)$/;"	v
 shape1	interface/PITZsim/PITZsim.py	/^    shape1 = (9, 3)$/;"	v
+sigE	main_gen4Plot_250801.py	/^sigE = hid["Beam"]["Global"]["energyspread"][:] *0.511  #MeV$/;"	v
 sigma_t	interface/Astra2G4Slices.py	/^    sigma_t = sigma_z\/g_c$/;"	v
 sigma_t	interface/Astra2G4Slices.py	/^sigma_t = sigma_z\/g_c$/;"	v
 sigma_x	examples/THz_FEL_demo_G2.py	/^sigma_x, sigma_y = 1.58e-3, 0.18543e-3$/;"	v
@@ -1841,10 +2067,13 @@ sigma_y	examples/THz_FEL_demo_G2.py	/^sigma_x, sigma_y = 1.58e-3, 0.18543e-3$/;"
 sigma_z	examples/THz_FEL_demo_G2.py	/^sigma_z = FWHM*g_c$/;"	v
 sigma_z	interface/Astra2G4Slices.py	/^    sigma_z = 2e-3$/;"	v
 sigma_z	interface/Astra2G4Slices.py	/^sigma_z = 2e-3$/;"	v
+sigz	scan_post.py	/^    sigz = Lbuncht\/6*c$/;"	v
+sigz	scan_profile.py	/^            sigz = Lbuncht\/6*c$/;"	v
 size	tutorials/astra/MOGA_MPI.py	/^    size = comm.Get_size()$/;"	v
 size	tutorials/ocelot/MultiQuadTuning.py	/^        size = comm.Get_size()$/;"	v
 size	tutorials/ocelot/QuadrupletTuning.py	/^        size = comm.Get_size()$/;"	v
 size	tutorials/ocelot/TripletTuning.py	/^        size = comm.Get_size()$/;"	v
+sli_E0	main_gen4Plot_250801.py	/^    sli_E0 = hid["Beam"]["energy"][:,sli] *0.511 #MeV$/;"	v
 slice	interface/PostG4_dev.py	/^    slice = f['slice000001']$/;"	v
 slice	interface/PostG4_dev.py	/^slice = f['slice000001']$/;"	v
 slice-wise parameters from txt to hdf format	examples/THz_FEL_demo_G4.py	/^#%% slice-wise parameters from txt to hdf format$/;"	c
@@ -1870,17 +2099,25 @@ slices	tutorials/genesis13/postG4.py	/^slices = np.arange(len(current))$/;"	v
 slices	tutorials/genesis13/postG4.py	/^slices = slices[select]$/;"	v
 slicespacing	tutorials/genesis13/postG4.py	/^slicespacing = f1.get('slicespacing')[0]$/;"	v
 slicespacing	tutorials/genesis13/postG4.py	/^slicespacing = f2.get('slicespacing')[0]$/;"	v
+slil	main_gen4Plot_250801.py	/^slil = np.arange(0,100,5)$/;"	v
+slsc	scan_fixCharge.py	/^slsc="ON"$/;"	v
+slsc	scan_post.py	/^slsc="ON"$/;"	v
+slsc	scan_profile.py	/^slsc="ON"$/;"	v
 smax	tutorials/genesis13/postG4.py	/^    smax = 60742192099236.7$/;"	v
 smooth	interface/Misc.py	/^def smooth(x, window_len = 11, window = 'hanning'):$/;"	f
 smooth_easy	interface/Misc.py	/^def smooth_easy(y, box_pts):$/;"	f
 sname	tutorials/genesis13/postG4.py	/^        sname = 'slice%06d' % islice$/;"	v
 sol_profile	interface/PITZsim/PITZsim.py	/^    sol_profile = os.path.join(field_maps, 'gunsolenoidsPITZ.txt')$/;"	v
 sp	interface/Misc.py	/^import scipy as sp$/;"	I	nameref:module:scipy
+sp	tutorials/genesis13/Astra2GenesisSlices.py	/^import scipy as sp$/;"	I	nameref:module:scipy
 sp	tutorials/ocelot/THzMatching2025.py	/^import scipy as sp$/;"	I	nameref:module:scipy
+spectrum	main_gen4Plot_250801.py	/^#%% spectrum$/;"	c
 spectrum	tutorials/genesis13/postG4.py	/^wavelength, spectrum = calcSpectrum(complex_field[125,125,:])$/;"	v
 spectrum	tutorials/genesis13/postG4.py	/^wavelength, spectrum = calcSpectrum(complex_field[136,125,:])$/;"	v
 spectrums	tutorials/genesis13/postG4.py	/^spectrums = np.abs(fftshift(fft(complex_field, nz, axis), axis))$/;"	v
 spectrums	tutorials/genesis13/postG4.py	/^spectrums = spectrums*spectrums$/;"	v
+spos	main_gen4Plot_250801.py	/^    spos = 0.015*jj*3$/;"	v
+spos	main_gen4Plot_250801.py	/^spos = 0.015*3*jj$/;"	v
 ss	interface/PostG4_dev.py	/^ss = np.loadtxt('spectrum-lamds-ipseed'+ext+'.txt'); ss = ss.T; print (ss.shape)$/;"	v
 ss	tutorials/genesis13/postG4.py	/^    ss = np.loadtxt(file); ss = ss.T; print (ss.shape)$/;"	v
 ss	tutorials/genesis13/postG4.py	/^    ss = str.format('%-6s%12.4E%12.4E%6d' % ('AW', a2[i*2]\/a2.max()*2.4678, 3e-2, 1))$/;"	v
@@ -1888,6 +2125,7 @@ ss	tutorials/genesis13/postG4.py	/^ss = np.loadtxt('power-t-ipseed'+ext); ss = s
 ss	tutorials/genesis13/postG4.py	/^ss = np.loadtxt('spectrum-lamds-ipseed'+ext); ss = ss.T; print (ss.shape)$/;"	v
 ss	tutorials/genesis13/postG4.py	/^ww, ss = calcSpectrum(amp, phase)$/;"	v
 ss	tutorials/genesis13/postG4.py	/^ww, ss = calcSpectrum(amp[67:], phase[67:])$/;"	v
+sss	main_gen4Plot_250801.py	/^sss = np.linspace(0, 3.6, tmpN)$/;"	v
 sss	tutorials/genesis13/postG4.py	/^    sss = str.format('slice%06d\/current' % i); print(sss)$/;"	v
 sss	tutorials/genesis13/postG4.py	/^    sss = str.format('slice%06d\/theta' % i); print(sss)$/;"	v
 start	interface/Astra2G4Slices.py	/^        start = islice*Nm_slice*6$/;"	v
@@ -1920,6 +2158,8 @@ step	tutorials/genesis13/postG4.py	/^step = 10$/;"	v
 steps	tutorials/genesis13/postG4.py	/^steps = [10, 120, -1]$/;"	v
 steps	tutorials/genesis13/postG4.py	/^steps = [step for step in steps]$/;"	v
 steps	tutorials/genesis13/postG4.py	/^steps = f1.keys()$/;"	v
+stp	main_gen4Plot_250801.py	/^import xkinterface.startup as stp$/;"	I	nameref:module:xkinterface.startup
+stp	scan_post.py	/^import xkinterface.startup as stp$/;"	I	nameref:module:xkinterface.startup
 styles	tutorials/genesis13/postG4.py	/^styles = ['r-', 'b--', 'g:']$/;"	v
 styles	tutorials/genesis13/postG4.py	/^styles = ['r-', 'b--']$/;"	v
 submit	interface/Astra.py	/^    def submit(self, jobName = None, inputName = 'ast.in', genName = None, $/;"	m	class:Astra
@@ -1955,6 +2195,7 @@ temp1	tutorials/genesis13/postG4.py	/^temp1 = pg.get_beamdata('bunchingphase')$/
 temp1	tutorials/ocelot/THzMatching2025.py	/^temp = np.array(temp); temp1 = temp$/;"	v
 temp2	tutorials/ocelot/THzMatching2025.py	/^temp = np.array(temp); temp2 = temp$/;"	v
 test	interface/Misc.py	/^def test():$/;"	f
+test, single file	scan_post.py	/^#%% test, single file$/;"	c
 theta	examples/G4Tools_demo.py	/^        theta = sliceDist.T[2]$/;"	v
 theta	examples/G4Tools_demo.py	/^    theta = f[name+'\/theta'][:]$/;"	v
 theta	interface/Astra2G4Slices.py	/^        theta = f[name+'\/theta'][:]; Nm_slice = len(theta)$/;"	v
@@ -1999,7 +2240,15 @@ tmp	tutorials/ocelot/QuadrupletTuning.py	/^                            tmp = fun
 tmp	tutorials/ocelot/TripletTuning.py	/^                                tmp = grad2*0.75$/;"	v
 tmp	tutorials/ocelot/TripletTuning.py	/^                                tmp = grad3*1.25$/;"	v
 tmp	tutorials/ocelot/TripletTuning.py	/^                            tmp = func([0])[0]                            $/;"	v
+tmp1	scan_post.py	/^            tmp1 = hid['Field']['Global']['energy'][-1]$/;"	v
+tmp2	scan_post.py	/^            tmp2 = np.max(hid["Field"]["power"][:,:])$/;"	v
+tmp3	scan_post.py	/^            tmp3=np.sum(hid["Beam"]["current"][0,:])*hid["Global"]["lambdaref"][0]\/2.998e8 *1e9/;"	v
+tmpN	main_gen4Plot_250801.py	/^tmpN = len(bE0)$/;"	v
+tmpQ	scan_post.py	/^tmpQ = 2e-9$/;"	v
+tmpQ	scan_profile.py	/^            tmpQ = 13.3422*Ipeak*sigz*1e-9$/;"	v
+tmpQ	scan_profile.py	/^            tmpQ=Ipeak*0.9*Lbuncht$/;"	v
 toStr	interface/Namelists.py	/^def toStr(v):$/;"	f
+tol_chargel	scan_fixCharge.py	/^tol_chargel = [1e-9, 2e-9]    $/;"	v
 tr	tutorials/genesis13/postG4.py	/^tr = 0.58$/;"	v
 track	examples/THz_FEL_demo_G4.py	/^track = Namelist('track',$/;"	v
 tran	interface/Transport.py	/^tran = Transport()$/;"	v
@@ -2037,6 +2286,11 @@ und	tutorials/ocelot/THz-2nC-booster-to-undulator.py	/^und = Undulator(3e-2, 113
 und_ent	tutorials/ocelot/THz-2nC-booster-to-undulator.py	/^und_ent = pitz['High3.Und']$/;"	v
 und_to_s2	tutorials/ocelot/THz-2nC-booster-to-undulator.py	/^und_to_s2 = 0$/;"	v
 und_to_s2	tutorials/ocelot/THz-2nC-booster-to-undulator.py	/^und_to_s2 = pitz['High3.Scr2']-und_ent-3.6$/;"	v
+undulator	interface/PITZsim/PITZcoordinates.py	/^    undulator = CaseInsensitiveDict(**undulator)$/;"	v
+undulator	interface/PITZsim/PITZcoordinates.py	/^undulator= {"UND":29.887}   $/;"	v
+unduu	scan_fixCharge.py	/^    unduu="Planar"$/;"	v
+unduu	scan_post.py	/^unduu = "Planar"$/;"	v
+unduu	scan_profile.py	/^    unduu="Planar"$/;"	v
 update	interface/Genesis13.py	/^    def update(self):$/;"	m	class:Genesis4
 update	interface/Genesis13.py	/^    def update(self, quoting = True):$/;"	m	class:Genesis2
 update	interface/Namelists.py	/^        def update(self, E={}, **F):$/;"	m	class:CaseInsensitiveDict
@@ -2118,6 +2372,7 @@ weights	tutorials/genesis13/postG4.py	/^weights = wall$/;"	v
 width	interface/PostG4_dev.py	/^xlamds = []; width = []$/;"	v
 width	tutorials/genesis13/postG4.py	/^    xlamds = []; width = []$/;"	v
 width	tutorials/genesis13/postG4.py	/^xlamds = []; width = []$/;"	v
+winpath	startup.py	/^def winpath(path):$/;"	f
 workdir	examples/G4Tools_demo.py	/^workdir = r'\\\\afs\\ifh.de\\group\\pitz\\data\\lixiangk\\sim\\2021\\Genesis-demo'$/;"	v
 workdir	interface/Astra2G4Slices.py	/^workdir = r'\\\\afs\\ifh.de\\group\\pitz\\data\\lixiangk\\sim3\\2023\\G2-demo'$/;"	v
 workdir	interface/Astra2G4Slices.py	/^workdir = r'\\\\afs\\ifh.de\\group\\pitz\\data\\lixiangk\\sim3\\2023\\THUtest'$/;"	v
@@ -2133,10 +2388,7 @@ workdir	interface/Transport.py	/^workdir = r'\\\\afs\\ifh.de\\group\\pitz\\data\
 workdir	interface/Transport.py	/^workdir = r'\\\\afs\\ifh.de\\group\\pitz\\data\\lixiangk\\sim\\2020\\FRT\\_B1-274Gs-B2-180Gs'$/;"	v
 workdir	tutorials/astra/my_eval.py	/^    workdir = 'test7'$/;"	v
 workdir	tutorials/astra/postpro.py	/^    workdir = kv['workdir']$/;"	v
-workdir	tutorials/genesis13/Astra2GenesisSlices.py	/^    workdir = r'\\\\afs\\ifh.de\\group\\pitz\\data\\lixiangk\\sim3\\2023\\SASEScan2'$/;"	v
-workdir	tutorials/genesis13/Astra2GenesisSlices.py	/^    workdir = r'\\\\afs\\ifh.de\\group\\pitz\\data\\lixiangk\\sim3\\2023\\THzApple2\\P0_15MeV_c_/;"	v
-workdir	tutorials/genesis13/Astra2GenesisSlices.py	/^    workdir = r'\\\\afs\\ifh.de\\group\\pitz\\data\\lixiangk\\sim3\\2023\\THzComm2'$/;"	v
-workdir	tutorials/genesis13/Astra2GenesisSlices.py	/^    workdir = r'\\\\afs\\ifh.de\\group\\pitz\\data\\lixiangk\\sim3\\2023\\THzDLW'$/;"	v
+workdir	tutorials/genesis13/Astra2GenesisSlices.py	/^    workdir = r'\/afs\/ifh.de\/group\/pitz\/data\/biaobin\/sim2\/2025\/bcOFF_2nC\/cores_016_impt/;"	v
 workdir	tutorials/genesis13/postG4.py	/^workdir = r'\\\\Afs\\ifh.de\\group\\pitz\\data\\lixiangk\\sim3\\2023\\THzComm2\\beam_112A_2.0nC_/;"	v
 workdir	tutorials/genesis13/postG4.py	/^workdir = r'\\\\afs\\ifh.de\\group\\pitz\\data\\lixiangk\\sim3\\2023\\THzComm2\\G2-quite_loading/;"	v
 workdir	tutorials/genesis13/postG4.py	/^workdir = r'\\\\afs\\ifh.de\\group\\pitz\\data\\lixiangk\\sim3\\2024\\DLW-XYZ\\beam_with_BC'$/;"	v
@@ -2168,7 +2420,7 @@ x	interface/Misc.py	/^    x     = r'$x$ (mm)'$/;"	v	class:Unit
 x	interface/PostG4_dev.py	/^x = pg.zplot$/;"	v
 x	interface/PostG4_dev.py	/^x = slice.get('x')[:]$/;"	v
 x	tutorials/genesis13/run_job3.py	/^    x = [curpeak, curlen, Nslice, Nbins, seed]$/;"	v
-x	tutorials/genesis13/run_job4.py	/^    x = [curpeak, curlen, Nslice, Nbins, seed]$/;"	v
+x	tutorials/genesis13/run_job4.py	/^        x = [curpeak, curlen, Nslice, Nbins, seed]$/;"	v
 x	tutorials/ocelot/DoubletTuning.py	/^            x = comm.bcast(y, root = 0)$/;"	v
 x	tutorials/ocelot/MultiQuadTuning.py	/^            x = comm.bcast(y, root = 0)$/;"	v
 x	tutorials/ocelot/QuadrupletTuning.py	/^            x = comm.bcast(y, root = 0)$/;"	v
@@ -2318,6 +2570,10 @@ z1	tutorials/astra/ParaScan2024.py	/^    z1 = pitz[quadNames[i]]$/;"	v
 z1	tutorials/genesis13/postG4.py	/^z1 = z0+delta*R56$/;"	v
 z1	tutorials/ocelot/THz-2nC-booster-to-undulator.py	/^    z1 = pitz[quadNames[i]]$/;"	v
 zall	tutorials/genesis13/postG4.py	/^zall = np.zeros(nps*nz)$/;"	v
+zc1	interface/PITZsim/PITZcoordinates.py	/^zc1 = 18.650$/;"	v
+zc2	interface/PITZsim/PITZcoordinates.py	/^zc2 = 19.630$/;"	v
+zc3	interface/PITZsim/PITZcoordinates.py	/^zc3 = 21.186$/;"	v
+zc4	interface/PITZsim/PITZcoordinates.py	/^zc4 = 22.166$/;"	v
 zdist	interface/Plot.py	/^def zdist(x, bins = 100, range = None, weights = None, smooth = False, fig_ext = '.eps', plot = /;"	f
 zenergy	interface/Astra2G4Slices.py	/^    zenergy = pg.zenergy$/;"	v
 zenergy	interface/Astra2G4Slices.py	/^zenergy = pg.zenergy$/;"	v
@@ -2348,6 +2604,7 @@ zquad	tutorials/ocelot/MultiQuadTuning.py	/^        zquad = [quads[name] for nam
 zquad	tutorials/ocelot/QuadrupletTuning.py	/^        zquad = [quads[name] for name in quadNames] # positions of quads to be tuned$/;"	v
 zquad	tutorials/ocelot/TripletTuning.py	/^        zquad = [quads[name] for name in quadNames] # positions of quads to be tuned$/;"	v
 ztemp	examples/G4Tools_demo.py	/^ztemp = dist[:,2]$/;"	v
+zz	main_gen4Plot_250801.py	/^zz = hid["Lattice"]["zplot"][:]$/;"	v
 zz	tutorials/astra/postpro.py	/^    zz = (d1[:,0]-np.mean(d1[:,0]))*1e3$/;"	v
 zz	tutorials/genesis13/postG4.py	/^    zz = ((theta1\/np.pi\/2+0.5)*slicelength+refposition)$/;"	v
 zz	tutorials/genesis13/postG4.py	/^    zz = (theta1\/np.pi\/2+0.5)*slicelength+refposition$/;"	v
