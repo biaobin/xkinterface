@@ -1,0 +1,10 @@
+lcls: undulator = {aw = 2.4678, lambdau = 30e-3, nwig = 113, helical = false, kx = 0, ky = 1, ax = 0, ay = 0, gradx = 0, grady = 0};
+lcls2: undulator = {aw = 2.4678, lambdau = 30e-3, nwig = 173, helical = false, kx = 0, ky = 1, ax = 0, ay = 0, gradx = 0, grady = 0};
+lcls3: undulator = {aw = 2.4678, lambdau = 30e-3, nwig = 3, helical = false, kx = 0, ky = 1, ax = 0, ay = 0, gradx = 0, grady = 0};
+
+pipe: drift = {l = 0.015};
+screen: marker = {dumpfield = 0, dumpbeam = 0, stop = 1};
+
+THzBL: line = {7*pipe, lcls, 7*pipe, screen};
+THzBLe: line = {7*pipe, lcls2, 7*pipe, screen};
+THzBLt: line = {7*pipe, lcls3, 7*pipe, screen};

@@ -1,0 +1,48 @@
+&setup 
+ rootname=gen4
+ lattice=gen4.lte
+ beamline=THzBL
+ gamma0=33.381
+ lambda0=0.0001
+ delz=0.015
+ seed=1
+ one4one=1
+ shotnoise=1
+ nbins=1
+&end
+
+&time 
+ s0=0
+ slen=0.0125
+ sample=1
+ time=true
+&end
+
+&importbeam
+ file=gen4_sliced.h5
+ time=true
+&end
+
+&efield 
+ longrange=1
+ rmax=0.01
+ nz=5
+ nphi=1
+ ngrid=100
+&end
+
+&field 
+ power=0
+ phase=0
+ waist_size=0.3
+ waist_pos=0
+ dgrid=0.04
+ ngrid=501
+&end
+
+&track 
+ output_step=1
+ field_dump_step=0
+ beam_dump_step=0
+&end
+

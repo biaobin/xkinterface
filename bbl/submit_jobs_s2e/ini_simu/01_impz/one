@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# read in impt simu output dist  
+
+#./cleanUp
+
+genimpactzin lte2.impz line
+ 
+#ImpactZ.exe
+mpirun -np 4 ImpactZ.exe
+
+

@@ -1,0 +1,3 @@
+#!/bin/bash
+
+rm -f fort.* ImpactZ.in *.out *.log *.err gen2_dist.*

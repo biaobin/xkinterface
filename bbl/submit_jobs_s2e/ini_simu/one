@@ -1,0 +1,24 @@
+#!/bin/bash
+
+source /etc/profile.d/modules.sh
+module purge
+module add mpi/mpich-x86_64
+
+cores=16
+
+cd ./00_impt
+mpirun -np $cores ImpactT.exe
+
+cd ../01_impz
+mv ../00_impt/fort.50 ./particle.in
+mpirun -np $cores ImpactZ.exe
+
+#-----------------
+impz2sliceh5 gen4_dist.1003
+mv gen4_sliced.h5 ../02_gen4
+
+# genesis-V4
+#--------------------------
+cd ../02_gen4
+module purge && module add python/3.9 mpi/openmpi-x86_64 phdf5/1.14.4 szip/2.1.1
+mpirun -np $cores genesis4 gen4.in

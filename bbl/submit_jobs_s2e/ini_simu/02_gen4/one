@@ -1,0 +1,9 @@
+#!/bin/bash
+
+source /etc/profile.d/modules.sh
+
+module purge && module add python/3.9 mpi/openmpi-x86_64 phdf5/1.14.4 szip/2.1.1
+
+
+
+mpirun -np 16 genesis4 gen4.in

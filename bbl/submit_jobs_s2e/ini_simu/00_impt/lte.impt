@@ -1,0 +1,106 @@
+&control
+!===================
+
+core_num_T=2
+core_num_L=2
+meshx=64
+meshy=64
+meshz=64
+
+dt=2e-12
+max_step=1e9
+
+image_sc=1
+image_stop_pos=50e-2
+
+xrad=1.5
+yrad=1.5
+
+perdlen=0.8
+
+nemission=1000
+temission=3e-12*6
+
+kinetic_energy=1.0
+
+freq_rf_scale=1.3e9
+ini_t=0.0
+
+diag = 1
+nbunch=1
+
+&end
+
+&beam
+!===================
+mass=0.511e6
+charge=-1.0
+
+distribution_type=2
+Np=1e6
+
+total_charge=2e-9
+
+sigx=0.83e-3, sigpx=0
+sigy=0.83e-3, sigpy=0
+sigz=2.998e8*2.972399e-12
+sigpz=0.0
+
+dz=-3.1*2.998e8*2.972399e-12 !for gauss bunch
+
+&end
+
+&lattice
+!===================
+phigun=134.31
+
+!phi_boo_design = 0deg,to keep E=17.05MeV
+phicds=116.19
+Eboo=12.303092e6
+
+! gun and sol are combined to one solrf file:
+! ---------------------------------------------
+! Blength longer than Efield gun length, to make sure sol decay to 0
+gun51sol: solrf, zedge=0, L=3.0, Emax=57.55e6,scaleB=0.2164212, freq=1.3e9, phase=phigun, fileid=1
+!sol:   solrf, zedge=0, L=3.0,  scaleB=0.2164212, freq=0, phase=0, fileid=3
+
+! cds is divided into coupler +6*period +coupler
+! ----------------------------------------------
+Lcoup1=0.1725
+Lcoup2=0.1711
+Lcell=0.2298
+s1=2.675
+s2=2.675+Lcoup1
+s3=s2+6*Lcell
+
+coup1: solrf, zedge=s1, L=Lcoup1,   Emax=-Eboo, freq=1.3e9, phase=phicds,fileid=21, z1=0,z2=Lcoup1*2,    L_fourier_exp=Lcoup1*2
+cell:  solrf, zedge=s2, L=Lcell*6,  Emax=Eboo,  freq=1.3e9, phase=phicds,fileid=22, z1=0,z2=Lcell*6,     L_fourier_exp=Lcell
+coup2: solrf, zedge=s3, L=Lcoup2,   Emax=-Eboo, freq=1.3e9, phase=phicds,fileid=23, z1=-Lcoup2,z2=Lcoup2,L_fourier_exp=Lcoup2*2
+
+cds: line=(coup1,cell,coup2)
+!cds: solrf, zedge=s1, L=1.72237003, Emax=Eboo, freq=1.3e9, phase=phicds, fileid=20
+
+! quads 
+! --------------------------------------------
+hq=0.38/2 
+Q3: Quad,zedge=5.8525-hq,L=0.38,grad=0.6999999999999998,fileid=4
+Q5: Quad,zedge=6.892499999999999-hq,L=0.38,grad=-0.9675679,fileid=4
+Q7: Quad,zedge=8.179999999999998-hq,L=0.38,grad=0.4564253,fileid=4
+Q9: Quad,zedge=13.987999999999998-hq,L=0.38,grad=0.0344,fileid=4
+Q11: Quad,zedge=14.368-hq,L=0.38,grad=0.0024999999999999996,fileid=4
+Q13: Quad,zedge=14.748000000000001-hq,L=0.38,grad=0.0037999999999999996,fileid=4
+Q15: Quad,zedge=15.128000000000004-hq,L=0.38,grad=0.0317,fileid=4
+Q17: Quad,zedge=16.63500000000001-hq,L=0.38,grad=-2.9196,fileid=4
+Q19: Quad,zedge=16.735000000000003-hq,L=0.38,grad=2.6121999999999996,fileid=4
+
+qline: line= (Q3,Q5,Q7,Q9,Q11,Q13,Q15,Q17,Q19)
+
+w1: watch, zedge=0.5,  filename_id=90, slice_bin=128,sample_freq=1000
+w2: watch, zedge=5.28, filename_id=91, slice_bin=128,sample_freq=1000
+
+chgdt: changedt, zedge=4.5, dt=1.6e-11
+
+line: line=(gun51sol,w1,cds,w2)
+
+&end
+
